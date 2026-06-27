@@ -1,28 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Outfit, Rubik } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const rubik = Rubik({
+  variable: "--font-rubik",
+  subsets: ["latin", "hebrew"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Tumba | Social Rewards for Real-Life Groups",
+  title: "Tumba | אפליקציית תגמולים חברתית לקבוצות",
   description:
-    "Tumba turns friend groups and communities into active social games with Coins, XP, Levels and real partner benefits.",
-  keywords: [
-    "Tumba",
-    "social rewards",
-    "group challenges",
-    "community app",
-    "partner rewards",
-  ],
+    "Tumba הופכת קבוצות אמיתיות לקהילות פעילות עם משימות, Coins, XP והטבות בעולם האמיתי.",
+  keywords: ["Tumba", "תגמולים חברתיים", "קבוצות", "אפליקציה", "קהילה"],
 };
 
 export default function RootLayout({
@@ -32,10 +30,11 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      lang="he"
+      dir="rtl"
+      className={`${outfit.variable} ${rubik.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-[#020617] text-slate-100">{children}</body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }

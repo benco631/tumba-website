@@ -1,58 +1,203 @@
-import { ECONOMY_POINTS } from "@/src/lib/content";
-import { SectionTitle } from "./SectionTitle";
-
 export function EconomySection() {
+  const checkIcon = (color: string) => (
+    <svg width="18" height="18" style={{ flex: "none", marginTop: 2 }} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  );
+
+  const itemStyle = { display: "flex", gap: 11, color: "#D2D6DE", fontSize: 15.5 };
+
   return (
-    <section id="economy" className="px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <SectionTitle
-          eyebrow="Economy"
-          title="Coins are personal. XP and Levels belong to the group."
-          description="This distinction keeps the experience fair, social, and clear for both users and partners."
-        />
-        <div className="mt-10 overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl shadow-slate-950/25">
-          <div className="grid gap-px bg-white/5 md:grid-cols-4">
-            <div className="bg-slate-950/80 p-6">
-              <p className="text-sm uppercase tracking-[0.3em] text-slate-400">Aspect</p>
+    <section
+      id="economy"
+      style={{
+        maxWidth: 1180,
+        margin: "0 auto",
+        padding: "clamp(56px,8vw,96px) clamp(18px,4vw,34px)",
+      }}
+    >
+      <div style={{ textAlign: "center", maxWidth: 760, margin: "0 auto" }}>
+        <div style={{ display: "inline-block", color: "#A78BFA", fontWeight: 600, fontSize: 14, letterSpacing: ".04em" }}>
+          כלכלה באפליקציה
+        </div>
+        <h2
+          style={{
+            fontSize: "clamp(28px,3.8vw,42px)",
+            fontWeight: 800,
+            letterSpacing: "-.02em",
+            margin: "12px 0 0",
+            lineHeight: 1.15,
+          }}
+        >
+          Coins לעומת XP &amp; Levels
+        </h2>
+        <p style={{ color: "#AEB4C0", fontSize: 17, margin: "16px 0 0" }}>
+          שתי שכבות שמניעות אחת את השנייה: התקדמות אישית והתקדמות קבוצתית. זו כלכלת מעורבות ותגמולים – לא מסחר בכסף אמיתי.
+        </p>
+      </div>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
+          gap: 22,
+          marginTop: 46,
+        }}
+      >
+        {/* Coins */}
+        <div
+          style={{
+            background: "linear-gradient(160deg,rgba(245,163,92,.12),rgba(245,163,92,.02))",
+            border: "1px solid rgba(245,163,92,.28)",
+            borderRadius: 24,
+            padding: 30,
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <div
+              style={{
+                width: 48,
+                height: 48,
+                borderRadius: "50%",
+                background: "linear-gradient(135deg,#FFD08A,var(--orange))",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontFamily: "var(--font-outfit),sans-serif",
+                fontWeight: 800,
+                color: "#3a2410",
+                boxShadow: "0 6px 20px rgba(245,163,92,.4)",
+                fontSize: 20,
+              }}
+            >
+              ₵
             </div>
-            <div className="bg-slate-950/80 p-6 text-sm font-semibold text-white">
-              Ownership
+            <div>
+              <h3 style={{ fontSize: 22, fontWeight: 800, margin: 0 }}>Coins</h3>
+              <div style={{ fontSize: 13.5, color: "var(--orange)", fontWeight: 500 }}>המטבע האישי</div>
             </div>
-            <div className="bg-slate-950/80 p-6 text-sm font-semibold text-white">
-              How it is used
-            </div>
-            <div className="bg-slate-950/80 p-6 text-sm font-semibold text-white">
-              Why it matters
-            </div>
-            {ECONOMY_POINTS.map((item) => (
-              <div key={item.title} className="contents">
-                <div className="bg-slate-950/80 p-6">
-                  <h3 className="text-xl font-semibold text-white">{item.title}</h3>
-                </div>
-                <div className="bg-slate-950/80 p-6 text-sm text-slate-300">
-                  {item.title === "Coins" ? "Personal to each user" : "Shared by the whole group"}
-                </div>
-                <div className="bg-slate-950/80 p-6">
-                  <ul className="space-y-2 text-sm text-slate-300">
-                    {item.details.map((detail) => (
-                      <li key={`${item.title}-${detail}`}>• {detail}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="bg-slate-950/80 p-6 text-sm leading-6 text-slate-300">
-                  {item.description}
-                </div>
-              </div>
-            ))}
           </div>
+          <ul style={{ listStyle: "none", padding: 0, margin: "22px 0 0", display: "flex", flexDirection: "column", gap: 14 }}>
+            <li style={itemStyle}>{checkIcon("#F5A35C")}אישיים לכל משתמש</li>
+            <li style={itemStyle}>{checkIcon("#F5A35C")}משמשים למימוש הטבות</li>
+            <li style={itemStyle}>{checkIcon("#F5A35C")}מתקבלים מפעילות, משימות, השתתפות ואתגרים</li>
+            <li style={itemStyle}>{checkIcon("#F5A35C")}נשמרים בארנק אישי לפי קבוצה</li>
+          </ul>
         </div>
 
-        <div className="mt-8 rounded-3xl border border-violet-400/20 bg-gradient-to-r from-violet-500/10 to-fuchsia-500/10 p-8 text-slate-100">
-          <p className="text-sm uppercase tracking-[0.3em] text-violet-200">Example</p>
-          <p className="mt-3 text-lg leading-7">
-            If a group reaches <span className="font-semibold text-white">Level 10</span>, it can unlock a 10% discount.
-            If it reaches <span className="font-semibold text-white">Level 50</span>, it can unlock stronger benefits such as 50% off a selected item, 1+1 offers, or VIP-style perks.
-          </p>
+        {/* XP / Levels */}
+        <div
+          style={{
+            background: "linear-gradient(160deg,rgba(124,92,246,.16),rgba(124,92,246,.03))",
+            border: "1px solid rgba(124,92,246,.3)",
+            borderRadius: 24,
+            padding: 30,
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <div
+              style={{
+                width: 48,
+                height: 48,
+                borderRadius: 14,
+                background: "linear-gradient(135deg,var(--accent2),var(--accent3))",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontFamily: "var(--font-outfit),sans-serif",
+                fontWeight: 800,
+                color: "#fff",
+                boxShadow: "0 6px 20px rgba(124,92,246,.45)",
+                fontSize: 14,
+              }}
+            >
+              XP
+            </div>
+            <div>
+              <h3 style={{ fontSize: 22, fontWeight: 800, margin: 0 }}>XP / Levels</h3>
+              <div style={{ fontSize: 13.5, color: "var(--accent2)", fontWeight: 500 }}>ההתקדמות הקבוצתית</div>
+            </div>
+          </div>
+          <ul style={{ listStyle: "none", padding: 0, margin: "22px 0 0", display: "flex", flexDirection: "column", gap: 14 }}>
+            <li style={itemStyle}>{checkIcon("#A78BFA")}שייכים לכל הקבוצה</li>
+            <li style={itemStyle}>{checkIcon("#A78BFA")}משקפים פעילות קבוצתית</li>
+            <li style={itemStyle}>{checkIcon("#A78BFA")}פותחים הטבות חדשות וטובות יותר</li>
+            <li style={itemStyle}>{checkIcon("#A78BFA")}יוצרים התקדמות משותפת וגאוות קבוצה</li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Level ladder */}
+      <div
+        style={{
+          marginTop: 24,
+          background: "rgba(255,255,255,.035)",
+          border: "1px solid rgba(255,255,255,.08)",
+          borderRadius: 24,
+          padding: "clamp(24px,4vw,38px)",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
+          <span
+            style={{
+              fontSize: 13,
+              fontWeight: 600,
+              color: "#A78BFA",
+              background: "rgba(124,92,246,.12)",
+              padding: "5px 12px",
+              borderRadius: 100,
+            }}
+          >
+            דוגמה
+          </span>
+          <span style={{ color: "#9DA3AF", fontSize: 14.5 }}>ככל שה-Level עולה – ההטבה משתדרגת</span>
+        </div>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit,minmax(160px,1fr))",
+            gap: 16,
+            marginTop: 22,
+            alignItems: "end",
+          }}
+        >
+          <div
+            style={{
+              background: "rgba(255,255,255,.04)",
+              border: "1px solid rgba(255,255,255,.08)",
+              borderRadius: 18,
+              padding: 18,
+            }}
+          >
+            <div style={{ fontFamily: "var(--font-outfit),sans-serif", fontWeight: 800, fontSize: 18, color: "#fff" }}>Level 10</div>
+            <div style={{ height: 5, borderRadius: 100, background: "linear-gradient(90deg,var(--accent2),var(--accent))", width: "35%", margin: "12px 0" }} />
+            <div style={{ fontSize: 15, color: "#D2D6DE", fontWeight: 500 }}>הטבה בסיסית – למשל 10% הנחה</div>
+          </div>
+          <div
+            style={{
+              background: "rgba(255,255,255,.04)",
+              border: "1px solid rgba(255,255,255,.08)",
+              borderRadius: 18,
+              padding: 18,
+            }}
+          >
+            <div style={{ fontFamily: "var(--font-outfit),sans-serif", fontWeight: 800, fontSize: 18, color: "#fff" }}>Level 25</div>
+            <div style={{ height: 5, borderRadius: 100, background: "linear-gradient(90deg,var(--accent2),var(--accent))", width: "62%", margin: "12px 0" }} />
+            <div style={{ fontSize: 15, color: "#D2D6DE", fontWeight: 500 }}>הטבות חזקות יותר וקבועות</div>
+          </div>
+          <div
+            style={{
+              background: "linear-gradient(150deg,rgba(124,92,246,.2),rgba(124,92,246,.04))",
+              border: "1px solid rgba(124,92,246,.4)",
+              borderRadius: 18,
+              padding: 18,
+              boxShadow: "0 12px 40px rgba(124,92,246,.18)",
+            }}
+          >
+            <div style={{ fontFamily: "var(--font-outfit),sans-serif", fontWeight: 800, fontSize: 18, color: "#fff" }}>Level 50</div>
+            <div style={{ height: 5, borderRadius: 100, background: "linear-gradient(90deg,var(--accent2),var(--accent))", width: "100%", margin: "12px 0" }} />
+            <div style={{ fontSize: 15, color: "#fff", fontWeight: 600 }}>50% על מוצר, 1+1 או הטבות VIP</div>
+          </div>
         </div>
       </div>
     </section>

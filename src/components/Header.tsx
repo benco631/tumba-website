@@ -2,81 +2,155 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { CTAButton } from "./CTAButton";
 import { NAV_LINKS } from "@/src/lib/content";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/5 bg-slate-950/75 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="#home" className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-transparent">
-            <img
-              src="/tumba-logo.svg"
-              alt="Tumba logo"
-              className="h-12 w-12 object-contain"
-            />
-          </div>
-          <span className="text-lg font-semibold tracking-tight text-white">Tumba</span>
+    <header
+      className="sticky top-0 z-50"
+      style={{
+        backdropFilter: "blur(16px)",
+        background: "rgba(8,9,12,.72)",
+        borderBottom: "1px solid rgba(255,255,255,.07)",
+      }}
+    >
+      <nav
+        className="mx-auto flex items-center gap-4"
+        style={{ maxWidth: 1180, padding: "14px clamp(18px,4vw,34px)" }}
+      >
+        <Link
+          href="#top"
+          className="flex items-center gap-2 shrink-0"
+          style={{
+            fontFamily: "var(--font-outfit), sans-serif",
+            fontWeight: 800,
+            fontSize: 26,
+            letterSpacing: "-.02em",
+            background: "linear-gradient(120deg,#fff,var(--accent2))",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            color: "transparent",
+          }}
+        >
+          <img
+            src="/tumba-logo.svg"
+            alt="Tumba"
+            style={{ height: 32, width: "auto", display: "block", filter: "drop-shadow(0 0 12px rgba(124,92,246,.45))" }}
+          />
+          Tumba
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        <div
+          id="tumba-navlinks"
+          className="hidden md:flex items-center gap-1"
+          style={{ marginInlineStart: "auto" }}
+        >
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-slate-300 transition hover:text-white"
+              className="transition-colors rounded-xl"
+              style={{
+                color: "#C7CBD4",
+                fontSize: 15,
+                fontWeight: 500,
+                padding: "9px 13px",
+              }}
+              onMouseOver={(e) => {
+                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,.06)";
+                (e.currentTarget as HTMLElement).style.color = "#fff";
+              }}
+              onMouseOut={(e) => {
+                (e.currentTarget as HTMLElement).style.background = "transparent";
+                (e.currentTarget as HTMLElement).style.color = "#C7CBD4";
+              }}
             >
               {link.label}
             </Link>
           ))}
-        </nav>
-
-        <div className="hidden md:block">
-          <CTAButton href="#pilot" variant="primary">
-            Join the Pilot
-          </CTAButton>
         </div>
+
+        <Link
+          href="#contact"
+          className="hidden md:inline-flex items-center gap-2"
+          style={{
+            marginInlineStart: 8,
+            padding: "11px 20px",
+            borderRadius: 100,
+            background: "linear-gradient(135deg,var(--accent2),var(--accent))",
+            color: "#fff",
+            fontWeight: 600,
+            fontSize: 15,
+            boxShadow: "0 8px 26px rgba(124,92,246,.4)",
+          }}
+        >
+          הצטרפו לפיילוט
+        </Link>
 
         <button
           type="button"
-          aria-label="Toggle navigation menu"
+          aria-label="תפריט"
           onClick={() => setIsMenuOpen((prev) => !prev)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-slate-100 md:hidden"
+          className="md:hidden flex items-center justify-center"
+          style={{
+            width: 42,
+            height: 42,
+            borderRadius: 12,
+            background: "rgba(255,255,255,.06)",
+            border: "1px solid rgba(255,255,255,.12)",
+            color: "#fff",
+            cursor: "pointer",
+            marginInlineStart: "auto",
+          }}
         >
-          <span className="flex flex-col gap-1.5">
-            <span className={`h-0.5 w-5 rounded-full bg-current transition ${isMenuOpen ? "translate-y-2 rotate-45" : ""}`} />
-            <span className={`h-0.5 w-5 rounded-full bg-current transition ${isMenuOpen ? "opacity-0" : ""}`} />
-            <span className={`h-0.5 w-5 rounded-full bg-current transition ${isMenuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
-          </span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
         </button>
-      </div>
+      </nav>
 
-      {isMenuOpen ? (
-        <div className="border-t border-white/5 bg-slate-950/95 px-4 pb-4 pt-3 md:hidden">
-          <nav className="flex flex-col gap-3">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="rounded-2xl px-3 py-3 text-sm text-slate-300 transition hover:bg-white/5 hover:text-white"
-              >
-                {link.label}
-              </Link>
-            ))}
+      {isMenuOpen && (
+        <div
+          className="flex flex-col gap-0.5 md:hidden"
+          style={{ padding: "8px clamp(18px,4vw,34px) 16px", borderTop: "1px solid rgba(255,255,255,.06)" }}
+        >
+          {NAV_LINKS.map((link) => (
             <Link
-              href="#pilot"
+              key={link.href}
+              href={link.href}
               onClick={() => setIsMenuOpen(false)}
-              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 px-4 py-3 text-sm font-semibold text-white"
+              style={{
+                color: "#D6D9E0",
+                fontSize: 16,
+                fontWeight: 500,
+                padding: "12px 6px",
+                borderBottom: "1px solid rgba(255,255,255,.05)",
+              }}
             >
-              Join the Pilot
+              {link.label}
             </Link>
-          </nav>
+          ))}
+          <Link
+            href="#contact"
+            onClick={() => setIsMenuOpen(false)}
+            className="inline-flex items-center justify-center mt-3"
+            style={{
+              padding: "13px 20px",
+              borderRadius: 100,
+              background: "linear-gradient(135deg,var(--accent2),var(--accent))",
+              color: "#fff",
+              fontWeight: 600,
+              fontSize: 15,
+            }}
+          >
+            הצטרפו לפיילוט
+          </Link>
         </div>
-      ) : null}
+      )}
     </header>
   );
 }
