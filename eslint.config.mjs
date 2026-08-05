@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Static marketing site (deployed via GitHub Pages), not part of the Next app.
+    "website/**",
   ]),
 ]);
 

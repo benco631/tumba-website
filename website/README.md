@@ -1,8 +1,20 @@
 # Tumba Landing Page
 
-`index.html` is a self-contained, generated file — all fonts, images, CSS, and JS are inlined.
+Plain static site: `index.html` + `assets/` (images, fonts, and the `dc-runtime`
+JS that mounts the interactive bits). Hand-editable — this is no longer a
+generated/bundled single-file export.
 
-**Do not hand-edit `index.html`.** Replace it as a whole with a newly generated file.
+`index.html` was previously a self-contained "bundler" export (base64 assets
+inlined as JSON, unpacked into blob URLs at runtime behind a placeholder
+splash screen). That splash screen was the large flashing "T" users saw on
+every load. It's been unbundled into this plain file + `assets/` structure so
+the page renders directly with no unpack step.
 
-To update the site, drop a new `index.html` here and push to `main`. The GitHub Actions
-workflow deploys it automatically to GitHub Pages.
+The page still loads React 18.3.1 UMD from `unpkg.com` at runtime (see the
+`<script>` in `assets/`'s `dc-runtime` bundle) to power small interactive
+bits (mobile nav, hover states, level/QR selectors, the contact form). That
+needs internet access to render correctly.
+
+To update the site, edit `index.html` and `assets/` directly and push to
+`main`. The GitHub Actions workflow (`.github/workflows/deploy-pages.yml`)
+deploys the `website/` folder as-is to GitHub Pages — no build step.
