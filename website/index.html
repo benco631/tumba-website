@@ -570,6 +570,30 @@
     object-fit: contain;
     border-radius: 26px;
   }
+  /* group mascot pile: 3:2, matches the reference artwork's aspect ratio.
+     the clip's own background is #F5F3FF so it blends into the band behind it
+     rather than reading as a boxed-in video */
+  .t2-group {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: contain;
+    background: #F5F3FF;
+  }
+  .t2-group-still {
+    display: none;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: contain;
+  }
+  /* the page behind this clip is a gradient while the clip's baked background
+     is flat #F5F3FF, so feather the edges instead of showing a hard rectangle */
+  .t2-group-wrap {
+    -webkit-mask-image: radial-gradient(ellipse 96% 96% at 50% 50%, #000 68%, transparent 100%);
+    mask-image: radial-gradient(ellipse 96% 96% at 50% 50%, #000 68%, transparent 100%);
+  }
   /* nearby-benefits map clip: same lazy/reduced-motion behaviour, 4:3 box */
   .t2-map {
     display: block;
@@ -602,8 +626,8 @@
   }
   /* motion off: swap every clip for its own poster frame */
   @media (prefers-reduced-motion: reduce) {
-    .t2-mascot, .t2-map { display: none; }
-    .t2-mascot-still, .t2-map-still { display: block; }
+    .t2-mascot, .t2-map, .t2-group { display: none; }
+    .t2-mascot-still, .t2-map-still, .t2-group-still { display: block; }
   }
 </style>
 </helmet>
@@ -1071,6 +1095,24 @@
         </div>
       </div>
     </div>
+
+    <!-- group mascot pile: supporting visual for this section's message
+         (below the fold, so the clip is hydrated on scroll like the others) -->
+    <div data-reveal="" style="flex:1 1 100%; display:flex; flex-direction:column; align-items:center; text-align:center; margin-top:clamp(10px,2vw,22px);">
+      <div class="t2-group-wrap" style="position:relative; width:min(560px,100%); background:#F5F3FF;">
+        <video class="t2-group" width="900" height="600" autoplay muted loop playsinline preload="none"
+               poster="assets/tumbapp-boar-group-poster.webp"
+               aria-label="קבוצת חזירי הבר הסגולים של TUMBAPP משחקים יחד"
+               data-webm="assets/tumbapp-boar-group.webm"
+               data-mp4="assets/tumbapp-boar-group.mp4"></video>
+        <img class="t2-group-still" src="assets/tumbapp-boar-group-poster.webp"
+             alt="קבוצת חזירי הבר הסגולים של TUMBAPP משחקים יחד"
+             width="900" height="600" loading="lazy" decoding="async">
+      </div>
+      <p style="color:#625A70; font-size:15.5px; margin:16px 0 0; max-width:560px; line-height:1.6; text-wrap:pretty;">
+        משימות, משחקים, צחוקים ורגעים משותפים — כל הקבוצה במקום אחד.
+      </p>
+    </div>
   </section>
 
   <!-- ============ BUSINESSES ============ -->
@@ -1238,7 +1280,7 @@ class Component extends DCLogic {
     // the x-dc template pass drops valueless boolean attributes (muted/loop/
     // autoplay), which silently breaks looping and blocks autoplay because an
     // unmuted clip is never allowed to start — so set them as properties here
-    const allMascots = root.querySelectorAll('video.t2-mascot, video.t2-map');
+    const allMascots = root.querySelectorAll('video.t2-mascot, video.t2-map, video.t2-group');
     allMascots.forEach((v) => { v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; v.controls = false; });
     if (this._reduced) {
       allMascots.forEach((v) => { v.pause(); v.removeAttribute('autoplay'); });
