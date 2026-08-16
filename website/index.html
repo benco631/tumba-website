@@ -538,6 +538,14 @@
     #t2-navtoggle { display: flex !important; margin-inline-start: auto; }
   }
 
+  /* Hero visual scale. --ps multiplies the scene's real widths/offsets, so the
+     phones, coins, chips and mascot grow as actual layout boxes on large
+     desktops. It is NOT a transform: the scene's box really changes size, so
+     nothing overlaps or spills. Tablets and phones keep --ps:1. */
+  #hero-scene { --ps: 1; }
+  @media (min-width: 1280px) { #hero-scene { --ps: 1.16; } }
+  @media (min-width: 1600px) { #hero-scene { --ps: 1.26; } }
+
   @media (max-width: 480px) {
     #hero-scene { height: 480px !important; }
   }
@@ -569,6 +577,17 @@
     aspect-ratio: 1 / 1;
     object-fit: contain;
     border-radius: 26px;
+  }
+  /* official diamond artwork: the hero visual of the Diamonds card. width/height
+     on the tag plus a square aspect-ratio reserve the box before it loads */
+  .t2-diamond {
+    position: relative;
+    display: block;
+    margin: 18px auto 4px;
+    width: clamp(110px, 13vw, 200px);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
   }
   /* group mascot pile: 3:2, matches the reference artwork's aspect ratio.
      the clip's own background is #F5F3FF so it blends into the band behind it
@@ -612,6 +631,10 @@
   }
   /* economy flow: chips chained by chevrons, stacking to a vertical chain on
      narrow screens where the chevron rotates to point down the column */
+  /* the panel stays full-bleed but its flow content is capped and centred on
+     wide screens, so the chained rows read as connected instead of stranded
+     against the right edge of a 1520px container */
+  .t2-flow-inner { max-width: 1120px; margin-inline: auto; }
   .t2-flow-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
   .t2-flow-arrow { flex: none; color: #8B5CF6; display: inline-flex; }
   @media (max-width: 640px) {
@@ -644,10 +667,10 @@
 
   <!-- ============ NAVBAR ============ -->
   <header style="position:sticky; top:0; z-index:50; backdrop-filter:blur(18px); background:rgba(250,250,255,.85); border-bottom:1px solid rgba(109,40,217,.10);">
-    <nav style="max-width:1220px; margin:0 auto; padding:13px clamp(18px,4vw,34px); display:flex; align-items:center; gap:16px;">
+    <nav style="max-width:1520px; margin:0 auto; padding:15px clamp(18px,4vw,44px); display:flex; align-items:center; gap:16px;">
       <a href="#top2" style="display:flex; align-items:center; gap:10px;">
-        <img src="assets/52579c39-213c-41ad-b8b8-9bba2b49aa8a.png" alt="TUMBAPP" style="height:34px; width:auto; display:block; filter:drop-shadow(0 0 14px rgba(124,92,246,.5));">
-        <span style="font-family:'Outfit',sans-serif; font-weight:800; font-size:25px; letter-spacing:-.02em; background:linear-gradient(120deg,var(--acc3),var(--acc)); -webkit-background-clip:text; background-clip:text; color:transparent;">TUMBAPP</span>
+        <img src="assets/52579c39-213c-41ad-b8b8-9bba2b49aa8a.png" alt="TUMBAPP" style="height:clamp(34px,2.4vw,38px); width:auto; display:block; filter:drop-shadow(0 0 14px rgba(124,92,246,.5));">
+        <span style="font-family:'Outfit',sans-serif; font-weight:800; font-size:clamp(25px,1.6vw,28px); letter-spacing:-.02em; background:linear-gradient(120deg,var(--acc3),var(--acc)); -webkit-background-clip:text; background-clip:text; color:transparent;">TUMBAPP</span>
       </a>
       <div id="t2-navlinks" style="display:flex; align-items:center; gap:4px; margin-inline-start:auto;">
         <a href="#how2" style="color:#625A70; font-size:15px; font-weight:500; padding:9px 13px; border-radius:10px;" onmouseover="{{ navHover }}" onmouseout="{{ navOut }}">איך זה עובד</a>
@@ -673,62 +696,62 @@
   <span id="top2"></span>
 
   <!-- ============ HERO ============ -->
-  <section style="max-width:1220px; margin:0 auto; padding:clamp(52px,7vw,96px) clamp(18px,4vw,34px) clamp(60px,8vw,110px); display:flex; flex-wrap:wrap; align-items:center; gap:clamp(36px,4vw,56px);">
-    <div data-reveal="" style="flex:1 1 460px; min-width:min(300px,100%);">
-      <div style="display:inline-flex; align-items:center; gap:8px; background:#EDE9FE; border:1px solid rgba(139,92,246,.34); color:#6D28D9; padding:7px 15px; border-radius:100px; font-size:13.5px; font-weight:500;">
+  <section style="max-width:1520px; margin:0 auto; padding:clamp(52px,7vw,104px) clamp(18px,4vw,44px) clamp(60px,8vw,120px); display:flex; flex-wrap:wrap; align-items:center; gap:clamp(36px,4vw,72px);">
+    <div data-reveal="" style="flex:1 1 520px; min-width:min(300px,100%);">
+      <div style="display:inline-flex; align-items:center; gap:8px; background:#EDE9FE; border:1px solid rgba(139,92,246,.34); color:#6D28D9; padding:clamp(7px,.6vw,10px) clamp(15px,1.2vw,20px); border-radius:100px; font-size:clamp(13.5px,.95vw,16px); font-weight:500;">
         <span style="width:7px; height:7px; border-radius:50%; background:var(--acc2); box-shadow:0 0 10px var(--acc2); animation:tPulse 2.2s infinite;"></span>
         אפליקציה אמיתית · פיילוט פעיל
       </div>
-      <h1 style="font-size:clamp(36px,5.4vw,64px); line-height:1.06; font-weight:900; letter-spacing:-.025em; margin:22px 0 0;">
+      <h1 style="font-size:clamp(36px,5.6vw,76px); line-height:1.06; font-weight:900; letter-spacing:-.025em; margin:22px 0 0;">
         הופכים כל קבוצה<br>
         <span style="background:linear-gradient(120deg,var(--acc3),var(--acc) 55%,var(--acc3)); background-size:200% auto; -webkit-background-clip:text; background-clip:text; color:transparent; animation:tShimmer 6s linear infinite;">למשחק עם פרסים אמיתיים</span>
       </h1>
-      <p style="font-size:clamp(16px,2vw,19.5px); color:#625A70; max-width:540px; margin:22px 0 0; line-height:1.65; text-wrap:pretty;">
+      <p style="font-size:clamp(17px,2vw,23px); color:#625A70; max-width:540px; margin:22px 0 0; line-height:1.65; text-wrap:pretty;">
         TUMBAPP מחברת בין קבוצות חברים, משימות יומיות, <span style="color:var(--goldink); font-weight:600;">Coins</span>, <span style="color:var(--acc3); font-weight:600;">יהלומים</span>, <span style="color:var(--acc3); font-weight:600;">XP</span> והטבות מעסקים — באפליקציה אחת שמחזירה קבוצות לפעול יחד.
       </p>
       <div style="display:flex; flex-wrap:wrap; gap:14px; margin-top:32px;">
-        <a href="#contact2" style="display:inline-flex; align-items:center; gap:9px; padding:16px 30px; border-radius:100px; background:linear-gradient(135deg,var(--acc2),var(--acc)); color:#fff; font-weight:700; font-size:17px; box-shadow:0 12px 38px rgba(124,92,246,.5); transition:transform .2s;" onmouseover="{{ ctaHover }}" onmouseout="{{ ctaOut }}">הצטרפו לפיילוט</a>
-        <a href="#business2" style="display:inline-flex; align-items:center; gap:8px; padding:16px 28px; border-radius:100px; background:#FFFFFF; border:1px solid rgba(109,40,217,.16); color:#241B35; font-weight:600; font-size:17px; transition:background .2s;" onmouseover="{{ ghostHover }}" onmouseout="{{ ghostOut }}">שיתוף פעולה לעסקים</a>
+        <a href="#contact2" style="display:inline-flex; align-items:center; gap:9px; padding:clamp(16px,1.15vw,20px) clamp(30px,2.3vw,40px); border-radius:100px; background:linear-gradient(135deg,var(--acc2),var(--acc)); color:#fff; font-weight:700; font-size:clamp(17px,1.15vw,20px); box-shadow:0 12px 38px rgba(124,92,246,.5); transition:transform .2s;" onmouseover="{{ ctaHover }}" onmouseout="{{ ctaOut }}">הצטרפו לפיילוט</a>
+        <a href="#business2" style="display:inline-flex; align-items:center; gap:8px; padding:clamp(16px,1.15vw,20px) clamp(28px,2.2vw,38px); border-radius:100px; background:#FFFFFF; border:1px solid rgba(109,40,217,.16); color:#241B35; font-weight:600; font-size:clamp(17px,1.15vw,20px); transition:background .2s;" onmouseover="{{ ghostHover }}" onmouseout="{{ ghostOut }}">שיתוף פעולה לעסקים</a>
       </div>
       <div style="display:flex; flex-wrap:wrap; gap:24px; margin-top:40px;">
         <div style="display:flex; align-items:center; gap:10px;">
-          <img src="assets/48605207-ed4c-4b5c-ba8c-b400b2752abf.png" alt="" style="width:38px; height:38px; display:block; filter:drop-shadow(0 4px 14px rgba(246,196,83,.45));">
-          <div><div style="font-weight:700; font-size:15px;">Coins אישיים</div><div style="font-size:12.5px; color:#625A70;">מטבע לכל משתמש</div></div>
+          <img src="assets/48605207-ed4c-4b5c-ba8c-b400b2752abf.png" alt="" style="width:clamp(38px,2.9vw,48px); height:clamp(38px,2.9vw,48px); display:block; filter:drop-shadow(0 4px 14px rgba(246,196,83,.45));">
+          <div><div style="font-weight:700; font-size:clamp(15px,1.05vw,17.5px);">Coins אישיים</div><div style="font-size:clamp(12.5px,.9vw,14.5px); color:#625A70;">מטבע לכל משתמש</div></div>
         </div>
         <div style="display:flex; align-items:center; gap:10px;">
-          <span style="width:38px; height:38px; border-radius:12px; background:linear-gradient(135deg,var(--acc2),var(--acc3)); display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:800; color:#fff; font-size:13px; box-shadow:0 4px 16px rgba(124,92,246,.5);">XP</span>
-          <div><div style="font-weight:700; font-size:15px;">XP קבוצתי</div><div style="font-size:12.5px; color:#625A70;">התקדמות של כולם</div></div>
+          <span style="width:clamp(38px,2.9vw,48px); height:clamp(38px,2.9vw,48px); border-radius:12px; background:linear-gradient(135deg,var(--acc2),var(--acc3)); display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:800; color:#fff; font-size:13px; box-shadow:0 4px 16px rgba(124,92,246,.5);">XP</span>
+          <div><div style="font-weight:700; font-size:clamp(15px,1.05vw,17.5px);">XP קבוצתי</div><div style="font-size:clamp(12.5px,.9vw,14.5px); color:#625A70;">התקדמות של כולם</div></div>
         </div>
         <div style="display:flex; align-items:center; gap:10px;">
-          <span style="width:38px; height:38px; border-radius:12px; background:#E3F9ED; border:1px solid rgba(18,161,80,.34); display:flex; align-items:center; justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#12A150" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><path d="M14 14h3v3h-3zM20 14h1M14 20h1M20 20h1"></path></svg></span>
-          <div><div style="font-weight:700; font-size:15px;">מימוש ב-QR</div><div style="font-size:12.5px; color:#625A70;">הטבות בעולם האמיתי</div></div>
+          <span style="width:clamp(38px,2.9vw,48px); height:clamp(38px,2.9vw,48px); border-radius:12px; background:#E3F9ED; border:1px solid rgba(18,161,80,.34); display:flex; align-items:center; justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#12A150" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><path d="M14 14h3v3h-3zM20 14h1M14 20h1M20 20h1"></path></svg></span>
+          <div><div style="font-weight:700; font-size:clamp(15px,1.05vw,17.5px);">מימוש ב-QR</div><div style="font-size:clamp(12.5px,.9vw,14.5px); color:#625A70;">הטבות בעולם האמיתי</div></div>
         </div>
       </div>
     </div>
 
     <!-- 3D FLOATING PHONES -->
-    <div data-reveal="" style="flex:1 1 420px; min-width:min(300px,100%); display:flex; justify-content:center; perspective:1400px;">
-      <div id="hero-scene" style="position:relative; width:min(480px,100%); height:620px;">
+    <div data-reveal="" style="flex:1 1 480px; min-width:min(300px,100%); display:flex; justify-content:center; perspective:1400px;">
+      <div id="hero-scene" style="position:relative; width:min(calc(480px * var(--ps)),100%); height:calc(620px * var(--ps));">
         <!-- glow base -->
         <div style="position:absolute; top:12%; right:6%; width:80%; height:76%; background:radial-gradient(ellipse, rgba(139,92,246,.22), transparent 66%); filter:blur(34px);"></div>
 
         <!-- back phone: arena/bets -->
-        <div style="position:absolute; top:56px; right:-8px; width:214px; transform:rotate(9deg) rotateY(-12deg); animation:tFloatR 7.5s ease-in-out infinite; --rot:9deg; z-index:1;">
-          <div style="border-radius:34px; padding:9px; background:linear-gradient(160deg,#3B3363,#1E1733); border:1px solid rgba(255,255,255,.14); box-shadow:0 22px 50px rgba(109,40,217,.20);">
+        <div style="position:absolute; top:calc(56px * var(--ps)); right:calc(-8px * var(--ps)); width:calc(214px * var(--ps)); transform:rotate(9deg) rotateY(-12deg); animation:tFloatR 7.5s ease-in-out infinite; --rot:9deg; z-index:1;">
+          <div style="border-radius:calc(34px * var(--ps)); padding:calc(9px * var(--ps)); background:linear-gradient(160deg,#3B3363,#1E1733); border:1px solid rgba(255,255,255,.14); box-shadow:0 22px 50px rgba(109,40,217,.20);">
             <img src="assets/7feeb203-76eb-46da-a120-c0755c9beaff.jpg" alt="מסך הימורים חברתיים ב-TUMBAPP" style="display:block; width:100%; border-radius:26px; border:1px solid rgba(255,255,255,.06);">
           </div>
         </div>
 
         <!-- back phone: shop/map -->
-        <div style="position:absolute; top:96px; left:-6px; width:206px; transform:rotate(-10deg) rotateY(12deg); animation:tFloatR 8.5s ease-in-out infinite .6s; --rot:-10deg; z-index:1;">
-          <div style="border-radius:34px; padding:9px; background:linear-gradient(160deg,#3B3363,#1E1733); border:1px solid rgba(255,255,255,.14); box-shadow:0 22px 50px rgba(109,40,217,.20);">
+        <div style="position:absolute; top:calc(96px * var(--ps)); left:calc(-6px * var(--ps)); width:calc(206px * var(--ps)); transform:rotate(-10deg) rotateY(12deg); animation:tFloatR 8.5s ease-in-out infinite .6s; --rot:-10deg; z-index:1;">
+          <div style="border-radius:calc(34px * var(--ps)); padding:calc(9px * var(--ps)); background:linear-gradient(160deg,#3B3363,#1E1733); border:1px solid rgba(255,255,255,.14); box-shadow:0 22px 50px rgba(109,40,217,.20);">
             <img src="assets/1e073eb3-8c23-4843-b70e-a0fb0f4549dc.jpg" alt="חנות ההטבות ומפת עסקים ב-TUMBAPP" style="display:block; width:100%; border-radius:26px; border:1px solid rgba(255,255,255,.06);">
           </div>
         </div>
 
         <!-- front phone: home -->
-        <div style="position:absolute; top:0; right:50%; transform:translateX(50%); width:248px; animation:tFloat 6.5s ease-in-out infinite; z-index:3;">
-          <div style="border-radius:40px; padding:11px; background:linear-gradient(160deg,#453A72,#221A3A); border:1px solid rgba(255,255,255,.18); box-shadow:0 32px 74px rgba(109,40,217,.24), 0 0 44px rgba(139,92,246,.14), inset 0 1px 0 rgba(255,255,255,.14);">
+        <div style="position:absolute; top:0; right:50%; transform:translateX(50%); width:calc(248px * var(--ps)); animation:tFloat 6.5s ease-in-out infinite; z-index:3;">
+          <div style="border-radius:calc(40px * var(--ps)); padding:calc(11px * var(--ps)); background:linear-gradient(160deg,#453A72,#221A3A); border:1px solid rgba(255,255,255,.18); box-shadow:0 32px 74px rgba(109,40,217,.24), 0 0 44px rgba(139,92,246,.14), inset 0 1px 0 rgba(255,255,255,.14);">
             <img src="assets/879a55d1-5c8d-433b-ae68-3ca36ccc2470.jpg" alt="מסך הבית של TUMBAPP — Coins, רמה ומשחק יומי" style="display:block; width:100%; border-radius:30px; border:1px solid rgba(255,255,255,.06);">
           </div>
           <!-- reflection -->
@@ -736,15 +759,15 @@
         </div>
 
         <!-- floating gold coins -->
-        <div style="position:absolute; top:18px; left:10%; z-index:4; animation:tFloat 5.5s ease-in-out infinite;">
-          <img src="assets/48605207-ed4c-4b5c-ba8c-b400b2752abf.png" alt="" style="width:72px; height:auto; display:block; filter:drop-shadow(0 14px 30px rgba(232,163,61,.45));">
+        <div style="position:absolute; top:calc(18px * var(--ps)); left:10%; z-index:4; animation:tFloat 5.5s ease-in-out infinite;">
+          <img src="assets/48605207-ed4c-4b5c-ba8c-b400b2752abf.png" alt="" style="width:calc(72px * var(--ps)); height:auto; display:block; filter:drop-shadow(0 14px 30px rgba(232,163,61,.45));">
         </div>
-        <div style="position:absolute; bottom:196px; left:7%; z-index:0; animation:tFloat 6.8s ease-in-out infinite 1.2s;">
-          <img src="assets/48605207-ed4c-4b5c-ba8c-b400b2752abf.png" alt="" style="width:44px; height:auto; display:block; filter:drop-shadow(0 10px 22px rgba(232,163,61,.4)) brightness(.94);">
+        <div style="position:absolute; bottom:calc(196px * var(--ps)); left:7%; z-index:0; animation:tFloat 6.8s ease-in-out infinite 1.2s;">
+          <img src="assets/48605207-ed4c-4b5c-ba8c-b400b2752abf.png" alt="" style="width:calc(44px * var(--ps)); height:auto; display:block; filter:drop-shadow(0 10px 22px rgba(232,163,61,.4)) brightness(.94);">
         </div>
 
         <!-- waving mascot (above the fold: loads eagerly) -->
-        <div style="position:absolute; bottom:4px; left:-10px; z-index:5; width:min(152px,34%); animation:tFloat 6.2s ease-in-out infinite .4s;">
+        <div style="position:absolute; bottom:calc(4px * var(--ps)); left:calc(-10px * var(--ps)); z-index:5; width:min(calc(152px * var(--ps)),34%); animation:tFloat 6.2s ease-in-out infinite .4s;">
           <div class="t2-mascot-wrap">
             <video class="t2-mascot" width="720" height="720" autoplay muted loop playsinline preload="metadata" poster="assets/tumbapp-boar-wave-poster.jpg" aria-label="הקמע של TUMBAPP מנופף לשלום">
               <source src="assets/tumbapp-boar-wave.webm" type="video/webm">
@@ -753,13 +776,13 @@
             <img class="t2-mascot-still" src="assets/tumbapp-boar-wave-poster.jpg" alt="הקמע של TUMBAPP מנופף לשלום" width="720" height="720">
           </div>
         </div>
-        <div style="position:absolute; top:120px; right:2%; z-index:0; animation:tFloat 7.6s ease-in-out infinite 2s;">
-          <img src="assets/48605207-ed4c-4b5c-ba8c-b400b2752abf.png" alt="" style="width:34px; height:auto; display:block; filter:drop-shadow(0 8px 18px rgba(232,163,61,.35)) brightness(.88);">
+        <div style="position:absolute; top:calc(120px * var(--ps)); right:2%; z-index:0; animation:tFloat 7.6s ease-in-out infinite 2s;">
+          <img src="assets/48605207-ed4c-4b5c-ba8c-b400b2752abf.png" alt="" style="width:calc(34px * var(--ps)); height:auto; display:block; filter:drop-shadow(0 8px 18px rgba(232,163,61,.35)) brightness(.88);">
         </div>
 
         <!-- floating XP chip -->
-        <div style="position:absolute; bottom:56px; right:4%; z-index:4; animation:tFloat 7s ease-in-out infinite .9s;">
-          <div style="background:rgba(255,255,255,.95); backdrop-filter:blur(10px); border:1px solid rgba(139,92,246,.30); border-radius:16px; padding:12px 16px; box-shadow:0 12px 30px rgba(109,40,217,.16); animation:tGlow 4s ease-in-out infinite; min-width:min(170px,100%);">
+        <div style="position:absolute; bottom:calc(56px * var(--ps)); right:4%; z-index:4; animation:tFloat 7s ease-in-out infinite .9s;">
+          <div style="background:rgba(255,255,255,.95); backdrop-filter:blur(10px); border:1px solid rgba(139,92,246,.30); border-radius:16px; padding:12px 16px; box-shadow:0 12px 30px rgba(109,40,217,.16); animation:tGlow 4s ease-in-out infinite; min-width:min(calc(170px * var(--ps)),100%);">
             <div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'Outfit',sans-serif;">
               <span style="font-size:11.5px; color:#6D28D9; font-weight:600;">GROUP XP</span>
               <span style="font-size:13px; font-weight:800; color:#241B35;">LVL 12</span>
@@ -771,7 +794,7 @@
         </div>
 
         <!-- floating streak chip -->
-        <div style="position:absolute; top:190px; right:-2%; z-index:4; animation:tFloat 6s ease-in-out infinite 1.6s;">
+        <div style="position:absolute; top:calc(190px * var(--ps)); right:-2%; z-index:4; animation:tFloat 6s ease-in-out infinite 1.6s;">
           <div style="display:flex; align-items:center; gap:8px; background:rgba(255,255,255,.95); backdrop-filter:blur(10px); border:1px solid rgba(217,146,43,.38); border-radius:100px; padding:9px 15px; box-shadow:0 10px 26px rgba(109,40,217,.15);">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="#C2620E"><path d="M13.5 0.7s.9 2.6.9 4.7c0 2-1.3 3.7-3.4 3.7-2.1 0-3.6-1.7-3.6-3.7l0-.4C5.4 7.4 4 10.5 4 13.7 4 18.3 7.6 22 12 22s8-3.7 8-8.3c0-5.6-4.2-9.5-6.5-13z"></path></svg>
             <span style="font-family:'Outfit',sans-serif; font-weight:800; font-size:14px; color:#B45309;">5 STREAK</span>
@@ -782,10 +805,10 @@
   </section>
 
   <!-- ============ HOW IT WORKS ============ -->
-  <section id="how2" style="max-width:1220px; margin:0 auto; padding:clamp(56px,8vw,100px) clamp(18px,4vw,34px);">
+  <section id="how2" style="max-width:1520px; margin:0 auto; padding:clamp(56px,8vw,122px) clamp(18px,4vw,44px);">
     <div data-reveal="" style="text-align:center; max-width:700px; margin:0 auto;">
       <div style="color:var(--acc3); font-weight:600; font-size:14px; letter-spacing:.05em;">איך זה עובד</div>
-      <h2 style="font-size:clamp(28px,4vw,46px); font-weight:800; letter-spacing:-.02em; margin:12px 0 0; line-height:1.12;">ארבעה צעדים — וקבוצה שלא מפסיקה לשחק</h2>
+      <h2 style="font-size:clamp(30px,4vw,54px); font-weight:800; letter-spacing:-.02em; margin:12px 0 0; line-height:1.12;">ארבעה צעדים — וקבוצה שלא מפסיקה לשחק</h2>
     </div>
     <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr)); gap:18px; margin-top:50px;">
       <div data-reveal="" data-lift="" style="position:relative; background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:22px; padding:28px 24px; overflow:hidden;">
@@ -793,49 +816,49 @@
         <div style="width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,#EDE9FE,#F5F3FF); border:1px solid rgba(139,92,246,.32); display:flex; align-items:center; justify-content:center;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M19 8v6M22 11h-6"></path></svg>
         </div>
-        <h3 style="font-size:19px; font-weight:700; margin:18px 0 6px;">יוצרים קבוצה</h3>
-        <p style="color:#625A70; font-size:14.5px; margin:0; line-height:1.55;">חברים, כיתה, צוות, מחלקה או קהילה — קבוצה פרטית בכמה שניות.</p>
+        <h3 style="font-size:clamp(19px,1.32vw,22px); font-weight:700; margin:18px 0 6px;">יוצרים קבוצה</h3>
+        <p style="color:#625A70; font-size:clamp(14.5px,.98vw,16.5px); margin:0; line-height:1.55;">חברים, כיתה, צוות, מחלקה או קהילה — קבוצה פרטית בכמה שניות.</p>
       </div>
       <div data-reveal="" data-lift="" style="position:relative; background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:22px; padding:28px 24px; overflow:hidden;">
         <div style="position:absolute; top:-18px; left:14px; font-family:'Outfit',sans-serif; font-weight:900; font-size:88px; color:rgba(139,92,246,.16); line-height:1;">2</div>
         <div style="width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,#EDE9FE,#F5F3FF); border:1px solid rgba(139,92,246,.32); display:flex; align-items:center; justify-content:center;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
         </div>
-        <h3 style="font-size:19px; font-weight:700; margin:18px 0 6px;">משלימים משימות ואתגרים</h3>
-        <p style="color:#625A70; font-size:14.5px; margin:0; line-height:1.55;">משחקונים יומיים, שאלות, הצבעות, הימורים חברתיים ו-Streaks.</p>
+        <h3 style="font-size:clamp(19px,1.32vw,22px); font-weight:700; margin:18px 0 6px;">משלימים משימות ואתגרים</h3>
+        <p style="color:#625A70; font-size:clamp(14.5px,.98vw,16.5px); margin:0; line-height:1.55;">משחקונים יומיים, שאלות, הצבעות, הימורים חברתיים ו-Streaks.</p>
       </div>
       <div data-reveal="" data-lift="" style="position:relative; background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:22px; padding:28px 24px; overflow:hidden;">
         <div style="position:absolute; top:-18px; left:14px; font-family:'Outfit',sans-serif; font-weight:900; font-size:88px; color:rgba(184,117,20,.30); line-height:1;">3</div>
         <img src="assets/48605207-ed4c-4b5c-ba8c-b400b2752abf.png" alt="מטבע TUMBAPP" style="width:54px; height:auto; display:block; filter:drop-shadow(0 8px 20px rgba(232,163,61,.4));">
-        <h3 style="font-size:19px; font-weight:700; margin:18px 0 6px;">צוברים Coins, יהלומים ו-XP</h3>
-        <p style="color:#625A70; font-size:14.5px; margin:0; line-height:1.55;">Coins ויהלומים אישיים לכל משתמש, ו-XP קבוצתי שמקדם את כולם יחד.</p>
+        <h3 style="font-size:clamp(19px,1.32vw,22px); font-weight:700; margin:18px 0 6px;">צוברים Coins, יהלומים ו-XP</h3>
+        <p style="color:#625A70; font-size:clamp(14.5px,.98vw,16.5px); margin:0; line-height:1.55;">Coins ויהלומים אישיים לכל משתמש, ו-XP קבוצתי שמקדם את כולם יחד.</p>
       </div>
       <div data-reveal="" data-lift="" style="position:relative; background:linear-gradient(150deg,#EDE9FE,#F5F3FF); border:1px solid rgba(139,92,246,.38); border-radius:22px; padding:28px 24px; overflow:hidden;">
         <div style="position:absolute; top:-18px; left:14px; font-family:'Outfit',sans-serif; font-weight:900; font-size:88px; color:rgba(109,40,217,.16); line-height:1;">4</div>
         <div style="width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,var(--acc2),var(--acc3)); box-shadow:0 8px 24px rgba(124,92,246,.5); display:flex; align-items:center; justify-content:center;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"></path><path d="M2 7h20v5H2z"></path><path d="M12 22V7"></path><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
         </div>
-        <h3 style="font-size:19px; font-weight:700; margin:18px 0 6px;">פותחים הטבות אמיתיות</h3>
-        <p style="color:#625A70; font-size:14.5px; margin:0; line-height:1.55;">רמת הקבוצה פותחת הטבות מעסקים אמיתיים — והמימוש נעשה עם Coins ויהלומים, בסריקת QR.</p>
+        <h3 style="font-size:clamp(19px,1.32vw,22px); font-weight:700; margin:18px 0 6px;">פותחים הטבות אמיתיות</h3>
+        <p style="color:#625A70; font-size:clamp(14.5px,.98vw,16.5px); margin:0; line-height:1.55;">רמת הקבוצה פותחת הטבות מעסקים אמיתיים — והמימוש נעשה עם Coins ויהלומים, בסריקת QR.</p>
       </div>
     </div>
   </section>
 
   <!-- ============ ECONOMY ============ -->
-  <section id="economy2" aria-labelledby="economy2-title" style="position:relative; padding:clamp(56px,8vw,100px) 0; background:linear-gradient(180deg,transparent,#F0EBFF 42%,transparent);">
+  <section id="economy2" aria-labelledby="economy2-title" style="position:relative; padding:clamp(56px,8vw,122px) 0; background:linear-gradient(180deg,transparent,#F0EBFF 42%,transparent);">
 
     <div aria-hidden="true" style="position:absolute; inset:0; pointer-events:none; overflow:hidden;">
       <svg viewBox="0 0 24 24" width="22" height="22" style="position:absolute; top:7%; right:9%; opacity:.26; animation:tFloat 7.4s ease-in-out infinite;"><path d="M12 2 22 9 12 22 2 9z" fill="#22A6C9"></path></svg>
       <svg viewBox="0 0 24 24" width="14" height="14" style="position:absolute; bottom:14%; left:8%; opacity:.24; animation:tFloat 9s ease-in-out infinite .7s;"><path d="M12 2 22 9 12 22 2 9z" fill="#0E7490"></path></svg>
     </div>
 
-    <div style="position:relative; max-width:1220px; margin:0 auto; padding:0 clamp(18px,4vw,34px);">
+    <div style="position:relative; max-width:1520px; margin:0 auto; padding:0 clamp(18px,4vw,44px);">
 
       <!-- heading -->
       <div data-reveal="" style="text-align:center; max-width:780px; margin:0 auto;">
         <div style="color:var(--acc3); font-weight:600; font-size:14px; letter-spacing:.05em;">הכלכלה של TUMBAPP · משחקים יחד, מתקדמים יחד</div>
-        <h2 id="economy2-title" style="font-size:clamp(28px,4vw,46px); font-weight:800; letter-spacing:-.02em; margin:12px 0 0; line-height:1.12;">כל הפעילות מתחברת לכלכלה אחת</h2>
-        <p style="color:#625A70; font-size:17px; margin:16px 0 0; line-height:1.65; text-wrap:pretty;">
+        <h2 id="economy2-title" style="font-size:clamp(30px,4vw,54px); font-weight:800; letter-spacing:-.02em; margin:12px 0 0; line-height:1.12;">כל הפעילות מתחברת לכלכלה אחת</h2>
+        <p style="color:#625A70; font-size:clamp(17px,1.15vw,20px); margin:16px 0 0; line-height:1.65; text-wrap:pretty;">
           ב־TUMBAPP כל פעולה מקדמת אתכם: המשתמשים צוברים מטבעות ויהלומים אישיים, ובמקביל כל חברי הקבוצה תורמים ל־XP המשותף. כך הפעילות באפליקציה הופכת להטבות חברתיות, שדרוגים וחוויות אמיתיות בעולם שבחוץ.
         </p>
       </div>
@@ -850,8 +873,8 @@
             <img src="assets/48605207-ed4c-4b5c-ba8c-b400b2752abf.png" alt="" aria-hidden="true" style="width:52px; height:auto; display:block; filter:drop-shadow(0 8px 20px rgba(232,163,61,.4));">
             <span style="display:inline-flex; align-items:center; gap:6px; background:#FFF8EC; border:1px solid rgba(217,146,43,.34); border-radius:100px; padding:5px 12px; font-size:12.5px; font-weight:700; color:#A8620A;">אישי</span>
           </div>
-          <h3 style="position:relative; font-size:20px; font-weight:800; margin:18px 0 0; line-height:1.3;">Coins — המטבע האישי והיומיומי</h3>
-          <p style="position:relative; color:#625A70; font-size:15px; margin:10px 0 0; line-height:1.6;">
+          <h3 style="position:relative; font-size:clamp(20px,1.4vw,24px); font-weight:800; margin:18px 0 0; line-height:1.3;">Coins — המטבע האישי והיומיומי</h3>
+          <p style="position:relative; color:#625A70; font-size:clamp(15px,1vw,16.5px); margin:10px 0 0; line-height:1.6;">
             משתמשים פעילים צוברים Coins בתדירות גבוהה יחסית. אפשר להשתמש בהם עבור הטבות וירטואליות וחברתיות שמשפיעות על החוויה באפליקציה ובקבוצה.
           </p>
           <ul style="position:relative; list-style:none; padding:0; margin:18px 0 0; display:flex; flex-wrap:wrap; gap:8px;">
@@ -872,10 +895,16 @@
             </span>
             <span style="display:inline-flex; align-items:center; gap:6px; background:#E4F6FA; border:1px solid rgba(34,166,201,.40); border-radius:100px; padding:5px 12px; font-size:12.5px; font-weight:700; color:#0F6E87;">אישי · נדיר</span>
           </div>
-          <h3 style="position:relative; font-size:20px; font-weight:800; margin:18px 0 0; line-height:1.3;">יהלומים — נדירים ובעלי ערך</h3>
-          <p style="position:relative; color:#625A70; font-size:15px; margin:10px 0 0; line-height:1.6;">
+          <h3 style="position:relative; font-size:clamp(20px,1.4vw,24px); font-weight:800; margin:18px 0 0; line-height:1.3;">יהלומים — נדירים ובעלי ערך</h3>
+          <p style="position:relative; color:#625A70; font-size:clamp(15px,1vw,16.5px); margin:10px 0 0; line-height:1.6;">
             יהלומים מתקבלים בתדירות נמוכה יותר ולכן הם נדירים ובעלי ערך גבוה יותר. בשילוב עם Coins, ניתן להשתמש בהם כדי לממש הטבות אמיתיות בבתי עסק משתתפים.
           </p>
+
+          <!-- official diamond artwork. its own background is pure white, and the
+               card is #FFFFFF, so it sits flush with no visible image box -->
+          <img class="t2-diamond" src="assets/tumbapp-diamond.webp"
+               alt="יהלום של TUMBAPP המשמש למימוש הטבות אמיתיות"
+               width="560" height="560" loading="lazy" decoding="async">
           <ul style="position:relative; list-style:none; padding:0; margin:18px 0 0; display:flex; flex-wrap:wrap; gap:8px;">
             <li style="background:#F0FAFC; border:1px solid rgba(34,166,201,.32); border-radius:100px; padding:7px 13px; font-size:13.5px; color:#241B35;">הטבות במסעדות</li>
             <li style="background:#F0FAFC; border:1px solid rgba(34,166,201,.32); border-radius:100px; padding:7px 13px; font-size:13.5px; color:#241B35;">הטבות בברים</li>
@@ -891,8 +920,8 @@
             <span style="width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,#6D28D9,#4C1D95); box-shadow:0 8px 22px rgba(109,40,217,.34); display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:900; font-size:18px; color:#fff;">XP</span>
             <span style="display:inline-flex; align-items:center; gap:6px; background:#EDE9FE; border:1px solid rgba(109,40,217,.34); border-radius:100px; padding:5px 12px; font-size:12.5px; font-weight:700; color:#4C1D95;">קבוצתי</span>
           </div>
-          <h3 style="position:relative; font-size:20px; font-weight:800; margin:18px 0 0; line-height:1.3;">XP — ההתקדמות של כל הקבוצה</h3>
-          <p style="position:relative; color:#625A70; font-size:15px; margin:10px 0 0; line-height:1.6;">
+          <h3 style="position:relative; font-size:clamp(20px,1.4vw,24px); font-weight:800; margin:18px 0 0; line-height:1.3;">XP — ההתקדמות של כל הקבוצה</h3>
+          <p style="position:relative; color:#625A70; font-size:clamp(15px,1vw,16.5px); margin:10px 0 0; line-height:1.6;">
             כל חברי הקבוצה תורמים יחד ל־XP המשותף. ככל שהקבוצה עולה ברמות, היא פותחת גישה להטבות טובות יותר, אפשרויות חדשות ומתנות נוספות לכל הקבוצה.
           </p>
           <div style="position:relative; margin-top:18px; background:#F5F3FF; border:1px solid rgba(109,40,217,.2); border-radius:16px; padding:14px 16px;">
@@ -909,7 +938,8 @@
 
       <!-- how the systems connect -->
       <div data-reveal="" style="margin-top:22px; background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:26px; padding:clamp(22px,4vw,34px);">
-        <h3 style="font-size:clamp(18px,2.4vw,23px); font-weight:800; margin:0 0 20px; letter-spacing:-.01em;">איך הכול מתחבר</h3>
+        <div class="t2-flow-inner">
+        <h3 style="font-size:clamp(19px,2.4vw,26px); font-weight:800; margin:0 0 20px; letter-spacing:-.01em;">איך הכול מתחבר</h3>
 
         <div style="display:inline-flex; align-items:center; gap:9px; background:linear-gradient(135deg,#EDE9FE,#F5F3FF); border:1px solid rgba(139,92,246,.3); border-radius:100px; padding:11px 20px; font-weight:700; font-size:15.5px; color:#241B35;">
           <span aria-hidden="true" style="width:9px; height:9px; border-radius:50%; background:#8B5CF6; box-shadow:0 0 10px #8B5CF6;"></span>
@@ -956,16 +986,17 @@
         <p style="margin:16px 0 0; color:#625A70; font-size:14.5px; line-height:1.6;">
           Coins ויהלומים הם אישיים לכל משתמש. XP ורמת הקבוצה משותפים לכל חברי הקבוצה.
         </p>
+        </div>
       </div>
 
     </div>
   </section>
 
   <!-- ============ REWARD JOURNEY ============ -->
-  <section id="journey2" style="max-width:1220px; margin:0 auto; padding:clamp(56px,8vw,100px) clamp(18px,4vw,34px);">
+  <section id="journey2" style="max-width:1520px; margin:0 auto; padding:clamp(56px,8vw,122px) clamp(18px,4vw,44px);">
     <div data-reveal="" style="text-align:center; max-width:700px; margin:0 auto;">
       <div style="color:var(--acc3); font-weight:600; font-size:14px; letter-spacing:.05em;">מסלול ההטבות</div>
-      <h2 style="font-size:clamp(28px,4vw,46px); font-weight:800; letter-spacing:-.02em; margin:12px 0 0; line-height:1.12;">ככל שהקבוצה עולה — ההטבות נהיות שוות יותר</h2>
+      <h2 style="font-size:clamp(30px,4vw,54px); font-weight:800; letter-spacing:-.02em; margin:12px 0 0; line-height:1.12;">ככל שהקבוצה עולה — ההטבות נהיות שוות יותר</h2>
     </div>
     <div data-reveal="" style="margin-top:48px; position:relative; border-radius:26px; overflow:hidden; border:1px solid rgba(139,92,246,.26);">
       <img src="assets/8e511891-b7db-4932-871f-d85e76b2bbdc.png" alt="מסלול רמות זוהר — Level 10, Level 25 ו-Level 50 עם הטבות שנפתחות בדרך" style="display:block; width:100%; height:auto;">
@@ -1004,12 +1035,12 @@
   </section>
 
   <!-- ============ NEARBY BENEFITS MAP ============ -->
-  <section id="map2" aria-labelledby="map2-title" style="max-width:1220px; margin:0 auto; padding:clamp(56px,8vw,100px) clamp(18px,4vw,34px); display:flex; flex-wrap:wrap; align-items:center; gap:clamp(36px,5vw,64px);">
+  <section id="map2" aria-labelledby="map2-title" style="max-width:1520px; margin:0 auto; padding:clamp(56px,8vw,122px) clamp(18px,4vw,44px); display:flex; flex-wrap:wrap; align-items:center; gap:clamp(36px,5vw,64px);">
 
     <div data-reveal="" style="flex:1 1 420px; min-width:min(300px,100%);">
       <div style="color:var(--acc3); font-weight:600; font-size:14px; letter-spacing:.05em;">הטבות ממש לידכם</div>
-      <h2 id="map2-title" style="font-size:clamp(28px,4vw,44px); font-weight:800; letter-spacing:-.02em; margin:12px 0 0; line-height:1.13;">פותחים את המפה ומגלים איפה אפשר לממש</h2>
-      <p style="color:#625A70; font-size:17px; margin:16px 0 0; line-height:1.65; text-wrap:pretty;">
+      <h2 id="map2-title" style="font-size:clamp(30px,4vw,52px); font-weight:800; letter-spacing:-.02em; margin:12px 0 0; line-height:1.13;">פותחים את המפה ומגלים איפה אפשר לממש</h2>
+      <p style="color:#625A70; font-size:clamp(17px,1.15vw,20px); margin:16px 0 0; line-height:1.65; text-wrap:pretty;">
         המפה של TUMBAPP מציגה בתי עסק משתתפים והטבות זמינות באזור שלכם. תוכלו לגלות מסעדות, ברים, בתי קפה ואטרקציות קרובות, לבדוק אילו הטבות פתוחות עבורכם ולבחור יחד לאן יוצאים.
       </p>
 
@@ -1060,7 +1091,7 @@
   </section>
 
   <!-- ============ USERS ============ -->
-  <section id="users2" style="max-width:1220px; margin:0 auto; padding:clamp(56px,8vw,100px) clamp(18px,4vw,34px); display:flex; flex-wrap:wrap; align-items:center; gap:clamp(36px,5vw,64px);">
+  <section id="users2" style="max-width:1520px; margin:0 auto; padding:clamp(56px,8vw,122px) clamp(18px,4vw,44px); display:flex; flex-wrap:wrap; align-items:center; gap:clamp(36px,5vw,64px);">
     <div data-reveal="" style="flex:1 1 300px; min-width:min(280px,100%); display:flex; justify-content:center;">
       <div style="position:relative; width:min(300px,88vw);">
         <div style="position:absolute; inset:-26px; background:radial-gradient(circle, rgba(139,92,246,.20), transparent 68%); filter:blur(26px);"></div>
@@ -1079,19 +1110,19 @@
     </div>
     <div data-reveal="" style="flex:1 1 420px; min-width:min(300px,100%);">
       <div style="color:var(--acc3); font-weight:600; font-size:14px; letter-spacing:.05em;">למשתמשים</div>
-      <h2 style="font-size:clamp(28px,4vw,44px); font-weight:800; letter-spacing:-.02em; margin:12px 0 0; line-height:1.13;">יותר כיף עם החברים האמיתיים שלך</h2>
+      <h2 style="font-size:clamp(30px,4vw,52px); font-weight:800; letter-spacing:-.02em; margin:12px 0 0; line-height:1.13;">יותר כיף עם החברים האמיתיים שלך</h2>
       <div style="display:flex; flex-direction:column; gap:16px; margin-top:28px;">
         <div style="display:flex; gap:14px; align-items:flex-start;">
           <span style="flex:none; width:42px; height:42px; border-radius:13px; background:#EDE9FE; border:1px solid rgba(139,92,246,.30); display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"></path></svg></span>
-          <div><div style="font-weight:700; font-size:17px;">פעילות קבוצתית יומית</div><div style="color:#625A70; font-size:14.5px; margin-top:3px;">כל יום משהו חדש — סיבה אמיתית להיכנס ולהשתתף.</div></div>
+          <div><div style="font-weight:700; font-size:clamp(17px,1.2vw,19.5px);">פעילות קבוצתית יומית</div><div style="color:#625A70; font-size:14.5px; margin-top:3px;">כל יום משהו חדש — סיבה אמיתית להיכנס ולהשתתף.</div></div>
         </div>
         <div style="display:flex; gap:14px; align-items:flex-start;">
           <span style="flex:none; width:42px; height:42px; border-radius:13px; background:#FFF1E3; border:1px solid rgba(217,146,43,.34); display:flex; align-items:center; justify-content:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="#C2620E"><path d="M13.5 0.7s.9 2.6.9 4.7c0 2-1.3 3.7-3.4 3.7-2.1 0-3.6-1.7-3.6-3.7l0-.4C5.4 7.4 4 10.5 4 13.7 4 18.3 7.6 22 12 22s8-3.7 8-8.3c0-5.6-4.2-9.5-6.5-13z"></path></svg></span>
-          <div><div style="font-weight:700; font-size:17px;">Streaks, משחקונים, הצבעות ומשימות</div><div style="color:#625A70; font-size:14.5px; margin-top:3px;">רצף יומי ששומר על הקבוצה חיה — ותחרות בריאה בפנים.</div></div>
+          <div><div style="font-weight:700; font-size:clamp(17px,1.2vw,19.5px);">Streaks, משחקונים, הצבעות ומשימות</div><div style="color:#625A70; font-size:14.5px; margin-top:3px;">רצף יומי ששומר על הקבוצה חיה — ותחרות בריאה בפנים.</div></div>
         </div>
         <div style="display:flex; gap:14px; align-items:flex-start;">
           <img src="assets/48605207-ed4c-4b5c-ba8c-b400b2752abf.png" alt="" style="flex:none; width:42px; height:auto; display:block; filter:drop-shadow(0 6px 16px rgba(232,163,61,.4));">
-          <div><div style="font-weight:700; font-size:17px;">פרסים והטבות אמיתיות מעסקים</div><div style="color:#625A70; font-size:14.5px; margin-top:3px;">רמת הקבוצה פותחת את ההטבה, וה-Coins והיהלומים מממשים אותה — בבר, בפיצרייה ובקפה שלידך.</div></div>
+          <div><div style="font-weight:700; font-size:clamp(17px,1.2vw,19.5px);">פרסים והטבות אמיתיות מעסקים</div><div style="color:#625A70; font-size:14.5px; margin-top:3px;">רמת הקבוצה פותחת את ההטבה, וה-Coins והיהלומים מממשים אותה — בבר, בפיצרייה ובקפה שלידך.</div></div>
         </div>
       </div>
     </div>
@@ -1109,18 +1140,18 @@
              alt="קבוצת חזירי הבר הסגולים של TUMBAPP משחקים יחד"
              width="900" height="600" loading="lazy" decoding="async">
       </div>
-      <p style="color:#625A70; font-size:15.5px; margin:16px 0 0; max-width:560px; line-height:1.6; text-wrap:pretty;">
+      <p style="color:#625A70; font-size:clamp(15.5px,1.02vw,17px); margin:16px 0 0; max-width:560px; line-height:1.6; text-wrap:pretty;">
         משימות, משחקים, צחוקים ורגעים משותפים — כל הקבוצה במקום אחד.
       </p>
     </div>
   </section>
 
   <!-- ============ BUSINESSES ============ -->
-  <section id="business2" style="position:relative; padding:clamp(60px,8vw,104px) 0; background:linear-gradient(180deg,transparent,#F0EBFF,transparent);">
-    <div style="max-width:1220px; margin:0 auto; padding:0 clamp(18px,4vw,34px); display:flex; flex-wrap:wrap; align-items:center; gap:clamp(36px,5vw,64px);">
+  <section id="business2" style="position:relative; padding:clamp(60px,8vw,126px) 0; background:linear-gradient(180deg,transparent,#F0EBFF,transparent);">
+    <div style="max-width:1520px; margin:0 auto; padding:0 clamp(18px,4vw,44px); display:flex; flex-wrap:wrap; align-items:center; gap:clamp(36px,5vw,64px);">
       <div data-reveal="" style="flex:1 1 420px; min-width:min(300px,100%);">
         <div style="color:var(--acc3); font-weight:600; font-size:14px; letter-spacing:.05em;">לעסקים</div>
-        <h2 style="font-size:clamp(28px,4vw,44px); font-weight:800; letter-spacing:-.02em; margin:12px 0 0; line-height:1.13;">מביאים קבוצות של לקוחות. לא רק יחידים.</h2>
+        <h2 style="font-size:clamp(30px,4vw,52px); font-weight:800; letter-spacing:-.02em; margin:12px 0 0; line-height:1.13;">מביאים קבוצות של לקוחות. לא רק יחידים.</h2>
         <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr)); gap:14px; margin-top:28px;">
           <div data-lift="" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:16px; padding:16px 18px; font-size:15px; color:#241B35; font-weight:500;">פיילוטים בסיכון נמוך</div>
           <div data-lift="" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:16px; padding:16px 18px; font-size:15px; color:#241B35; font-weight:500;">מימוש הטבות ב-QR</div>
@@ -1129,7 +1160,7 @@
           <div data-lift="" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:16px; padding:16px 18px; font-size:15px; color:#241B35; font-weight:500;">הטבות לפי Level קבוצתי</div>
           <div data-lift="" style="background:linear-gradient(135deg,#EDE9FE,#F5F3FF); border:1px solid rgba(139,92,246,.38); border-radius:16px; padding:16px 18px; font-size:15px; color:#fff; font-weight:600;">שליטה מלאה בהטבה ובעלות</div>
         </div>
-        <a href="#contact2" style="display:inline-flex; align-items:center; gap:9px; margin-top:30px; padding:15px 28px; border-radius:100px; background:linear-gradient(135deg,var(--acc2),var(--acc)); color:#fff; font-weight:700; font-size:16px; box-shadow:0 10px 32px rgba(124,92,246,.45); transition:transform .2s;" onmouseover="{{ ctaHover }}" onmouseout="{{ ctaOut }}">דברו איתנו על שיתוף פעולה</a>
+        <a href="#contact2" style="display:inline-flex; align-items:center; gap:9px; margin-top:30px; padding:clamp(15px,1.1vw,19px) clamp(28px,2.2vw,38px); border-radius:100px; background:linear-gradient(135deg,var(--acc2),var(--acc)); color:#fff; font-weight:700; font-size:clamp(16px,1.1vw,18.5px); box-shadow:0 10px 32px rgba(124,92,246,.45); transition:transform .2s;" onmouseover="{{ ctaHover }}" onmouseout="{{ ctaOut }}">דברו איתנו על שיתוף פעולה</a>
       </div>
       <div data-reveal="" style="flex:1 1 340px; min-width:min(280px,100%); display:flex; justify-content:center;">
         <div style="position:relative; width:min(460px,92vw);">
@@ -1154,14 +1185,14 @@
   </section>
 
   <!-- ============ FINAL CTA + CONTACT ============ -->
-  <section id="contact2" style="max-width:1220px; margin:0 auto; padding:clamp(56px,8vw,100px) clamp(18px,4vw,34px);">
+  <section id="contact2" style="max-width:1520px; margin:0 auto; padding:clamp(56px,8vw,122px) clamp(18px,4vw,44px);">
     <div data-reveal="" style="position:relative; background:linear-gradient(150deg,#EDE9FE,#FAFAFF); border:1px solid rgba(139,92,246,.30); border-radius:30px; padding:clamp(28px,5vw,56px); overflow:hidden;">
       <div aria-hidden="true" style="position:absolute; top:-120px; left:-70px; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle,rgba(139,92,246,.16),transparent 65%); filter:blur(12px);"></div>
       <div style="position:relative; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:clamp(28px,4vw,52px); align-items:start;">
         <div>
-          <h2 style="font-size:clamp(28px,3.8vw,42px); font-weight:800; letter-spacing:-.02em; margin:0; line-height:1.15;">רוצים להיות מהקבוצות הראשונות?</h2>
+          <h2 style="font-size:clamp(30px,3.8vw,50px); font-weight:800; letter-spacing:-.02em; margin:0; line-height:1.15;">רוצים להיות מהקבוצות הראשונות?</h2>
           <p style="color:#625A70; font-size:17.5px; margin:14px 0 0; font-weight:500;">רוצים להביא קבוצות אליכם?</p>
-          <p style="color:#625A70; font-size:15.5px; margin:14px 0 0; line-height:1.6; max-width:440px;">השאירו פרטים ונחזור אליכם — פיילוט פשוט, מדיד ובסיכון נמוך, בין אם אתם קבוצה או עסק.</p>
+          <p style="color:#625A70; font-size:clamp(15.5px,1.02vw,17px); margin:14px 0 0; line-height:1.6; max-width:440px;">השאירו פרטים ונחזור אליכם — פיילוט פשוט, מדיד ובסיכון נמוך, בין אם אתם קבוצה או עסק.</p>
           <a href="mailto:tumba@tumbapp.com" style="display:inline-flex; align-items:center; gap:11px; margin-top:26px; background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:16px; padding:15px 20px; color:#241B35;">
             <span style="width:38px; height:38px; border-radius:11px; background:#EDE9FE; display:flex; align-items:center; justify-content:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 5L2 7"></path></svg></span>
             <span style="font-family:'Outfit',sans-serif; font-weight:600; font-size:16px;">tumba@tumbapp.com</span>
@@ -1191,7 +1222,7 @@
             <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">אימייל</span><input id="t2-email" type="email" placeholder="name@mail.com" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Rubik',sans-serif; font-size:15px; outline:none;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></label>
           </div>
           <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">הודעה</span><textarea id="t2-msg" rows="3" placeholder="ספרו לנו קצת עליכם" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Rubik',sans-serif; font-size:15px; outline:none; resize:vertical;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></textarea></label>
-          <button type="submit" style="margin-top:2px; padding:15px; border:none; border-radius:100px; background:linear-gradient(135deg,var(--acc2),var(--acc)); color:#fff; font-weight:700; font-size:16.5px; font-family:'Rubik',sans-serif; cursor:pointer; box-shadow:0 10px 30px rgba(124,92,246,.4); transition:transform .2s;" onmouseover="{{ ctaHover }}" onmouseout="{{ ctaOut }}">דברו איתנו על פיילוט</button>
+          <button type="submit" style="margin-top:2px; padding:15px; border:none; border-radius:100px; background:linear-gradient(135deg,var(--acc2),var(--acc)); color:#fff; font-weight:700; font-size:clamp(16.5px,1.15vw,19px); font-family:'Rubik',sans-serif; cursor:pointer; box-shadow:0 10px 30px rgba(124,92,246,.4); transition:transform .2s;" onmouseover="{{ ctaHover }}" onmouseout="{{ ctaOut }}">דברו איתנו על פיילוט</button>
           <p style="font-size:12px; color:#625A70; text-align:center; margin:0;">השליחה תפתח את תוכנת המייל שלכם עם הפרטים.</p>
         </form>
       </div>
@@ -1200,7 +1231,7 @@
 
   <!-- ============ FOOTER ============ -->
   <footer style="border-top:1px solid rgba(109,40,217,.12);">
-    <div style="max-width:1220px; margin:0 auto; padding:clamp(36px,5vw,52px) clamp(18px,4vw,34px); display:flex; flex-wrap:wrap; gap:26px; align-items:center; justify-content:space-between;">
+    <div style="max-width:1520px; margin:0 auto; padding:clamp(36px,5vw,60px) clamp(18px,4vw,44px); display:flex; flex-wrap:wrap; gap:26px; align-items:center; justify-content:space-between;">
       <div style="display:flex; align-items:center; gap:11px;">
         <img src="assets/52579c39-213c-41ad-b8b8-9bba2b49aa8a.png" alt="TUMBAPP" style="height:36px; width:auto; display:block;">
         <span style="font-family:'Outfit',sans-serif; font-weight:800; font-size:24px; background:linear-gradient(120deg,var(--acc3),var(--acc)); -webkit-background-clip:text; background-clip:text; color:transparent;">TUMBAPP</span>
