@@ -1,0 +1,312 @@
+/* Main-site (route "/") specific keyframes and utility classes. This is a
+   CSS Module: every class AND every @keyframes name below is scoped/hashed
+   at build time, so it can never collide with app/globals.css (used by
+   "/users") even though several names below are intentionally identical to
+   ones over there — they carry different values here. */
+
+.root {
+  --acc: #8b5cf6;
+  --acc2: #8b5cf6;
+  --acc3: #6d28d9;
+  --lav: #ede9fe;
+  --soft: #f5f3ff;
+  --offw: #fafaff;
+  --card: #ffffff;
+  --ink: #241b35;
+  --ink2: #625a70;
+  --gold: #d9922b;
+  --gold2: #b87514;
+  --goldink: #a8620a;
+  --gem: #22a6c9;
+  --gem2: #0e7490;
+  --gemink: #0f6e87;
+  --green: #12a150;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(1200px 800px at 85% -5%, #ede9fe 0%, #f5f3ff 55%), #fafaff;
+  color: #241b35;
+  font-family: "Rubik", -apple-system, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+.root :global(a) {
+  text-decoration: none;
+}
+
+.root input::placeholder,
+.root textarea::placeholder {
+  color: #8b84a0;
+}
+
+.root img,
+.root svg,
+.root video {
+  max-width: 100%;
+}
+
+@keyframes tFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+@keyframes tFloatR {
+  0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+  50% { transform: translateY(-12px) rotate(var(--rot, 0deg)); }
+}
+@keyframes tDrift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(24px, -34px) scale(1.07); }
+}
+@keyframes tFill {
+  from { width: 0; }
+}
+@keyframes tPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+@keyframes tGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.18); }
+  50% { box-shadow: 0 0 36px rgba(139, 92, 246, 0.32); }
+}
+@keyframes tRise {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes tShimmer {
+  0% { background-position: 200% 50%; }
+  100% { background-position: -200% 50%; }
+}
+@keyframes tPowerPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.035); }
+}
+@keyframes tPowerPulseL50 {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.035); }
+}
+@keyframes tMascotFloat10 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes tAuraFlame {
+  0%, 100% { transform: scaleY(1) translateY(0); opacity: 0.55; }
+  30% { transform: scaleY(1.08) translateY(-3px); opacity: 0.72; }
+  60% { transform: scaleY(0.96) translateY(1px); opacity: 0.6; }
+}
+@keyframes tLightningFlicker {
+  0%, 86%, 100% { opacity: 0; }
+  89% { opacity: 0.32; }
+  92% { opacity: 0.08; }
+  95% { opacity: 0.26; }
+  98% { opacity: 0; }
+}
+@keyframes tWaveLine {
+  0%, 100% { opacity: 0.65; }
+  50% { opacity: 1; }
+}
+
+.animatePowerPulse { animation: tPowerPulse 2.8s ease-in-out infinite; transform-origin: center bottom; }
+.mascotFloat10 { animation: tMascotFloat10 3.4s ease-in-out infinite; }
+.powerPulseL50 { animation: tPowerPulseL50 2.4s ease-in-out infinite; transform-origin: center bottom; }
+.auraFlame { animation: tAuraFlame 3.2s ease-in-out infinite; transform-origin: center bottom; }
+.auraLightning { animation: tLightningFlicker 4.6s ease-in-out infinite; }
+.waveLine { animation: tWaveLine 13s ease-in-out infinite; }
+.reveal { animation: tRise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+/* nav: hide desktop links / show hamburger before hydration too, so there is
+   no flash of the full desktop nav crammed into a narrow viewport */
+.navLinks {
+  display: flex;
+}
+.navCta {
+  display: inline-flex;
+}
+.navToggle {
+  display: none;
+}
+@media (max-width: 920px) {
+  .navLinks,
+  .navCta {
+    display: none !important;
+  }
+  .navToggle {
+    display: flex !important;
+    margin-inline-start: auto;
+  }
+}
+
+.heroScene {
+  --ps: 1;
+}
+@media (min-width: 1280px) {
+  .heroScene { --ps: 1.16; }
+}
+@media (min-width: 1600px) {
+  .heroScene { --ps: 1.26; }
+}
+@media (max-width: 480px) {
+  .heroScene { height: 480px !important; }
+}
+
+.mascotWrap {
+  position: relative;
+  border-radius: 26px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(109, 40, 217, 0.12);
+  box-shadow: 0 16px 40px rgba(109, 40, 217, 0.12);
+}
+
+.diamondArt {
+  position: relative;
+  display: block;
+  margin: 18px auto 4px;
+  width: clamp(110px, 13vw, 200px);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
+
+.groupWrap {
+  -webkit-mask-image: radial-gradient(ellipse 96% 96% at 50% 50%, #000 68%, transparent 100%);
+  mask-image: radial-gradient(ellipse 96% 96% at 50% 50%, #000 68%, transparent 100%);
+}
+
+.flowInner { max-width: 1120px; margin-inline: auto; }
+.flowRow { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.flowArrow { flex: none; color: #8b5cf6; display: inline-flex; }
+@media (max-width: 640px) {
+  .flowRow { flex-direction: column; align-items: stretch; text-align: center; }
+  .flowArrow { align-self: center; transform: rotate(-90deg); }
+}
+
+/* heading-corner mascot accents collide with wrapped headings below this
+   width; the map/businesses mascots stay since they sit beside a card/button
+   instead of over reflowing text */
+@media (max-width: 640px) {
+  .mascotCorner { display: none; }
+}
+
+/* the idle mascot hangs off the phone's left edge on desktop; tuck it back
+   inside at narrow widths so body overflow-x doesn't clip it */
+@media (max-width: 760px) {
+  .mascotIdle { left: -14px !important; bottom: -22px !important; width: 96px !important; }
+}
+
+.liftCard {
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.liftCard:hover {
+  transform: translateY(-5px);
+  border-color: rgba(139, 92, 246, 0.45) !important;
+  box-shadow: 0 14px 32px rgba(109, 40, 217, 0.14), 0 0 20px rgba(139, 92, 246, 0.12);
+}
+
+.navLink {
+  color: #625a70;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 9px 13px;
+  border-radius: 10px;
+  transition: background 0.25s, color 0.25s;
+}
+.navLink:hover {
+  background: rgba(139, 92, 246, 0.1);
+  color: #6d28d9;
+}
+
+.ctaButton {
+  transition: transform 0.2s;
+}
+.ctaButton:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.ghostButton {
+  transition: background 0.2s;
+}
+.ghostButton:hover {
+  background: #ede9fe;
+}
+
+.formField {
+  background: #ffffff;
+  border: 1px solid rgba(109, 40, 217, 0.14);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: #241b35;
+  font-family: "Rubik", sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.formField:focus {
+  border-color: rgba(139, 92, 246, 0.65);
+  background: #f5f3ff;
+}
+
+.levelCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 2px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  cursor: pointer;
+  background: none;
+  font: inherit;
+  transition: transform 0.25s ease, opacity 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.levelCardActive {
+  transform: translateY(-6px) scale(1.02);
+  opacity: 1;
+  border-color: rgba(139, 92, 246, 0.75);
+  box-shadow: 0 16px 38px rgba(139, 92, 246, 0.24);
+}
+.levelCardActiveGold {
+  border-color: rgba(217, 146, 43, 0.75);
+  box-shadow: 0 16px 38px rgba(217, 146, 43, 0.2);
+}
+.levelCardInactive {
+  opacity: 0.6;
+}
+
+.qrStep {
+  flex: 1;
+  padding: 10px 6px;
+  border-radius: 100px;
+  border: 1px solid rgba(109, 40, 217, 0.16);
+  background: #f5f3ff;
+  color: #625a70;
+  font-family: "Rubik", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+.qrStepActive {
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* side wave-line bundles: narrowing the wrapper crops out the outer lines
+   (centred at increasing x within the 76-wide pattern tile) rather than
+   squashing the wave shape */
+@media (max-width: 1024px) {
+  .neonWave { width: 38px !important; opacity: 0.75; }
+}
+@media (max-width: 767px) {
+  .neonWave { width: 24px !important; opacity: 0.5; }
+}
+@media (max-width: 420px) {
+  .neonWave { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root * {
+    animation: none !important;
+  }
+}

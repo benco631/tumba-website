@@ -1,9 +1,8 @@
 export const NAV_LINKS = [
+  { label: "הסרטון", href: "#video" },
+  { label: "מה מקבלים", href: "#features" },
   { label: "איך זה עובד", href: "#how" },
-  { label: "לעסקים", href: "#business" },
-  { label: "כלכלה באפליקציה", href: "#economy" },
-  { label: "פיילוט", href: "#pilot" },
-  { label: "צור קשר", href: "#contact" },
+  { label: "למה זה כיף", href: "#benefits" },
 ];
 
 export const BUSINESS_CATEGORIES = [
@@ -23,4 +22,4 @@ export const PILOT_BENEFITS = [
   "הטבה לקבוצות של 5 אנשים ומעלה",
 ];
 
-export const CONTACT_EMAIL = "tumba@tumbaapp.com";
+export const CONTACT_EMAIL = "tumba@tumbapp.com";

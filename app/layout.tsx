@@ -16,11 +16,12 @@ const rubik = Rubik({
   display: "swap",
 });
 
+const SITE_URL = "https://tumbapp.com";
+
+// Shared scaffold only — each route (app/page.tsx, app/users/page.tsx) owns
+// its own title/description/canonical/OG/Twitter metadata.
 export const metadata: Metadata = {
-  title: "Tumba | אפליקציית תגמולים חברתית לקבוצות",
-  description:
-    "Tumba הופכת קבוצות אמיתיות לקהילות פעילות עם משימות, Coins, XP והטבות בעולם האמיתי.",
-  keywords: ["Tumba", "תגמולים חברתיים", "קבוצות", "אפליקציה", "קהילה"],
+  metadataBase: new URL(SITE_URL),
 };
 
 export default function RootLayout({

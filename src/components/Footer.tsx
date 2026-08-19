@@ -1,65 +1,67 @@
 import Link from "next/link";
-import { CONTACT_EMAIL } from "@/src/lib/content";
+import Image from "next/image";
+import { CONTACT_EMAIL, NAV_LINKS } from "@/src/lib/content";
 
 export function Footer() {
   return (
-    <footer style={{ borderTop: "1px solid rgba(255,255,255,.07)", marginTop: 30 }}>
+    <footer style={{ borderTop: "1px solid rgba(109,40,217,.12)", marginTop: 30 }}>
       <div
         style={{
           maxWidth: 1180,
           margin: "0 auto",
-          padding: "clamp(40px,5vw,60px) clamp(18px,4vw,34px)",
+          padding: "clamp(30px,4vw,56px) clamp(18px,4vw,34px)",
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))",
           gap: 32,
         }}
       >
         <div style={{ maxWidth: 300 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
-            <img src="/tumba-logo.svg" alt="Tumba" style={{ height: 40, width: "auto", display: "block" }} />
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <Image src="/media/tumbapp-logo.png" alt="Tumbapp" width={894} height={848} style={{ height: 36, width: "auto", display: "block" }} />
             <span
               style={{
                 fontFamily: "var(--font-outfit),sans-serif",
                 fontWeight: 800,
-                fontSize: 26,
-                background: "linear-gradient(120deg,#fff,var(--accent2))",
+                fontSize: 24,
+                background: "linear-gradient(120deg,var(--acc3),var(--acc))",
                 WebkitBackgroundClip: "text",
                 backgroundClip: "text",
                 color: "transparent",
               }}
             >
-              Tumba
+              Tumbapp
             </span>
           </div>
-          <p style={{ color: "#9DA3AF", fontSize: 14.5, margin: "12px 0 0", lineHeight: 1.6 }}>
-            שכבת המשחקיות וההטבות של קבוצות בעולם האמיתי – משימות, Coins, XP והטבות מעסקים שותפים.
+          <p style={{ color: "var(--ink2)", fontSize: 14.5, margin: "12px 0 0", lineHeight: 1.6 }}>
+            הופכים כל חבורה למשחק — משימות, התערבויות, XP והטבות מעסקים שותפים.
           </p>
         </div>
 
         <div>
-          <div style={{ fontSize: 13, color: "#7B8190", fontWeight: 600, letterSpacing: ".04em", marginBottom: 14 }}>
+          <div style={{ fontSize: 13, color: "var(--ink2)", fontWeight: 600, letterSpacing: ".04em", marginBottom: 14 }}>
             ניווט
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            <Link href="#how" style={{ color: "#C7CBD4", fontSize: 14.5 }}>איך זה עובד</Link>
-            <Link href="#business" style={{ color: "#C7CBD4", fontSize: 14.5 }}>לעסקים</Link>
-            <Link href="#economy" style={{ color: "#C7CBD4", fontSize: 14.5 }}>כלכלה באפליקציה</Link>
-            <Link href="#pilot" style={{ color: "#C7CBD4", fontSize: 14.5 }}>פיילוט</Link>
+            {NAV_LINKS.map((link) => (
+              <Link key={link.href} href={link.href} style={{ color: "var(--ink)", fontSize: 14.5 }}>
+                {link.label}
+              </Link>
+            ))}
           </div>
         </div>
 
         <div>
-          <div style={{ fontSize: 13, color: "#7B8190", fontWeight: 600, letterSpacing: ".04em", marginBottom: 14 }}>
+          <div style={{ fontSize: 13, color: "var(--ink2)", fontWeight: 600, letterSpacing: ".04em", marginBottom: 14 }}>
             קשר
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            <Link href="#contact" style={{ color: "#C7CBD4", fontSize: 14.5 }}>הצטרפו לפיילוט</Link>
-            <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: "#C7CBD4", fontSize: 14.5 }}>{CONTACT_EMAIL}</a>
+            <Link href="#join" style={{ color: "var(--ink)", fontSize: 14.5 }}>הצטרפו להשקה</Link>
+            <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: "var(--ink)", fontSize: 14.5 }}>{CONTACT_EMAIL}</a>
           </div>
         </div>
       </div>
 
-      <div style={{ borderTop: "1px solid rgba(255,255,255,.06)" }}>
+      <div style={{ borderTop: "1px solid rgba(109,40,217,.10)" }}>
         <div
           style={{
             maxWidth: 1180,
@@ -72,8 +74,8 @@ export function Footer() {
             alignItems: "center",
           }}
         >
-          <span style={{ color: "#7B8190", fontSize: 13.5 }}>© 2026 Tumba. כל הזכויות שמורות.</span>
-          <span style={{ color: "#7B8190", fontSize: 13.5 }}>נבנה לקבוצות אמיתיות ולעסקים מקומיים.</span>
+          <span style={{ color: "var(--ink2)", fontSize: 13.5 }}>© 2026 Tumbapp. כל הזכויות שמורות.</span>
+          <span style={{ color: "var(--ink2)", fontSize: 13.5 }}>נבנה לחבורות אמיתיות.</span>
         </div>
       </div>
     </footer>

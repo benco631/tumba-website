@@ -521,6 +521,18 @@
   @keyframes tGlow { 0%,100% { box-shadow: 0 0 20px rgba(139,92,246,.18) } 50% { box-shadow: 0 0 36px rgba(139,92,246,.32) } }
   @keyframes tRise { from { opacity: 0; transform: translateY(28px) } to { opacity: 1; transform: none } }
   @keyframes tShimmer { 0% { background-position: 200% 50% } 100% { background-position: -200% 50% } }
+  @keyframes tPowerPulse { 0%,100% { transform: scale(1) } 50% { transform: scale(1.035) } }
+  @keyframes tPowerPulseL50 { 0%,100% { transform: scale(1) } 50% { transform: scale(1.035) } }
+  @keyframes tMascotFloat10 { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
+  @keyframes tAuraFlame { 0%,100% { transform: scaleY(1) translateY(0); opacity: .55 } 30% { transform: scaleY(1.08) translateY(-3px); opacity: .72 } 60% { transform: scaleY(.96) translateY(1px); opacity: .6 } }
+  @keyframes tLightningFlicker { 0%, 86%, 100% { opacity: 0 } 89% { opacity: .32 } 92% { opacity: .08 } 95% { opacity: .26 } 98% { opacity: 0 } }
+  @keyframes tWaveLine { 0%,100% { opacity: .65 } 50% { opacity: 1 } }
+  .animate-power-pulse { animation: tPowerPulse 2.8s ease-in-out infinite; transform-origin: center bottom; }
+  .t2-mascot-float-10 { animation: tMascotFloat10 3.4s ease-in-out infinite; }
+  .t2-power-pulse-l50 { animation: tPowerPulseL50 2.4s ease-in-out infinite; transform-origin: center bottom; }
+  .t2-aura-flame { animation: tAuraFlame 3.2s ease-in-out infinite; transform-origin: center bottom; }
+  .t2-aura-lightning { animation: tLightningFlicker 4.6s ease-in-out infinite; }
+  .t2-wave-line { animation: tWaveLine 13s ease-in-out infinite; }
   #tumba2 input::placeholder, #tumba2 textarea::placeholder { color: #8B84A0; }
   #tumba2 a { text-decoration: none; }
 
@@ -641,6 +653,14 @@
     .t2-flow-row { flex-direction: column; align-items: stretch; text-align: center; }
     .t2-flow-arrow { align-self: center; transform: rotate(-90deg); }
   }
+  /* the heading-corner mascot accents (how it works / economy / reward
+     journey) are purely decorative; below this width the headings wrap to
+     more lines and collide with them, so hide instead of forcing an
+     unreliable absolute position — the map and businesses mascots stay,
+     since those sit beside a card/button rather than over reflowing text */
+  @media (max-width: 640px) {
+    .t2-mascot-corner { display: none; }
+  }
   /* the idle mascot hangs off the phone's left edge on desktop; at narrow
      widths that overhang falls outside the viewport and gets clipped by the
      body's overflow-x, so tuck it back inside */
@@ -652,6 +672,19 @@
     .t2-mascot, .t2-map, .t2-group { display: none; }
     .t2-mascot-still, .t2-map-still, .t2-group-still { display: block; }
   }
+  /* side wave-line bundles: narrowing the wrapper crops out the outer lines
+     (they're centred at increasing x within the 76-wide pattern tile) rather
+     than squashing the wave shape — 12 lines on desktop, ~7 on tablet, ~4 on
+     mobile, hidden entirely on very small phones */
+  @media (max-width: 1024px) {
+    .t2-neon-wave { width: 38px !important; opacity: .75; }
+  }
+  @media (max-width: 767px) {
+    .t2-neon-wave { width: 24px !important; opacity: .5; }
+  }
+  @media (max-width: 420px) {
+    .t2-neon-wave { display: none; }
+  }
 </style>
 </helmet>
 <div id="tumba2" lang="he" dir="rtl" style="--acc:#8B5CF6; --acc2:#8B5CF6; --acc3:#6D28D9; --lav:#EDE9FE; --soft:#F5F3FF; --offw:#FAFAFF; --card:#FFFFFF; --ink:#241B35; --ink2:#625A70; --gold:#D9922B; --gold2:#B87514; --goldink:#A8620A; --gem:#22A6C9; --gem2:#0E7490; --gemink:#0F6E87; --green:#12A150; position:relative; overflow:hidden; background:radial-gradient(1200px 800px at 85% -5%, #EDE9FE 0%, #F5F3FF 55%), #FAFAFF; color:#241B35; font-family:'Rubik',-apple-system,system-ui,sans-serif; -webkit-font-smoothing:antialiased; line-height:1.55;">
@@ -661,6 +694,86 @@
     <div style="position:absolute; top:-160px; right:-140px; width:680px; height:680px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,246,.16), transparent 62%); filter:blur(24px); animation:tDrift 17s ease-in-out infinite;"></div>
     <div style="position:absolute; top:600px; left:-180px; width:560px; height:560px; border-radius:50%; background:radial-gradient(circle, rgba(109,40,217,.12), transparent 64%); filter:blur(24px); animation:tDrift 21s ease-in-out infinite reverse;"></div>
     <div style="position:absolute; top:2200px; right:-140px; width:520px; height:520px; border-radius:50%; background:radial-gradient(circle, rgba(217,146,43,.10), transparent 66%); filter:blur(26px); animation:tDrift 24s ease-in-out infinite;"></div>
+  </div>
+
+  <!-- decorative wave-line side margins: 12 very thin, low-opacity flowing
+       lines per side (not a bundle of thick tubes) — each its own seamlessly-
+       repeating SVG pattern with its own period so lines drift closer
+       together and farther apart down the page, occasionally crossing.
+       Single crisp stroke per line, no blurred glow duplicate. Purely
+       ornamental (aria-hidden, pointer-events:none), sits behind all content
+       at z-index:0. Narrower breakpoints shrink the wrapper's width, which
+       crops out the outer lines (centred at increasing x) rather than
+       squashing the wave shape — that thins 12 lines down to ~4 on mobile. -->
+  <div class="t2-neon-wave t2-neon-wave-left" aria-hidden="true" style="position:absolute; top:0; bottom:0; left:0; width:clamp(58px,5.5vw,84px); pointer-events:none; overflow:hidden; z-index:0;">
+    <svg width="100%" height="100%" style="display:block;" aria-hidden="true">
+      <defs>
+        <linearGradient id="tWLg1" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#6D28D9"/><stop offset="45%" stop-color="#8B5CF6"/><stop offset="75%" stop-color="#A855F7"/><stop offset="100%" stop-color="#6D28D9"/></linearGradient>
+        <linearGradient id="tWLg2" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#7C3AED"/><stop offset="45%" stop-color="#A855F7"/><stop offset="75%" stop-color="#C084FC"/><stop offset="100%" stop-color="#7C3AED"/></linearGradient>
+        <linearGradient id="tWLg3" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#8B5CF6"/><stop offset="40%" stop-color="#60A5FA"/><stop offset="75%" stop-color="#A855F7"/><stop offset="100%" stop-color="#8B5CF6"/></linearGradient>
+        <linearGradient id="tWLg4" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#A855F7"/><stop offset="45%" stop-color="#C084FC"/><stop offset="75%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#A855F7"/></linearGradient>
+        <linearGradient id="tWLg5" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#6D28D9"/><stop offset="30%" stop-color="#7C3AED"/><stop offset="55%" stop-color="#38BDF8"/><stop offset="80%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#6D28D9"/></linearGradient>
+        <pattern id="tWL1" patternUnits="userSpaceOnUse" width="76" height="214"><path class="t2-wave-line" style="animation-delay:0.0s" d="M4,0 C6.5,26.8 6.5,80.3 4,107.0 C1.5,133.8 1.5,187.3 4,214" fill="none" stroke="url(#tWLg1)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.42" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWL2" patternUnits="userSpaceOnUse" width="76" height="268"><path class="t2-wave-line" style="animation-delay:0.8s" d="M10,0 C7.0,33.5 7.0,100.5 10,134.0 C13.0,167.5 13.0,234.5 10,268" fill="none" stroke="url(#tWLg2)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.38" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWL3" patternUnits="userSpaceOnUse" width="76" height="326"><path class="t2-wave-line" style="animation-delay:1.6s" d="M16,0 C18.2,40.8 18.2,122.3 16,163.0 C13.8,203.8 13.8,285.3 16,326" fill="none" stroke="url(#tWLg3)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.55" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWL4" patternUnits="userSpaceOnUse" width="76" height="241"><path class="t2-wave-line" style="animation-delay:2.4s" d="M23,0 C19.2,30.1 19.2,90.4 23,120.5 C26.8,150.6 26.8,210.9 23,241" fill="none" stroke="url(#tWLg4)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.4" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWL5" patternUnits="userSpaceOnUse" width="76" height="373"><path class="t2-wave-line" style="animation-delay:3.2s" d="M29,0 C31.8,46.6 31.8,139.9 29,186.5 C26.2,233.1 26.2,326.4 29,373" fill="none" stroke="url(#tWLg5)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.36" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWL6" patternUnits="userSpaceOnUse" width="76" height="296"><path class="t2-wave-line" style="animation-delay:4.0s" d="M35,0 C38.4,37.0 38.4,111.0 35,148.0 C31.6,185.0 31.6,259.0 35,296" fill="none" stroke="url(#tWLg1)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.44" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWL7" patternUnits="userSpaceOnUse" width="76" height="352"><path class="t2-wave-line" style="animation-delay:4.8s" d="M41,0 C38.6,44.0 38.6,132.0 41,176.0 C43.4,220.0 43.4,308.0 41,352" fill="none" stroke="url(#tWLg2)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.38" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWL8" patternUnits="userSpaceOnUse" width="76" height="229"><path class="t2-wave-line" style="animation-delay:5.6s" d="M47,0 C51.0,28.6 51.0,85.9 47,114.5 C43.0,143.1 43.0,200.4 47,229" fill="none" stroke="url(#tWLg3)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.4" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWL9" patternUnits="userSpaceOnUse" width="76" height="408"><path class="t2-wave-line" style="animation-delay:6.4s" d="M54,0 C51.0,51.0 51.0,153.0 54,204.0 C57.0,255.0 57.0,357.0 54,408" fill="none" stroke="url(#tWLg4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.58" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWL10" patternUnits="userSpaceOnUse" width="76" height="283"><path class="t2-wave-line" style="animation-delay:7.2s" d="M60,0 C57.4,35.4 57.4,106.1 60,141.5 C62.6,176.9 62.6,247.6 60,283" fill="none" stroke="url(#tWLg5)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.4" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWL11" patternUnits="userSpaceOnUse" width="76" height="247"><path class="t2-wave-line" style="animation-delay:8.0s" d="M66,0 C69.6,30.9 69.6,92.6 66,123.5 C62.4,154.4 62.4,216.1 66,247" fill="none" stroke="url(#tWLg1)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.36" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWL12" patternUnits="userSpaceOnUse" width="76" height="317"><path class="t2-wave-line" style="animation-delay:8.8s" d="M72,0 C69.8,39.6 69.8,118.9 72,158.5 C74.2,198.1 74.2,277.4 72,317" fill="none" stroke="url(#tWLg2)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.42" vector-effect="non-scaling-stroke"></path></pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#tWL1)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWL2)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWL3)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWL4)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWL5)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWL6)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWL7)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWL8)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWL9)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWL10)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWL11)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWL12)"></rect>
+    </svg>
+  </div>
+  <div class="t2-neon-wave t2-neon-wave-right" aria-hidden="true" style="position:absolute; top:0; bottom:0; right:0; width:clamp(58px,5.5vw,84px); pointer-events:none; overflow:hidden; z-index:0;">
+    <svg width="100%" height="100%" style="display:block;" aria-hidden="true">
+      <defs>
+        <linearGradient id="tWRg1" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#6D28D9"/><stop offset="45%" stop-color="#8B5CF6"/><stop offset="75%" stop-color="#A855F7"/><stop offset="100%" stop-color="#6D28D9"/></linearGradient>
+        <linearGradient id="tWRg2" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#7C3AED"/><stop offset="45%" stop-color="#A855F7"/><stop offset="75%" stop-color="#C084FC"/><stop offset="100%" stop-color="#7C3AED"/></linearGradient>
+        <linearGradient id="tWRg3" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#8B5CF6"/><stop offset="40%" stop-color="#60A5FA"/><stop offset="75%" stop-color="#A855F7"/><stop offset="100%" stop-color="#8B5CF6"/></linearGradient>
+        <linearGradient id="tWRg4" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#A855F7"/><stop offset="45%" stop-color="#C084FC"/><stop offset="75%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#A855F7"/></linearGradient>
+        <linearGradient id="tWRg5" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#6D28D9"/><stop offset="30%" stop-color="#7C3AED"/><stop offset="55%" stop-color="#38BDF8"/><stop offset="80%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#6D28D9"/></linearGradient>
+        <pattern id="tWR1" patternUnits="userSpaceOnUse" width="76" height="252"><path class="t2-wave-line" style="animation-delay:0.0s" d="M4,0 C1.0,31.5 1.0,94.5 4,126.0 C7.0,157.5 7.0,220.5 4,252" fill="none" stroke="url(#tWRg3)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.4" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWR2" patternUnits="userSpaceOnUse" width="76" height="301"><path class="t2-wave-line" style="animation-delay:0.8s" d="M10,0 C12.4,37.6 12.4,112.9 10,150.5 C7.6,188.1 7.6,263.4 10,301" fill="none" stroke="url(#tWRg4)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.38" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWR3" patternUnits="userSpaceOnUse" width="76" height="224"><path class="t2-wave-line" style="animation-delay:1.6s" d="M16,0 C12.4,28.0 12.4,84.0 16,112.0 C19.6,140.0 19.6,196.0 16,224" fill="none" stroke="url(#tWRg5)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.42" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWR4" patternUnits="userSpaceOnUse" width="76" height="356"><path class="t2-wave-line" style="animation-delay:2.4s" d="M23,0 C25.8,44.5 25.8,133.5 23,178.0 C20.2,222.5 20.2,311.5 23,356" fill="none" stroke="url(#tWRg1)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.36" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWR5" patternUnits="userSpaceOnUse" width="76" height="269"><path class="t2-wave-line" style="animation-delay:3.2s" d="M29,0 C25.0,33.6 25.0,100.9 29,134.5 C33.0,168.1 33.0,235.4 29,269" fill="none" stroke="url(#tWRg2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.58" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWR6" patternUnits="userSpaceOnUse" width="76" height="398"><path class="t2-wave-line" style="animation-delay:4.0s" d="M35,0 C32.8,49.8 32.8,149.3 35,199.0 C37.2,248.8 37.2,348.3 35,398" fill="none" stroke="url(#tWRg3)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.4" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWR7" patternUnits="userSpaceOnUse" width="76" height="235"><path class="t2-wave-line" style="animation-delay:4.8s" d="M41,0 C44.4,29.4 44.4,88.1 41,117.5 C37.6,146.9 37.6,205.6 41,235" fill="none" stroke="url(#tWRg4)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.38" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWR8" patternUnits="userSpaceOnUse" width="76" height="317"><path class="t2-wave-line" style="animation-delay:5.6s" d="M47,0 C44.4,39.6 44.4,118.9 47,158.5 C49.6,198.1 49.6,277.4 47,317" fill="none" stroke="url(#tWRg5)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.44" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWR9" patternUnits="userSpaceOnUse" width="76" height="284"><path class="t2-wave-line" style="animation-delay:6.4s" d="M54,0 C57.8,35.5 57.8,106.5 54,142.0 C50.2,177.5 50.2,248.5 54,284" fill="none" stroke="url(#tWRg1)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.4" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWR10" patternUnits="userSpaceOnUse" width="76" height="246"><path class="t2-wave-line" style="animation-delay:7.2s" d="M60,0 C63.0,30.8 63.0,92.3 60,123.0 C57.0,153.8 57.0,215.3 60,246" fill="none" stroke="url(#tWRg2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.56" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWR11" patternUnits="userSpaceOnUse" width="76" height="372"><path class="t2-wave-line" style="animation-delay:8.0s" d="M66,0 C63.6,46.5 63.6,139.5 66,186.0 C68.4,232.5 68.4,325.5 66,372" fill="none" stroke="url(#tWRg3)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.36" vector-effect="non-scaling-stroke"></path></pattern>
+        <pattern id="tWR12" patternUnits="userSpaceOnUse" width="76" height="209"><path class="t2-wave-line" style="animation-delay:8.8s" d="M72,0 C75.2,26.1 75.2,78.4 72,104.5 C68.8,130.6 68.8,182.9 72,209" fill="none" stroke="url(#tWRg4)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.42" vector-effect="non-scaling-stroke"></path></pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#tWR1)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWR2)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWR3)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWR4)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWR5)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWR6)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWR7)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWR8)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWR9)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWR10)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWR11)"></rect>
+      <rect width="100%" height="100%" fill="url(#tWR12)"></rect>
+    </svg>
   </div>
 
   <div style="position:relative; z-index:1;">
@@ -805,7 +918,10 @@
   </section>
 
   <!-- ============ HOW IT WORKS ============ -->
-  <section id="how2" style="max-width:1520px; margin:0 auto; padding:clamp(56px,8vw,122px) clamp(18px,4vw,44px);">
+  <section id="how2" style="position:relative; max-width:1520px; margin:0 auto; padding:clamp(56px,8vw,122px) clamp(18px,4vw,44px);">
+    <div data-reveal="" aria-hidden="true" class="t2-mascot-corner" style="position:absolute; top:2px; right:clamp(10px,6vw,90px); width:clamp(96px,9vw,140px); z-index:1; animation:tFloat 6.5s ease-in-out infinite;">
+      <img src="assets/tumbapp-boar-running.webp" alt="" style="display:block; width:100%; height:auto; filter:drop-shadow(0 14px 22px rgba(109,40,217,.22));">
+    </div>
     <div data-reveal="" style="text-align:center; max-width:700px; margin:0 auto;">
       <div style="color:var(--acc3); font-weight:600; font-size:14px; letter-spacing:.05em;">איך זה עובד</div>
       <h2 style="font-size:clamp(30px,4vw,54px); font-weight:800; letter-spacing:-.02em; margin:12px 0 0; line-height:1.12;">ארבעה צעדים — וקבוצה שלא מפסיקה לשחק</h2>
@@ -854,6 +970,10 @@
 
     <div style="position:relative; max-width:1520px; margin:0 auto; padding:0 clamp(18px,4vw,44px);">
 
+      <div data-reveal="" aria-hidden="true" class="t2-mascot-corner" style="position:absolute; top:-4px; left:clamp(6px,5vw,70px); width:clamp(88px,8vw,128px); z-index:1; animation:tFloat 7s ease-in-out infinite .3s;">
+        <img src="assets/tumbapp-boar-winking.webp" alt="" style="display:block; width:100%; height:auto; filter:drop-shadow(0 12px 20px rgba(217,146,43,.24));">
+      </div>
+
       <!-- heading -->
       <div data-reveal="" style="text-align:center; max-width:780px; margin:0 auto;">
         <div style="color:var(--acc3); font-weight:600; font-size:14px; letter-spacing:.05em;">הכלכלה של TUMBAPP · משחקים יחד, מתקדמים יחד</div>
@@ -890,21 +1010,13 @@
         <div data-reveal="" data-lift="" style="position:relative; background:#FFFFFF; border:1px solid rgba(34,166,201,.40); border-radius:26px; padding:30px; overflow:hidden;">
           <div aria-hidden="true" style="position:absolute; top:-40px; left:-40px; width:180px; height:180px; border-radius:50%; background:radial-gradient(circle, rgba(34,166,201,.16), transparent 70%);"></div>
           <div style="position:relative; display:flex; align-items:center; gap:14px;">
-            <span style="width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,#22A6C9,#0E7490); box-shadow:0 8px 22px rgba(34,166,201,.34); display:flex; align-items:center; justify-content:center;">
-              <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 22 9 12 22 2 9z" fill="#FFFFFF" opacity=".95"></path><path d="M12 2 7 9l5 13 5-13z" fill="#D6F2F8"></path></svg>
-            </span>
+            <img src="assets/tumbapp-diamond.webp" alt="" aria-hidden="true" width="560" height="560" loading="lazy" decoding="async" style="width:52px; height:auto; display:block; filter:drop-shadow(0 8px 20px rgba(34,166,201,.4));">
             <span style="display:inline-flex; align-items:center; gap:6px; background:#E4F6FA; border:1px solid rgba(34,166,201,.40); border-radius:100px; padding:5px 12px; font-size:12.5px; font-weight:700; color:#0F6E87;">אישי · נדיר</span>
           </div>
           <h3 style="position:relative; font-size:clamp(20px,1.4vw,24px); font-weight:800; margin:18px 0 0; line-height:1.3;">יהלומים — נדירים ובעלי ערך</h3>
           <p style="position:relative; color:#625A70; font-size:clamp(15px,1vw,16.5px); margin:10px 0 0; line-height:1.6;">
             יהלומים מתקבלים בתדירות נמוכה יותר ולכן הם נדירים ובעלי ערך גבוה יותר. בשילוב עם Coins, ניתן להשתמש בהם כדי לממש הטבות אמיתיות בבתי עסק משתתפים.
           </p>
-
-          <!-- official diamond artwork. its own background is pure white, and the
-               card is #FFFFFF, so it sits flush with no visible image box -->
-          <img class="t2-diamond" src="assets/tumbapp-diamond.webp"
-               alt="יהלום של TUMBAPP המשמש למימוש הטבות אמיתיות"
-               width="560" height="560" loading="lazy" decoding="async">
           <ul style="position:relative; list-style:none; padding:0; margin:18px 0 0; display:flex; flex-wrap:wrap; gap:8px;">
             <li style="background:#F0FAFC; border:1px solid rgba(34,166,201,.32); border-radius:100px; padding:7px 13px; font-size:13.5px; color:#241B35;">הטבות במסעדות</li>
             <li style="background:#F0FAFC; border:1px solid rgba(34,166,201,.32); border-radius:100px; padding:7px 13px; font-size:13.5px; color:#241B35;">הטבות בברים</li>
@@ -993,42 +1105,70 @@
   </section>
 
   <!-- ============ REWARD JOURNEY ============ -->
-  <section id="journey2" style="max-width:1520px; margin:0 auto; padding:clamp(56px,8vw,122px) clamp(18px,4vw,44px);">
-    <div data-reveal="" style="text-align:center; max-width:700px; margin:0 auto;">
+  <section id="journey2" style="position:relative; max-width:1520px; margin:0 auto; padding:clamp(36px,5.7vw,60px) clamp(18px,4vw,44px);">
+    <div data-reveal="" style="text-align:center; max-width:640px; margin:0 auto;">
       <div style="color:var(--acc3); font-weight:600; font-size:14px; letter-spacing:.05em;">מסלול ההטבות</div>
-      <h2 style="font-size:clamp(30px,4vw,54px); font-weight:800; letter-spacing:-.02em; margin:12px 0 0; line-height:1.12;">ככל שהקבוצה עולה — ההטבות נהיות שוות יותר</h2>
+      <h2 style="font-size:clamp(26px,3.4vw,40px); font-weight:800; letter-spacing:-.02em; margin:10px 0 0; line-height:1.15;">ככל שהקבוצה עולה — ההטבות נהיות שוות יותר</h2>
+      <p style="color:#625A70; font-size:clamp(14.5px,1.05vw,16px); margin:10px 0 0; line-height:1.55;">הקבוצה צוברת XP, עולה ברמות ופותחת הטבות טובות יותר לאורך הדרך.</p>
     </div>
-    <div data-reveal="" style="margin-top:48px; position:relative; border-radius:26px; overflow:hidden; border:1px solid rgba(139,92,246,.26);">
-      <img src="assets/8e511891-b7db-4932-871f-d85e76b2bbdc.png" alt="מסלול רמות זוהר — Level 10, Level 25 ו-Level 50 עם הטבות שנפתחות בדרך" style="display:block; width:100%; height:auto;">
-    </div>
-    <div data-reveal="" style="margin-top:22px; background:#FFFFFF; border:1px solid rgba(109,40,217,.16); border-radius:18px; padding:16px 20px;">
-      <div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'Outfit',sans-serif;">
-        <span style="font-size:12.5px; color:#6D28D9; font-weight:600; letter-spacing:.04em;">GROUP XP</span>
-        <span id="journey-fill-label" style="font-size:14px; font-weight:800; color:#241B35;">Level 25</span>
-      </div>
-      <div style="margin-top:10px; height:10px; border-radius:100px; background:#EDE9FE; overflow:hidden;">
-        <div id="journey-fill" style="height:100%; width:55%; border-radius:100px; background:linear-gradient(90deg,var(--acc2),var(--acc)); box-shadow:0 0 14px rgba(124,92,246,.8); transition:width .9s cubic-bezier(.2,.7,.2,1);"></div>
-      </div>
-      <div style="margin-top:9px; font-size:13px; color:#625A70;">לחצו על רמה כדי לראות את ההטבה שנפתחת</div>
-    </div>
-    <div data-reveal="" style="position:relative; margin-top:22px;">
-      <div style="position:relative; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr)); gap:20px;">
-        <div id="lvl-10" data-level="10" role="button" tabindex="0" aria-pressed="false" onclick="{{ selectLevel }}" onkeydown="{{ keyActivate }}" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.16); border-radius:24px; padding:28px; text-align:center; backdrop-filter:blur(8px); cursor:pointer;">
-          <div style="width:64px; height:64px; margin:0 auto; border-radius:20px; background:linear-gradient(135deg,rgba(124,92,246,.3),rgba(124,92,246,.1)); border:1px solid rgba(124,92,246,.4); display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:900; font-size:20px; color:var(--acc2);">10</div>
-          <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:19px; margin-top:16px;">Level 10</div>
-          <div style="color:#625A70; font-size:15px; margin-top:6px;">הנחה קטנה להתחלה — הקבוצה טועמת את הערך</div>
+
+    <div data-reveal="" style="max-width:780px; margin:30px auto 0;">
+      <!-- mascot row: same column widths as the badge row below, bottom-aligned so
+           different character heights still share one visual ground line -->
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:9px;">
+        <div style="width:clamp(97px,30vw,175px); display:flex; justify-content:center;">
+          <div class="t2-mascot-float-10" style="position:relative;">
+            <img src="assets/boar-level-10.webp" alt="הקמע של Tumbapp ברמה 10" width="340" height="340" loading="lazy" decoding="async" style="display:block; width:clamp(85px,11.5vw,146px); height:auto; filter:drop-shadow(0 10px 16px rgba(109,40,217,.18));">
+          </div>
         </div>
-        <div id="lvl-25" data-level="25" role="button" tabindex="0" aria-pressed="false" onclick="{{ selectLevel }}" onkeydown="{{ keyActivate }}" style="background:#FFFFFF; border:1px solid rgba(139,92,246,.34); border-radius:24px; padding:28px; text-align:center; backdrop-filter:blur(8px); cursor:pointer;">
-          <div style="width:64px; height:64px; margin:0 auto; border-radius:20px; background:linear-gradient(135deg,var(--acc2),var(--acc3)); box-shadow:0 10px 28px rgba(124,92,246,.5); display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:900; font-size:20px; color:#fff;">25</div>
-          <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:19px; margin-top:16px;">Level 25</div>
-          <div style="color:#625A70; font-size:15px; margin-top:6px;">הטבה טובה יותר — 1+1, מנה מתנה או הנחה קבועה</div>
+        <div style="width:clamp(110px,32vw,193px); display:flex; justify-content:center;">
+          <div class="animate-power-pulse" style="position:relative;">
+            <img src="assets/boar-level-25.webp" alt="הקמע של Tumbapp ברמה 25, גרסה שרירית" width="420" height="420" loading="lazy" decoding="async" style="display:block; width:clamp(108px,14.5vw,184px); height:auto; filter:drop-shadow(0 12px 20px rgba(109,40,217,.22));">
+          </div>
         </div>
-        <div id="lvl-50" data-level="50" role="button" tabindex="0" aria-pressed="false" onclick="{{ selectLevel }}" onkeydown="{{ keyActivate }}" style="position:relative; background:linear-gradient(160deg,#FFF8EC,#FFFFFF); border:1px solid rgba(217,146,43,.42); border-radius:24px; padding:28px; text-align:center; backdrop-filter:blur(8px); cursor:pointer;">
-          <div style="position:absolute; top:-13px; right:50%; transform:translateX(50%); background:linear-gradient(135deg,#FFD98A,#D9922B); color:#4A2D05; font-family:'Outfit',sans-serif; font-weight:800; font-size:11.5px; padding:5px 14px; border-radius:100px; letter-spacing:.06em; box-shadow:0 6px 18px rgba(232,163,61,.45);">PREMIUM</div>
-          <div style="width:64px; height:64px; margin:0 auto; border-radius:50%; background:radial-gradient(circle at 32% 28%, #FFE29B, #D9922B 52%, #B87514 82%, #8A5608); box-shadow:0 12px 30px rgba(232,163,61,.5), inset 0 -3px 8px rgba(120,70,10,.5); display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:900; font-size:20px; color:#7a4c0e;">50</div>
-          <span style="display:none;"></span>
-          <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:19px; margin-top:16px;">Level 50</div>
-          <div style="color:#625A70; font-size:15px; margin-top:6px;">הטבת פרימיום — חוויית VIP לקבוצות הכי פעילות</div>
+        <div style="width:clamp(129px,36vw,250px); display:flex; justify-content:center;">
+          <!-- separate wrappers so the character's own scale-pulse transform
+               never overwrites the aura's independent scaleY/translateY -->
+          <div style="position:relative;">
+            <div aria-hidden="true" class="t2-aura-flame" style="position:absolute; inset:8%; border-radius:50%; background:radial-gradient(circle, rgba(217,146,43,.34), rgba(139,92,246,.18) 55%, transparent 72%); filter:blur(14px); z-index:0;"></div>
+            <div aria-hidden="true" class="t2-aura-lightning" style="position:absolute; inset:14% 26%; border-radius:50%; background:radial-gradient(circle, rgba(255,247,214,.9), rgba(255,214,120,.4) 45%, transparent 75%); filter:blur(6px); z-index:0;"></div>
+            <div class="t2-power-pulse-l50" style="position:relative; z-index:1;">
+              <img src="assets/boar-level-50.webp" alt="הקמע של Tumbapp ברמה 50, גרסה עוצמתית עם הילה" width="550" height="550" loading="lazy" decoding="async" style="display:block; width:clamp(136px,17.3vw,232px); height:auto; filter:drop-shadow(0 14px 24px rgba(217,146,43,.28));">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- three independent level markers (no connecting line — the XP bar
+           below is the single source of progress state) -->
+      <div style="display:flex; justify-content:space-between; gap:9px; margin-top:8px;">
+        <div id="lvl-10" data-level="10" role="button" tabindex="0" aria-pressed="false" onclick="{{ selectLevel }}" onkeydown="{{ keyActivate }}" style="position:relative; display:flex; flex-direction:column; align-items:center; gap:7px; width:clamp(97px,30vw,175px); padding:2px; border:1px solid transparent; border-radius:14px; cursor:pointer; transition:transform .25s ease, opacity .25s ease, border-color .25s ease, box-shadow .25s ease;">
+          <span style="width:48px; height:48px; border-radius:50%; background:var(--lav); border:1px solid rgba(139,92,246,.32); display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:800; font-size:16px; color:var(--acc3);">10</span>
+          <span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:14.5px; color:#241B35;">Level 10</span>
+          <span style="font-size:13px; color:#625A70; text-align:center; line-height:1.35;">הטבות ראשונות לקבוצה</span>
+        </div>
+
+        <div id="lvl-25" data-level="25" role="button" tabindex="0" aria-pressed="false" onclick="{{ selectLevel }}" onkeydown="{{ keyActivate }}" style="position:relative; display:flex; flex-direction:column; align-items:center; gap:7px; width:clamp(110px,32vw,193px); padding:2px; border:1px solid transparent; border-radius:14px; cursor:pointer; transition:transform .25s ease, opacity .25s ease, border-color .25s ease, box-shadow .25s ease;">
+          <span style="width:55px; height:55px; border-radius:50%; background:linear-gradient(135deg,var(--acc2),var(--acc3)); display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:800; font-size:17px; color:#fff;">25</span>
+          <span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:14.5px; color:#241B35;">Level 25</span>
+          <span style="font-size:13px; color:#625A70; text-align:center; line-height:1.35;">הטבות טובות יותר</span>
+        </div>
+
+        <div id="lvl-50" data-level="50" role="button" tabindex="0" aria-pressed="false" onclick="{{ selectLevel }}" onkeydown="{{ keyActivate }}" style="position:relative; display:flex; flex-direction:column; align-items:center; gap:7px; width:clamp(129px,36vw,250px); padding:2px; border:1px solid transparent; border-radius:14px; cursor:pointer; transition:transform .25s ease, opacity .25s ease, border-color .25s ease, box-shadow .25s ease;">
+          <span style="width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,#FFEBC2,#D9922B); border:1px solid rgba(217,146,43,.45); display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:800; font-size:16px; color:#7A4C0E;">50</span>
+          <span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:14.5px; color:#241B35;">Level 50</span>
+          <span style="font-size:13px; color:#625A70; text-align:center; line-height:1.35;">ההטבות השוות ביותר</span>
+        </div>
+      </div>
+
+      <!-- slim XP progress bar -->
+      <div style="margin-top:16px;">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'Outfit',sans-serif;">
+          <span style="font-size:11px; color:#6D28D9; font-weight:600; letter-spacing:.04em;">GROUP XP</span>
+          <span id="journey-fill-label" style="font-size:12.5px; font-weight:800; color:#241B35;">Level 25</span>
+        </div>
+        <div style="margin-top:6px; height:7px; border-radius:100px; background:#EDE9FE; overflow:hidden;">
+          <div id="journey-fill" style="height:100%; width:55%; border-radius:100px; background:linear-gradient(90deg,var(--acc2),var(--acc)); transition:width .9s cubic-bezier(.2,.7,.2,1);"></div>
         </div>
       </div>
     </div>
@@ -1075,6 +1215,9 @@
     <div data-reveal="" style="flex:1 1 380px; min-width:min(280px,100%); display:flex; justify-content:center;">
       <div style="position:relative; width:min(520px,100%);">
         <div aria-hidden="true" style="position:absolute; inset:-24px; background:radial-gradient(circle, rgba(139,92,246,.18), transparent 68%); filter:blur(26px);"></div>
+        <div data-reveal="" aria-hidden="true" style="position:absolute; bottom:-22px; right:-20px; z-index:3; width:clamp(96px,11vw,150px); animation:tFloat 6.8s ease-in-out infinite .2s;">
+          <img src="assets/tumbapp-boar-standing.webp" alt="" style="display:block; width:100%; height:auto; filter:drop-shadow(0 12px 20px rgba(109,40,217,.24));">
+        </div>
         <div style="position:relative; border-radius:26px; overflow:hidden; background:#FFFFFF; border:1px solid rgba(109,40,217,.14); box-shadow:0 22px 54px rgba(109,40,217,.16);">
           <video class="t2-map" width="960" height="720" autoplay muted loop playsinline preload="none"
                  poster="assets/tumbapp-nearby-benefits-map-poster.webp"
@@ -1160,7 +1303,12 @@
           <div data-lift="" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:16px; padding:16px 18px; font-size:15px; color:#241B35; font-weight:500;">הטבות לפי Level קבוצתי</div>
           <div data-lift="" style="background:linear-gradient(135deg,#EDE9FE,#F5F3FF); border:1px solid rgba(139,92,246,.38); border-radius:16px; padding:16px 18px; font-size:15px; color:#fff; font-weight:600;">שליטה מלאה בהטבה ובעלות</div>
         </div>
-        <a href="#contact2" style="display:inline-flex; align-items:center; gap:9px; margin-top:30px; padding:clamp(15px,1.1vw,19px) clamp(28px,2.2vw,38px); border-radius:100px; background:linear-gradient(135deg,var(--acc2),var(--acc)); color:#fff; font-weight:700; font-size:clamp(16px,1.1vw,18.5px); box-shadow:0 10px 32px rgba(124,92,246,.45); transition:transform .2s;" onmouseover="{{ ctaHover }}" onmouseout="{{ ctaOut }}">דברו איתנו על שיתוף פעולה</a>
+        <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-top:30px;">
+          <a href="#contact2" style="display:inline-flex; align-items:center; gap:9px; padding:clamp(15px,1.1vw,19px) clamp(28px,2.2vw,38px); border-radius:100px; background:linear-gradient(135deg,var(--acc2),var(--acc)); color:#fff; font-weight:700; font-size:clamp(16px,1.1vw,18.5px); box-shadow:0 10px 32px rgba(124,92,246,.45); transition:transform .2s;" onmouseover="{{ ctaHover }}" onmouseout="{{ ctaOut }}">דברו איתנו על שיתוף פעולה</a>
+          <div data-reveal="" aria-hidden="true" style="width:clamp(72px,7vw,108px); flex:none; animation:tFloat 6.2s ease-in-out infinite .4s;">
+            <img src="assets/tumbapp-boar-front.webp" alt="" style="display:block; width:100%; height:auto; filter:drop-shadow(0 10px 18px rgba(109,40,217,.22));">
+          </div>
+        </div>
       </div>
       <div data-reveal="" style="flex:1 1 340px; min-width:min(280px,100%); display:flex; justify-content:center;">
         <div style="position:relative; width:min(460px,92vw);">

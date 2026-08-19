@@ -6,10 +6,30 @@
   --accent3: #5B3FD6;
   --green: #4CC38A;
   --orange: #F5A35C;
-  --background: #08090C;
-  --foreground: #F4F5F7;
+  --background: #FAFAFF;
+  --foreground: #241B35;
   --font-sans: var(--font-rubik);
   --font-heading: var(--font-outfit);
+
+  /* Live tumbapp.com palette (light theme) — kept under its own names so the
+     legacy dark sections above (unused for now, held for a future /business
+     page) keep working off --accent/--background unchanged. */
+  --acc: #8B5CF6;
+  --acc2: #8B5CF6;
+  --acc3: #6D28D9;
+  --lav: #EDE9FE;
+  --soft: #F5F3FF;
+  --offw: #FAFAFF;
+  --card: #FFFFFF;
+  --ink: #241B35;
+  --ink2: #625A70;
+  --gold: #D9922B;
+  --gold2: #B87514;
+  --goldink: #A8620A;
+  --gem: #22A6C9;
+  --gem2: #0E7490;
+  --gemink: #0F6E87;
+  --tgreen: #12A150;
 }
 
 @theme inline {
@@ -87,6 +107,11 @@ textarea::placeholder {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes tSway {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
 .animate-float {
   animation: tFloat 6s ease-in-out infinite;
 }
@@ -105,4 +130,19 @@ textarea::placeholder {
 
 .animate-fill {
   animation: tFill 1.6s ease-out;
+}
+
+.animate-sway {
+  animation: tSway 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-fade-up,
+  .animate-drift,
+  .animate-pulse-glow,
+  .animate-fill,
+  .animate-sway {
+    animation: none !important;
+  }
 }
