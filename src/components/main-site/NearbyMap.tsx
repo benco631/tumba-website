@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Reveal } from "./Reveal";
 import { LazyVideo } from "../LazyVideo";
+import styles from "./main.module.css";
 
 const FEATURES = [
   {
@@ -53,7 +54,7 @@ export function NearbyMap() {
           המפה של TUMBAPP מציגה בתי עסק משתתפים והטבות זמינות באזור שלכם. תוכלו לגלות מסעדות, ברים, בתי קפה ואטרקציות קרובות, לבדוק אילו הטבות פתוחות עבורכם ולבחור
           יחד לאן יוצאים.
         </p>
-        <ul style={{ listStyle: "none", padding: 0, margin: "26px 0 0", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(200px,100%),1fr))", gap: 12 }}>
+        <ul className={styles.mapFeaturesGrid} style={{ listStyle: "none", padding: 0, margin: "26px 0 0", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(200px,100%),1fr))", gap: 12 }}>
           {FEATURES.map((f) => (
             <li key={f.label} style={{ display: "flex", alignItems: "center", gap: 11, background: "#FFFFFF", border: "1px solid rgba(109,40,217,.12)", borderRadius: 16, padding: "14px 16px", fontSize: 14.5, fontWeight: 600, color: "#241B35" }}>
               <span aria-hidden="true" style={{ flex: "none", width: 36, height: 36, borderRadius: 11, background: "#EDE9FE", display: "flex", alignItems: "center", justifyContent: "center" }}>

@@ -1,0 +1,217 @@
+/* /businesses page-specific keyframes and utility classes. CSS Module:
+   every class and @keyframes name below is scoped/hashed at build time, so
+   nothing here can leak into "/" or "/users" (even where a name intentionally
+   matches one used elsewhere, e.g. "tRise", "tFloat", "tPulse"). */
+
+.root {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(1100px 700px at 15% -5%, var(--lav) 0%, var(--offw) 55%), var(--offw);
+  color: var(--ink);
+  font-family: var(--font-outfit), "Rubik", -apple-system, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+.root :global(a) {
+  text-decoration: none;
+}
+
+.root img,
+.root svg,
+.root video {
+  max-width: 100%;
+}
+
+.root input::placeholder,
+.root textarea::placeholder {
+  color: #8b84a0;
+}
+
+@keyframes tRise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes tFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes tPulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+.reveal {
+  animation: tRise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.float {
+  animation: tFloat 6.5s ease-in-out infinite;
+}
+.pulseDot {
+  animation: tPulse 2.2s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root * {
+    animation: none !important;
+  }
+}
+
+/* nav */
+.navLinks {
+  display: flex;
+}
+.navCta {
+  display: inline-flex;
+}
+.navToggle {
+  display: none;
+}
+@media (max-width: 880px) {
+  .navLinks,
+  .navCta {
+    display: none !important;
+  }
+  .navToggle {
+    display: flex !important;
+    margin-inline-start: auto;
+  }
+}
+
+.navLink {
+  color: var(--ink2);
+  font-size: 14.5px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: background 0.2s, color 0.2s;
+}
+.navLink:hover,
+.navLink:focus-visible {
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--acc3);
+}
+
+.ctaButton {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.ctaButton:hover {
+  transform: translateY(-2px);
+}
+
+.ghostButton {
+  transition: background 0.2s, border-color 0.2s;
+}
+.ghostButton:hover {
+  background: var(--lav);
+}
+
+.liftCard {
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.liftCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 14px 30px rgba(109, 40, 217, 0.12);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--card);
+  border: 1px solid rgba(109, 40, 217, 0.14);
+  border-radius: 100px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.chip:hover {
+  border-color: rgba(139, 92, 246, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(109, 40, 217, 0.1);
+}
+
+.formField {
+  background: var(--card);
+  border: 1px solid rgba(109, 40, 217, 0.14);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: var(--ink);
+  font-family: var(--font-outfit), "Rubik", sans-serif;
+  font-size: 15px;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s, background 0.2s;
+}
+.formField:focus-visible {
+  border-color: rgba(139, 92, 246, 0.65);
+  background: var(--soft);
+}
+.formFieldError {
+  border-color: #c0392b !important;
+}
+
+/* accessible focus ring for all interactive elements on this page */
+.root a:focus-visible,
+.root button:focus-visible,
+.root input:focus-visible,
+.root select:focus-visible,
+.root textarea:focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 2px;
+}
+
+/* FAQ accordion: grid-rows 0fr->1fr trick keyframe-free smooth expand,
+   respects prefers-reduced-motion via the .root * rule above */
+.faqButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--card);
+  border: 1px solid rgba(109, 40, 217, 0.14);
+  border-radius: 16px;
+  padding: 16px 20px;
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--ink);
+  font-family: "Rubik", sans-serif;
+  cursor: pointer;
+  text-align: start;
+  transition: border-color 0.2s;
+}
+.faqButton:hover {
+  border-color: rgba(139, 92, 246, 0.35);
+}
+.faqIcon {
+  flex: none;
+  transition: transform 0.25s ease;
+  color: var(--acc3);
+}
+.faqIconOpen {
+  transform: rotate(180deg);
+}
+.faqPanelWrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+.faqPanelWrapOpen {
+  grid-template-rows: 1fr;
+}
+.faqPanelInner {
+  overflow: hidden;
+}
+.faqPanel {
+  padding: 4px 20px 18px;
+  color: var(--ink2);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+/* Decorative side waves come from the shared <SideWaves /> component, which
+   carries its own scoped responsive rules in sideWaves.module.css. */

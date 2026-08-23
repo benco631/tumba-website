@@ -9,11 +9,11 @@ import { UsersMain } from "@/src/components/main-site/UsersMain";
 import { BusinessesMain } from "@/src/components/main-site/BusinessesMain";
 import { ContactMain } from "@/src/components/main-site/ContactMain";
 import { MainFooter } from "@/src/components/main-site/MainFooter";
-import { NeonWaves } from "@/src/components/main-site/NeonWaves";
+import { SideWaves } from "@/src/components/shared/SideWaves";
 import styles from "@/src/components/main-site/main.module.css";
 
 const SITE_URL = "https://tumbapp.com";
-const TITLE = "TUMBAPP – Play Together. Earn Together. Go Out Together.";
+const TITLE = "TUMBAPP – Play Together. Earn Together. WILD Together.";
 const DESCRIPTION =
   "TUMBAPP מחברת בין חברים באמצעות משימות, משחקים ופעילות קבוצתית. צוברים Coins ויהלומים, מעלים את ה־XP הקבוצתי ומממשים הטבות.";
 
@@ -49,7 +49,7 @@ export default function MainSitePage() {
         <div style={{ position: "absolute", top: 2200, insetInlineEnd: -140, width: 520, height: 520, borderRadius: "50%", background: "radial-gradient(circle, rgba(217,146,43,.10), transparent 66%)", filter: "blur(26px)", animation: "tDrift 24s ease-in-out infinite" }} />
       </div>
 
-      <NeonWaves />
+      <SideWaves intensity="standard" />
 
       <div style={{ position: "relative", zIndex: 1 }}>
         <MainHeader />

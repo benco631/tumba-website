@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { CONTACT_EMAIL, NAV_LINKS } from "@/src/lib/content";
+import { WildTogether } from "@/src/components/shared/WildTogether";
 
 export function Footer() {
   return (
@@ -75,7 +76,7 @@ export function Footer() {
           }}
         >
           <span style={{ color: "var(--ink2)", fontSize: 13.5 }}>© 2026 Tumbapp. כל הזכויות שמורות.</span>
-          <span style={{ color: "var(--ink2)", fontSize: 13.5 }}>נבנה לחבורות אמיתיות.</span>
+          <WildTogether style={{ color: "var(--acc3)", fontSize: 14.5, fontWeight: 700, letterSpacing: ".02em" }} />
         </div>
       </div>
     </footer>

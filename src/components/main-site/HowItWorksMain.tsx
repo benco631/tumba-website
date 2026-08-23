@@ -42,15 +42,13 @@ const STEPS = [
     n: "4",
     numColor: "rgba(109,40,217,.16)",
     icon: (
-      <div style={{ width: 52, height: 52, borderRadius: 16, background: "linear-gradient(135deg,var(--acc2),var(--acc3))", boxShadow: "0 8px 24px rgba(124,92,246,.5)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-          <path d="M20 12v10H4V12"></path>
-          <path d="M2 7h20v5H2z"></path>
-          <path d="M12 22V7"></path>
-          <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
-          <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
-        </svg>
-      </div>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+        <path d="M20 12v10H4V12"></path>
+        <path d="M2 7h20v5H2z"></path>
+        <path d="M12 22V7"></path>
+        <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+        <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+      </svg>
     ),
     title: "פותחים הטבות אמיתיות",
     body: "רמת הקבוצה פותחת הטבות מעסקים אמיתיים — והמימוש נעשה עם Coins ויהלומים, בסריקת QR.",
@@ -70,14 +68,27 @@ export function HowItWorksMain() {
         <h2 style={{ fontSize: "clamp(30px,4vw,54px)", fontWeight: 800, letterSpacing: "-.02em", margin: "12px 0 0", lineHeight: 1.12 }}>ארבעה צעדים — וקבוצה שלא מפסיקה לשחק</h2>
       </Reveal>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(240px,100%),1fr))", gap: 18, marginTop: 50 }}>
+      <div className={styles.stepsGrid} style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(240px,100%),1fr))", gap: 18, marginTop: 50 }}>
         {STEPS.map((s) => (
-          <Reveal key={s.n} className={styles.liftCard} style={{ position: "relative", background: s.bg, border: s.n === "4" ? "1px solid rgba(139,92,246,.38)" : "1px solid rgba(109,40,217,.12)", borderRadius: 22, padding: "28px 24px", overflow: "hidden" }}>
-            <div style={{ position: "absolute", top: -18, insetInlineStart: 14, fontFamily: "var(--font-outfit),sans-serif", fontWeight: 900, fontSize: 88, color: s.numColor, lineHeight: 1 }}>{s.n}</div>
-            {s.n === "3" || s.n === "4" ? (
+          <Reveal
+            key={s.n}
+            className={`${styles.liftCard} ${styles.stepCard}`}
+            style={{ position: "relative", background: s.bg, border: s.n === "4" ? "1px solid rgba(139,92,246,.38)" : "1px solid rgba(109,40,217,.12)", borderRadius: 22, padding: "28px 24px", overflow: "hidden" }}
+          >
+            <div className={styles.stepCardNum} style={{ position: "absolute", top: -18, insetInlineStart: 14, fontFamily: "var(--font-outfit),sans-serif", fontWeight: 900, fontSize: 88, color: s.numColor, lineHeight: 1 }}>
+              {s.n}
+            </div>
+            {s.n === "3" ? (
               s.icon
             ) : (
-              <div style={{ width: 52, height: 52, borderRadius: 16, background: "linear-gradient(135deg,#EDE9FE,#F5F3FF)", border: "1px solid rgba(139,92,246,.32)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div
+                className={styles.stepCardIcon}
+                style={
+                  s.n === "4"
+                    ? { width: 52, height: 52, borderRadius: 16, background: "linear-gradient(135deg,var(--acc2),var(--acc3))", boxShadow: "0 8px 24px rgba(124,92,246,.5)", display: "flex", alignItems: "center", justifyContent: "center" }
+                    : { width: 52, height: 52, borderRadius: 16, background: "linear-gradient(135deg,#EDE9FE,#F5F3FF)", border: "1px solid rgba(139,92,246,.32)", display: "flex", alignItems: "center", justifyContent: "center" }
+                }
+              >
                 {s.icon}
               </div>
             )}

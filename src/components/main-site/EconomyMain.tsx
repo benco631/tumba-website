@@ -34,7 +34,7 @@ export function EconomyMain() {
           </p>
         </Reveal>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(290px,100%),1fr))", gap: 20, marginTop: 46 }}>
+        <div className={styles.ecoGrid} style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(290px,100%),1fr))", gap: 20, marginTop: 46 }}>
           {/* Coins */}
           <Reveal className={styles.liftCard} style={{ position: "relative", background: "#FFFFFF", border: "1px solid rgba(217,146,43,.34)", borderRadius: 26, padding: 30, overflow: "hidden" }}>
             <div aria-hidden="true" style={{ position: "absolute", top: -40, insetInlineStart: -40, width: 180, height: 180, borderRadius: "50%", background: "radial-gradient(circle, rgba(217,146,43,.13), transparent 70%)" }} />
@@ -129,7 +129,7 @@ export function EconomyMain() {
               הרמה הקבוצתית פותחת את ההטבה — המטבעות והיהלומים מאפשרים לממש אותה.
             </p>
 
-            <ul style={{ listStyle: "none", padding: 0, margin: "20px 0 0", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(230px,100%),1fr))", gap: 10 }}>
+            <ul className={styles.ecoBadgesGrid} style={{ listStyle: "none", padding: 0, margin: "20px 0 0", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(230px,100%),1fr))", gap: 10 }}>
               <li style={{ display: "flex", alignItems: "center", gap: 10, background: "#FFF8EC", border: "1px solid rgba(217,146,43,.3)", borderRadius: 14, padding: "13px 15px", fontSize: 14, color: "#241B35" }}>
                 <Image src="/media/tumbapp-coin.png" alt="" aria-hidden="true" width={512} height={512} style={{ width: 22, height: "auto", flex: "none" }} />
                 <span><strong>Coins</strong> — אישיים ונצברים בתדירות גבוהה</span>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { WildTogether } from "../shared/WildTogether";
 
 const LINKS = [
   { href: "#how2", label: "איך זה עובד" },
@@ -25,6 +26,7 @@ export function MainFooter() {
             </a>
           ))}
         </div>
+        <WildTogether style={{ color: "var(--acc3)", fontSize: 15, fontWeight: 700, letterSpacing: ".02em" }} />
         <span style={{ color: "#625A70", fontSize: 13.5 }}>© 2026 TUMBAPP. כל הזכויות שמורות.</span>
       </div>
     </footer>

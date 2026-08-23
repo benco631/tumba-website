@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { Reveal } from "./Reveal";
 import { LazyVideo } from "../LazyVideo";
+import { BrandSlogan } from "../shared/WildTogether";
 import styles from "./main.module.css";
 
 export function MainHero() {
@@ -17,7 +18,6 @@ export function MainHero() {
     const section = scene.closest("section");
     if (!section) return;
     scene.style.transition = "transform .35s ease-out";
-    scene.style.transformStyle = "preserve-3d";
     const onMove = (e: PointerEvent) => {
       if (window.innerWidth < 900) return;
       const r = section.getBoundingClientRect();
@@ -125,7 +125,20 @@ export function MainHero() {
             שיתוף פעולה לעסקים
           </a>
         </div>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 24, marginTop: 40 }}>
+
+        <p
+          style={{
+            margin: "26px 0 0",
+            fontSize: "clamp(15px,1.25vw,19px)",
+            fontWeight: 700,
+            letterSpacing: ".01em",
+            color: "var(--acc3)",
+          }}
+        >
+          <BrandSlogan />
+        </p>
+
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 24, marginTop: 32 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <Image
               src="/media/tumbapp-coin.png"

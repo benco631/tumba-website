@@ -25,7 +25,7 @@
   overflow: hidden;
   background: radial-gradient(1200px 800px at 85% -5%, #ede9fe 0%, #f5f3ff 55%), #fafaff;
   color: #241b35;
-  font-family: "Rubik", -apple-system, system-ui, sans-serif;
+  font-family: var(--font-outfit), "Rubik", -apple-system, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   line-height: 1.55;
 }
@@ -100,17 +100,12 @@
   95% { opacity: 0.26; }
   98% { opacity: 0; }
 }
-@keyframes tWaveLine {
-  0%, 100% { opacity: 0.65; }
-  50% { opacity: 1; }
-}
 
 .animatePowerPulse { animation: tPowerPulse 2.8s ease-in-out infinite; transform-origin: center bottom; }
 .mascotFloat10 { animation: tMascotFloat10 3.4s ease-in-out infinite; }
 .powerPulseL50 { animation: tPowerPulseL50 2.4s ease-in-out infinite; transform-origin: center bottom; }
 .auraFlame { animation: tAuraFlame 3.2s ease-in-out infinite; transform-origin: center bottom; }
 .auraLightning { animation: tLightningFlicker 4.6s ease-in-out infinite; }
-.waveLine { animation: tWaveLine 13s ease-in-out infinite; }
 .reveal { animation: tRise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 
 /* nav: hide desktop links / show hamburger before hydration too, so there is
@@ -144,8 +139,16 @@
 @media (min-width: 1600px) {
   .heroScene { --ps: 1.26; }
 }
-@media (max-width: 480px) {
-  .heroScene { height: 480px !important; }
+/* mobile: shrink every width/offset in the scene together (they're all
+   calc(px * var(--ps))) instead of clipping them — this is the same knob
+   the desktop up-scaling already uses, just turned down instead of up, so
+   the whole composition (phones, coins, chips, mascot) stays proportional
+   and nothing gets cropped by the page's overflow:hidden safety net */
+@media (max-width: 767px) {
+  .heroScene { --ps: 0.66; }
+}
+@media (max-width: 380px) {
+  .heroScene { --ps: 0.58; }
 }
 
 .mascotWrap {
@@ -235,7 +238,7 @@
   border-radius: 12px;
   padding: 12px 14px;
   color: #241b35;
-  font-family: "Rubik", sans-serif;
+  font-family: var(--font-outfit), "Rubik", sans-serif;
   font-size: 15px;
   outline: none;
   transition: border-color 0.2s, background 0.2s;
@@ -280,7 +283,7 @@
   border: 1px solid rgba(109, 40, 217, 0.16);
   background: #f5f3ff;
   color: #625a70;
-  font-family: "Rubik", sans-serif;
+  font-family: var(--font-outfit), "Rubik", sans-serif;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -292,21 +295,122 @@
   color: #fff;
 }
 
-/* side wave-line bundles: narrowing the wrapper crops out the outer lines
-   (centred at increasing x within the 76-wide pattern tile) rather than
-   squashing the wave shape */
-@media (max-width: 1024px) {
-  .neonWave { width: 38px !important; opacity: 0.75; }
-}
-@media (max-width: 767px) {
-  .neonWave { width: 24px !important; opacity: 0.5; }
-}
-@media (max-width: 420px) {
-  .neonWave { display: none; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .root * {
     animation: none !important;
   }
 }
+
+/* ===================== mobile card grids (<=767px) ===================== */
+/* auto-fit grids with a ~200-290px minimum naturally collapse to one column
+   once the viewport can't fit two tracks side by side — which is exactly
+   why every card section on mobile was stacking into one long column. These
+   classes replace the inline grid definitions on phones only, forcing a
+   compact two-column layout instead (three-item lists center/span the odd
+   card in its own row). min-width:0 keeps long Hebrew/English words like
+   "GROUP XP" from stretching a track past its column. */
+@media (max-width: 767px) {
+  .stepsGrid,
+  .ecoBadgesGrid,
+  .pillsGrid,
+  .mapFeaturesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 11px !important;
+  }
+  .stepsGrid > *,
+  .ecoBadgesGrid > *,
+  .pillsGrid > *,
+  .mapFeaturesGrid > * {
+    min-width: 0;
+  }
+  /* three-item rows: first two share the top row, third is centered below
+     at a comfortable reading width instead of stretching edge-to-edge */
+  .ecoBadgesGrid > *:nth-child(3) {
+    grid-column: 1 / -1;
+    max-width: min(320px, 100%);
+    margin-inline: auto;
+  }
+}
+
+/* four-step "how it works" cards: mandatory 2x2, compact sizing */
+@media (max-width: 767px) {
+  .stepCard {
+    padding: 15px 14px !important;
+    border-radius: 20px !important;
+  }
+  .stepCard :global(h3) {
+    font-size: 15.5px !important;
+    margin: 12px 0 4px !important;
+  }
+  .stepCard :global(p) {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+  }
+  .stepCardNum {
+    font-size: 44px !important;
+    top: -10px !important;
+  }
+  .stepCardIcon {
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 12px !important;
+  }
+  .stepCardIcon :global(svg),
+  .stepCardIcon :global(img) {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  /* step 3's coin image renders unboxed at desktop size (54px) — match the
+     other three icon boxes on mobile so the row of four stays even */
+  .stepCard > :global(img) {
+    width: 38px !important;
+    height: 38px !important;
+  }
+}
+
+/* Coins / Diamonds / XP: two side-by-side, XP full-width below, per the
+   compact economy layout requested for phones */
+@media (max-width: 767px) {
+  .ecoGrid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+  .ecoGrid > *:nth-child(1),
+  .ecoGrid > *:nth-child(2) {
+    min-width: 0;
+    padding: 16px !important;
+  }
+  .ecoGrid > *:nth-child(3) {
+    grid-column: 1 / -1;
+    padding: 16px 18px !important;
+  }
+  .ecoGrid :global(h3) {
+    font-size: 16.5px !important;
+    margin-top: 12px !important;
+  }
+  .ecoGrid :global(p) {
+    font-size: 13px !important;
+  }
+  /* keep every benefit tag (no text removed) but shrink them so the row
+     wraps to a compact half-width card instead of a tall one */
+  .ecoGrid :global(ul) {
+    gap: 5px !important;
+    margin-top: 12px !important;
+  }
+  .ecoGrid :global(li) {
+    font-size: 11.5px !important;
+    padding: 5px 9px !important;
+  }
+  /* keep the coin/diamond art in its established top corner spot, but
+     smaller — never a large centered hero image on the mobile card */
+  .ecoGrid > *:nth-child(1) :global(img),
+  .ecoGrid > *:nth-child(2) :global(img) {
+    width: 36px !important;
+  }
+  .ecoGrid > *:nth-child(1) :global(span),
+  .ecoGrid > *:nth-child(2) :global(span) {
+    font-size: 11px !important;
+    padding: 4px 9px !important;
+  }
+}
+

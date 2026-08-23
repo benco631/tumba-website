@@ -32,7 +32,7 @@ export function BusinessesMain() {
         <Reveal style={{ flex: "1 1 420px", minWidth: "min(300px,100%)" }}>
           <div style={{ color: "var(--acc3)", fontWeight: 600, fontSize: 14, letterSpacing: ".05em" }}>לעסקים</div>
           <h2 style={{ fontSize: "clamp(30px,4vw,52px)", fontWeight: 800, letterSpacing: "-.02em", margin: "12px 0 0", lineHeight: 1.13 }}>מביאים קבוצות של לקוחות. לא רק יחידים.</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(200px,100%),1fr))", gap: 14, marginTop: 28 }}>
+          <div className={styles.pillsGrid} style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(200px,100%),1fr))", gap: 14, marginTop: 28 }}>
             {PILLS.map((p) => (
               <div
                 key={p.text}

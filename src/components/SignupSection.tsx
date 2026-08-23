@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { CONTACT_EMAIL } from "@/src/lib/content";
+import { BrandSlogan } from "@/src/components/shared/WildTogether";
 
 const inputStyle: React.CSSProperties = {
   background: "#FFFFFF",
@@ -200,14 +201,13 @@ export function SignupSection() {
             position: "relative",
             textAlign: "center",
             marginTop: 24,
-            fontFamily: "var(--font-outfit),sans-serif",
             fontWeight: 600,
             letterSpacing: ".02em",
             fontSize: "clamp(14px,1.6vw,17px)",
             color: "var(--acc3)",
           }}
         >
-          Play Together. Earn Together. Go Out Together.
+          <BrandSlogan />
         </p>
       </div>
     </section>

@@ -7,6 +7,7 @@ import { HowItWorksSection } from "@/src/components/HowItWorksSection";
 import { RealWorldSection } from "@/src/components/RealWorldSection";
 import { SignupSection } from "@/src/components/SignupSection";
 import { Footer } from "@/src/components/Footer";
+import { SideWaves } from "@/src/components/shared/SideWaves";
 
 const TITLE = "Tumbapp | החבורה שלכם, עכשיו בתוך משחק";
 const DESCRIPTION = "משימות, משחקים, התערבויות, XP והטבות לחבורות. משחקים יחד, מתקדמים יחד ויוצאים יחד עם Tumbapp.";
@@ -36,7 +37,8 @@ export const metadata: Metadata = {
 
 export default function UsersLandingPage() {
   return (
-    <main className="min-h-screen" style={{ background: "var(--offw)", color: "var(--ink)" }}>
+    <main className="min-h-screen" style={{ position: "relative", background: "var(--offw)", color: "var(--ink)" }}>
+      <SideWaves intensity="soft" />
       <div className="relative overflow-hidden">
         <div aria-hidden="true" style={{ position: "absolute", inset: 0, pointerEvents: "none", overflow: "hidden", zIndex: 0 }}>
           <div className="animate-drift" style={{ position: "absolute", top: -160, right: -140, width: 640, height: 640, borderRadius: "50%", background: "radial-gradient(circle, rgba(139,92,246,.16), transparent 62%)", filter: "blur(24px)" }} />

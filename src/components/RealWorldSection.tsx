@@ -1,4 +1,5 @@
 import { LazyVideo } from "./LazyVideo";
+import { WildTogether } from "@/src/components/shared/WildTogether";
 
 const points = [
   { text: "תמיד יש משהו חדש לעשות", color: "var(--acc3)", bg: "var(--lav)", border: "rgba(139,92,246,.28)" },
@@ -63,14 +64,31 @@ export function RealWorldSection() {
               </li>
             ))}
           </ul>
+
+          <p
+            style={{
+              margin: "22px 0 0",
+              fontSize: "clamp(15px,1.7vw,18px)",
+              fontWeight: 700,
+              letterSpacing: ".01em",
+              color: "var(--acc3)",
+            }}
+          >
+            <WildTogether />
+          </p>
         </div>
 
         <div style={{ flex: "1 1 220px", minWidth: 200, display: "flex", justifyContent: "center" }}>
+          {/* aspectRatio must match the wrapper's: the wrapper is a 3/2
+              overflow:hidden box, and LazyVideo's inner <video> defaults to
+              1/1 — a square clip inside a shorter box had its bottom
+              (the boars' feet) clipped off. */}
           <LazyVideo
             webm="/media/mascot/boar-group.webm"
             mp4="/media/mascot/boar-group.mp4"
             poster="/media/mascot/boar-group-poster.webp"
             alt="קבוצת חזירי הבר הסגולים של Tumbapp משחקים יחד"
+            aspectRatio="3 / 2"
             style={{
               width: "min(400px,100%)",
               aspectRatio: "3 / 2",

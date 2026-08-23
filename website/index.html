@@ -2,7 +2,7 @@
 <html><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TUMBAPP – Play Together. Earn Together. Go Out Together.</title>
+<title>TUMBAPP – Play Together. Earn Together. WILD Together.</title>
 <meta name="description" content="TUMBAPP מחברת בין חברים באמצעות משימות, משחקים ופעילות קבוצתית. צוברים Coins ויהלומים, מעלים את ה־XP הקבוצתי ומממשים הטבות.">
 <meta name="application-name" content="TUMBAPP">
 <meta name="theme-color" content="#8B5CF6">
@@ -11,15 +11,15 @@
 <meta property="og:site_name" content="TUMBAPP">
 <meta property="og:url" content="https://tumbapp.com/">
 <meta property="og:locale" content="he_IL">
-<meta property="og:title" content="TUMBAPP – Play Together. Earn Together. Go Out Together.">
+<meta property="og:title" content="TUMBAPP – Play Together. Earn Together. WILD Together.">
 <meta property="og:description" content="TUMBAPP מחברת בין חברים באמצעות משימות, משחקים ופעילות קבוצתית. צוברים Coins ויהלומים, מעלים את ה־XP הקבוצתי ומממשים הטבות.">
 <meta property="og:image" content="https://tumbapp.com/icon-192.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="TUMBAPP – Play Together. Earn Together. Go Out Together.">
+<meta name="twitter:title" content="TUMBAPP – Play Together. Earn Together. WILD Together.">
 <meta name="twitter:description" content="TUMBAPP מחברת בין חברים באמצעות משימות, משחקים ופעילות קבוצתית. צוברים Coins ויהלומים, מעלים את ה־XP הקבוצתי ומממשים הטבות.">
 <meta name="twitter:image" content="https://tumbapp.com/icon-192.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"TUMBAPP","alternateName":"TUMBAPP – Play Together. Earn Together. Go Out Together.","url":"https://tumbapp.com/","inLanguage":"he-IL","publisher":{"@type":"Organization","name":"TUMBAPP","url":"https://tumbapp.com/","logo":"https://tumbapp.com/icon-192.png","email":"tumba@tumbapp.com"}}
+{"@context":"https://schema.org","@type":"WebSite","name":"TUMBAPP","alternateName":"TUMBAPP – Play Together. Earn Together. WILD Together.","url":"https://tumbapp.com/","inLanguage":"he-IL","publisher":{"@type":"Organization","name":"TUMBAPP","url":"https://tumbapp.com/","logo":"https://tumbapp.com/icon-192.png","email":"tumba@tumbapp.com"}}
 </script>
 <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -34,98 +34,77 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<!-- wordmark (Outfit latin) + Hebrew body (Rubik) are the faces that drive the
-     font-swap reflow; preloading them lands the real metrics before paint -->
-<link rel="preload" as="font" type="font/woff2" href="assets/0e66c182-0d01-4d61-b0f9-08e2d52132d2.woff2" crossorigin>
+<!-- wordmark + inline Latin words (Open Sauce Sans, self-hosted, see
+     assets/fonts/open-sauce-sans/OFL.txt) + Hebrew body (Rubik) are the
+     faces that drive the font-swap reflow; preloading them lands the real
+     metrics before paint -->
+<link rel="preload" as="font" type="font/ttf" href="assets/fonts/open-sauce-sans/OpenSauceSans-Regular.ttf" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/3ac101b1-1488-4df4-a19f-c6c549f2514f.woff2" crossorigin>
-<style>/* latin-ext */
+<style>
+/* Open Sauce Sans (SIL OFL license: assets/fonts/open-sauce-sans/OFL.txt).
+   unicode-range is the Latin+Latin-ext block only — the Hebrew block
+   (U+0590-05FF) and Hebrew presentation forms (U+FB1D-FB4F) are
+   deliberately excluded so this face never matches Hebrew glyphs; any
+   Hebrew character in the same text run falls straight through to the
+   'Rubik' face declared further below, unchanged. */
 @font-face {
-  font-family: 'Outfit';
+  font-family: 'Open Sauce Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/open-sauce-sans/OpenSauceSans-Regular.ttf") format('truetype');
+  unicode-range: U+0000-00FF, U+0100-02BA, U+0131, U+0152-0153, U+02BB-02BC, U+02BD-02C5, U+02C6, U+02C7-02CC, U+02CE-02D7, U+02DA, U+02DC, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2000-206F, U+2020, U+20A0-20AB, U+20AC, U+20AD-20C0, U+2113, U+2122, U+2191, U+2193, U+2212, U+2215, U+2C60-2C7F, U+A720-A7FF, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Open Sauce Sans';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("assets/ebcc6859-2df1-4e57-98cb-1e1423bd742a.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  src: url("assets/fonts/open-sauce-sans/OpenSauceSans-Medium.ttf") format('truetype');
+  unicode-range: U+0000-00FF, U+0100-02BA, U+0131, U+0152-0153, U+02BB-02BC, U+02BD-02C5, U+02C6, U+02C7-02CC, U+02CE-02D7, U+02DA, U+02DC, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2000-206F, U+2020, U+20A0-20AB, U+20AC, U+20AD-20C0, U+2113, U+2122, U+2191, U+2193, U+2212, U+2215, U+2C60-2C7F, U+A720-A7FF, U+FEFF, U+FFFD;
 }
-/* latin */
 @font-face {
-  font-family: 'Outfit';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("assets/0e66c182-0d01-4d61-b0f9-08e2d52132d2.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Outfit';
+  font-family: 'Open Sauce Sans';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("assets/ebcc6859-2df1-4e57-98cb-1e1423bd742a.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  src: url("assets/fonts/open-sauce-sans/OpenSauceSans-SemiBold.ttf") format('truetype');
+  unicode-range: U+0000-00FF, U+0100-02BA, U+0131, U+0152-0153, U+02BB-02BC, U+02BD-02C5, U+02C6, U+02C7-02CC, U+02CE-02D7, U+02DA, U+02DC, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2000-206F, U+2020, U+20A0-20AB, U+20AC, U+20AD-20C0, U+2113, U+2122, U+2191, U+2193, U+2212, U+2215, U+2C60-2C7F, U+A720-A7FF, U+FEFF, U+FFFD;
 }
-/* latin */
 @font-face {
-  font-family: 'Outfit';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("assets/0e66c182-0d01-4d61-b0f9-08e2d52132d2.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Outfit';
+  font-family: 'Open Sauce Sans';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("assets/ebcc6859-2df1-4e57-98cb-1e1423bd742a.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  src: url("assets/fonts/open-sauce-sans/OpenSauceSans-Bold.ttf") format('truetype');
+  unicode-range: U+0000-00FF, U+0100-02BA, U+0131, U+0152-0153, U+02BB-02BC, U+02BD-02C5, U+02C6, U+02C7-02CC, U+02CE-02D7, U+02DA, U+02DC, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2000-206F, U+2020, U+20A0-20AB, U+20AC, U+20AD-20C0, U+2113, U+2122, U+2191, U+2193, U+2212, U+2215, U+2C60-2C7F, U+A720-A7FF, U+FEFF, U+FFFD;
 }
-/* latin */
 @font-face {
-  font-family: 'Outfit';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("assets/0e66c182-0d01-4d61-b0f9-08e2d52132d2.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Outfit';
+  font-family: 'Open Sauce Sans';
   font-style: normal;
   font-weight: 800;
   font-display: swap;
-  src: url("assets/ebcc6859-2df1-4e57-98cb-1e1423bd742a.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  src: url("assets/fonts/open-sauce-sans/OpenSauceSans-ExtraBold.ttf") format('truetype');
+  unicode-range: U+0000-00FF, U+0100-02BA, U+0131, U+0152-0153, U+02BB-02BC, U+02BD-02C5, U+02C6, U+02C7-02CC, U+02CE-02D7, U+02DA, U+02DC, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2000-206F, U+2020, U+20A0-20AB, U+20AC, U+20AD-20C0, U+2113, U+2122, U+2191, U+2193, U+2212, U+2215, U+2C60-2C7F, U+A720-A7FF, U+FEFF, U+FFFD;
 }
-/* latin */
 @font-face {
-  font-family: 'Outfit';
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url("assets/0e66c182-0d01-4d61-b0f9-08e2d52132d2.woff2") format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Outfit';
+  font-family: 'Open Sauce Sans';
   font-style: normal;
   font-weight: 900;
   font-display: swap;
-  src: url("assets/ebcc6859-2df1-4e57-98cb-1e1423bd742a.woff2") format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  src: url("assets/fonts/open-sauce-sans/OpenSauceSans-Black.ttf") format('truetype');
+  unicode-range: U+0000-00FF, U+0100-02BA, U+0131, U+0152-0153, U+02BB-02BC, U+02BD-02C5, U+02C6, U+02C7-02CC, U+02CE-02D7, U+02DA, U+02DC, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2000-206F, U+2020, U+20A0-20AB, U+20AC, U+20AD-20C0, U+2113, U+2122, U+2191, U+2193, U+2212, U+2215, U+2C60-2C7F, U+A720-A7FF, U+FEFF, U+FFFD;
 }
-/* latin */
+/* Rafika (CC0 public domain: assets/fonts/rafika/LICENSE.txt).
+   Used for exactly one word: "WILD" in the "WILD Together" brand phrase.
+   Same Latin-only unicode-range so it can never accidentally match a
+   Hebrew character. */
 @font-face {
-  font-family: 'Outfit';
+  font-family: 'Rafika';
   font-style: normal;
-  font-weight: 900;
+  font-weight: 400;
   font-display: swap;
-  src: url("assets/0e66c182-0d01-4d61-b0f9-08e2d52132d2.woff2") format('woff2');
+  src: url("assets/fonts/rafika/Rafika.otf") format('opentype');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* arabic */
@@ -526,13 +505,39 @@
   @keyframes tMascotFloat10 { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
   @keyframes tAuraFlame { 0%,100% { transform: scaleY(1) translateY(0); opacity: .55 } 30% { transform: scaleY(1.08) translateY(-3px); opacity: .72 } 60% { transform: scaleY(.96) translateY(1px); opacity: .6 } }
   @keyframes tLightningFlicker { 0%, 86%, 100% { opacity: 0 } 89% { opacity: .32 } 92% { opacity: .08 } 95% { opacity: .26 } 98% { opacity: 0 } }
-  @keyframes tWaveLine { 0%,100% { opacity: .65 } 50% { opacity: 1 } }
+  /* very slow organic drift for the decorative side waves. Amplitude is in
+     SVG user units (viewBox 120x1000), so it reads as ~7px on a ~900px
+     viewport — deliberately near-subliminal. No pulsing, no glow. */
+  @keyframes tWaveDrift { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-9px) } }
   .animate-power-pulse { animation: tPowerPulse 2.8s ease-in-out infinite; transform-origin: center bottom; }
   .t2-mascot-float-10 { animation: tMascotFloat10 3.4s ease-in-out infinite; }
   .t2-power-pulse-l50 { animation: tPowerPulseL50 2.4s ease-in-out infinite; transform-origin: center bottom; }
   .t2-aura-flame { animation: tAuraFlame 3.2s ease-in-out infinite; transform-origin: center bottom; }
   .t2-aura-lightning { animation: tLightningFlicker 4.6s ease-in-out infinite; }
-  .t2-wave-line { animation: tWaveLine 13s ease-in-out infinite; }
+  /* decorative side waves — position:absolute against #tumba2 (which is
+     position:relative and wraps the entire page), NOT position:fixed
+     against the viewport, so the composition scrolls together with the
+     document instead of staying pinned in place. top:0/bottom:0 stretches
+     it to #tumba2's full auto height, i.e. the whole rendered page from
+     hero through footer, regardless of the page's actual length. */
+  .t2-wave {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: clamp(70px, 7vw, 120px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 1;
+  }
+  .t2-wave-left { left: 0; }
+  .t2-wave-right { right: 0; }
+  .t2-wave-svg { display: block; width: 100%; height: 100%; }
+  .t2-wave-line {
+    animation-name: tWaveDrift;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    will-change: transform;
+  }
   #tumba2 input::placeholder, #tumba2 textarea::placeholder { color: #8B84A0; }
   #tumba2 a { text-decoration: none; }
 
@@ -558,8 +563,16 @@
   @media (min-width: 1280px) { #hero-scene { --ps: 1.16; } }
   @media (min-width: 1600px) { #hero-scene { --ps: 1.26; } }
 
-  @media (max-width: 480px) {
-    #hero-scene { height: 480px !important; }
+  /* mobile: shrink every width/offset in the scene together (they're all
+     calc(px * var(--ps))) instead of clipping them with a fixed height —
+     same knob the desktop up-scaling uses, just turned down, so the whole
+     composition (phones, coins, chips, mascot) stays proportional and
+     nothing gets cropped by body's overflow-x:hidden safety net */
+  @media (max-width: 767px) {
+    #hero-scene { --ps: 0.66; }
+  }
+  @media (max-width: 380px) {
+    #hero-scene { --ps: 0.58; }
   }
 
   /* --- TUMBAPP boar mascot animations --- */
@@ -671,23 +684,141 @@
   @media (prefers-reduced-motion: reduce) {
     .t2-mascot, .t2-map, .t2-group { display: none; }
     .t2-mascot-still, .t2-map-still, .t2-group-still { display: block; }
+    .t2-wave-line { animation: none !important; }
   }
-  /* side wave-line bundles: narrowing the wrapper crops out the outer lines
-     (they're centred at increasing x within the 76-wide pattern tile) rather
-     than squashing the wave shape — 12 lines on desktop, ~7 on tablet, ~4 on
-     mobile, hidden entirely on very small phones */
+
+  /* "WILD Together" brand phrase: only the word WILD uses Rafika; every
+     other Latin word stays on Open Sauce Sans. LTR isolation keeps the
+     English phrase in the right word order inside this RTL page. */
+  .t2-wild-phrase {
+    direction: ltr;
+    unicode-bidi: isolate;
+    font-family: 'Open Sauce Sans', sans-serif;
+  }
+  /* Rafika's cap height is smaller per em than Open Sauce Sans', so a small
+     em-based optical bump keeps both words visually the same size */
+  .t2-wild {
+    font-family: 'Rafika', cursive;
+    font-weight: 400;
+    font-size: 1.12em;
+  }
+  /* side waves: shrink the footprint and soften on narrower screens. The
+     decoration gives way — content width is never reduced for it. */
   @media (max-width: 1024px) {
-    .t2-neon-wave { width: 38px !important; opacity: .75; }
+    .t2-wave { width: 48px; opacity: .8; }
   }
   @media (max-width: 767px) {
-    .t2-neon-wave { width: 24px !important; opacity: .5; }
+    .t2-wave { width: 30px; opacity: .6; }
   }
-  @media (max-width: 420px) {
-    .t2-neon-wave { display: none; }
+  @media (max-width: 380px) {
+    .t2-wave { width: 20px; opacity: .5; }
+  }
+
+  /* ===================== mobile card grids (<=767px) ===================== */
+  /* auto-fit grids with a ~200-290px minimum naturally collapse to one
+     column once the viewport can't fit two tracks side by side, which is
+     why every card section on mobile was stacking into one long column.
+     Force a compact two-column layout instead (three-item lists center the
+     odd card in its own row). */
+  @media (max-width: 767px) {
+    .t2-steps-grid,
+    .t2-eco-badges-grid,
+    .t2-pills-grid,
+    .t2-map-features-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 11px !important;
+    }
+    .t2-steps-grid > *,
+    .t2-eco-badges-grid > *,
+    .t2-pills-grid > *,
+    .t2-map-features-grid > * {
+      min-width: 0;
+    }
+    .t2-eco-badges-grid > *:nth-child(3) {
+      grid-column: 1 / -1;
+      max-width: min(320px, 100%);
+      margin-inline: auto;
+    }
+  }
+
+  /* four-step "how it works" cards: mandatory 2x2, compact sizing */
+  @media (max-width: 767px) {
+    .t2-step-card {
+      padding: 15px 14px !important;
+      border-radius: 20px !important;
+    }
+    .t2-step-card h3 {
+      font-size: 15.5px !important;
+      margin: 12px 0 4px !important;
+    }
+    .t2-step-card p {
+      font-size: 13px !important;
+      line-height: 1.5 !important;
+    }
+    .t2-step-num {
+      font-size: 44px !important;
+      top: -10px !important;
+    }
+    .t2-step-icon {
+      width: 38px !important;
+      height: 38px !important;
+      border-radius: 12px !important;
+    }
+    .t2-step-icon svg {
+      width: 20px !important;
+      height: 20px !important;
+    }
+    .t2-step-icon-img {
+      width: 38px !important;
+      height: 38px !important;
+    }
+  }
+
+  /* Coins / Diamonds / XP: two side-by-side, XP full-width below */
+  @media (max-width: 767px) {
+    .t2-eco-grid {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 12px !important;
+    }
+    .t2-eco-grid > div:nth-child(1),
+    .t2-eco-grid > div:nth-child(2) {
+      min-width: 0;
+      padding: 16px !important;
+    }
+    .t2-eco-grid > div:nth-child(3) {
+      grid-column: 1 / -1;
+      padding: 16px 18px !important;
+    }
+    .t2-eco-grid h3 {
+      font-size: 16.5px !important;
+      margin-top: 12px !important;
+    }
+    .t2-eco-grid p {
+      font-size: 13px !important;
+    }
+    .t2-eco-grid ul {
+      gap: 5px !important;
+      margin-top: 12px !important;
+    }
+    .t2-eco-grid li {
+      font-size: 11.5px !important;
+      padding: 5px 9px !important;
+    }
+    /* keep the coin/diamond art in its established top corner spot, but
+       smaller — never a large centered hero image on the mobile card */
+    .t2-eco-grid > div:nth-child(1) img,
+    .t2-eco-grid > div:nth-child(2) img {
+      width: 36px !important;
+    }
+    .t2-eco-grid > div:nth-child(1) span,
+    .t2-eco-grid > div:nth-child(2) span {
+      font-size: 11px !important;
+      padding: 4px 9px !important;
+    }
   }
 </style>
 </helmet>
-<div id="tumba2" lang="he" dir="rtl" style="--acc:#8B5CF6; --acc2:#8B5CF6; --acc3:#6D28D9; --lav:#EDE9FE; --soft:#F5F3FF; --offw:#FAFAFF; --card:#FFFFFF; --ink:#241B35; --ink2:#625A70; --gold:#D9922B; --gold2:#B87514; --goldink:#A8620A; --gem:#22A6C9; --gem2:#0E7490; --gemink:#0F6E87; --green:#12A150; position:relative; overflow:hidden; background:radial-gradient(1200px 800px at 85% -5%, #EDE9FE 0%, #F5F3FF 55%), #FAFAFF; color:#241B35; font-family:'Rubik',-apple-system,system-ui,sans-serif; -webkit-font-smoothing:antialiased; line-height:1.55;">
+<div id="tumba2" lang="he" dir="rtl" style="--acc:#8B5CF6; --acc2:#8B5CF6; --acc3:#6D28D9; --lav:#EDE9FE; --soft:#F5F3FF; --offw:#FAFAFF; --card:#FFFFFF; --ink:#241B35; --ink2:#625A70; --gold:#D9922B; --gold2:#B87514; --goldink:#A8620A; --gem:#22A6C9; --gem2:#0E7490; --gemink:#0F6E87; --green:#12A150; position:relative; overflow:hidden; background:radial-gradient(1200px 800px at 85% -5%, #EDE9FE 0%, #F5F3FF 55%), #FAFAFF; color:#241B35; font-family:'Open Sauce Sans','Rubik',-apple-system,system-ui,sans-serif; -webkit-font-smoothing:antialiased; line-height:1.55;">
 
   <!-- ambient glows -->
   <div aria-hidden="true" style="position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:0;">
@@ -696,83 +827,64 @@
     <div style="position:absolute; top:2200px; right:-140px; width:520px; height:520px; border-radius:50%; background:radial-gradient(circle, rgba(217,146,43,.10), transparent 66%); filter:blur(26px); animation:tDrift 24s ease-in-out infinite;"></div>
   </div>
 
-  <!-- decorative wave-line side margins: 12 very thin, low-opacity flowing
-       lines per side (not a bundle of thick tubes) — each its own seamlessly-
-       repeating SVG pattern with its own period so lines drift closer
-       together and farther apart down the page, occasionally crossing.
-       Single crisp stroke per line, no blurred glow duplicate. Purely
-       ornamental (aria-hidden, pointer-events:none), sits behind all content
-       at z-index:0. Narrower breakpoints shrink the wrapper's width, which
-       crops out the outer lines (centred at increasing x) rather than
-       squashing the wave shape — that thins 12 lines down to ~4 on mobile. -->
-  <div class="t2-neon-wave t2-neon-wave-left" aria-hidden="true" style="position:absolute; top:0; bottom:0; left:0; width:clamp(58px,5.5vw,84px); pointer-events:none; overflow:hidden; z-index:0;">
-    <svg width="100%" height="100%" style="display:block;" aria-hidden="true">
+  <!-- Decorative side-wave bundles: 13 very thin, low-opacity flowing lines
+       per side, purely ornamental (aria-hidden, pointer-events:none), sits
+       behind all content at z-index:0. Each line is ONE continuous path
+       spanning a viewBox 6000 units tall through several alternating
+       convergence/spread zones — a genuinely long composition, not a short
+       shape stretched or tiled, so different portions become visible as
+       the page scrolls (the wrapper is position:absolute against #tumba2,
+       see .t2-wave in the style block, so it scrolls with the document
+       rather than staying pinned to the viewport). The two sides reuse the
+       same lane layout with a different wobble phase — related, not
+       mirrored. Identical geometry/gradients to the Next.js <SideWaves />
+       component so both implementations look the same. -->
+  <div class="t2-wave t2-wave-left" aria-hidden="true">
+    <svg class="t2-wave-svg" viewBox="0 0 120 6000" preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <defs>
-        <linearGradient id="tWLg1" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#6D28D9"/><stop offset="45%" stop-color="#8B5CF6"/><stop offset="75%" stop-color="#A855F7"/><stop offset="100%" stop-color="#6D28D9"/></linearGradient>
-        <linearGradient id="tWLg2" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#7C3AED"/><stop offset="45%" stop-color="#A855F7"/><stop offset="75%" stop-color="#C084FC"/><stop offset="100%" stop-color="#7C3AED"/></linearGradient>
-        <linearGradient id="tWLg3" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#8B5CF6"/><stop offset="40%" stop-color="#60A5FA"/><stop offset="75%" stop-color="#A855F7"/><stop offset="100%" stop-color="#8B5CF6"/></linearGradient>
-        <linearGradient id="tWLg4" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#A855F7"/><stop offset="45%" stop-color="#C084FC"/><stop offset="75%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#A855F7"/></linearGradient>
-        <linearGradient id="tWLg5" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#6D28D9"/><stop offset="30%" stop-color="#7C3AED"/><stop offset="55%" stop-color="#38BDF8"/><stop offset="80%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#6D28D9"/></linearGradient>
-        <pattern id="tWL1" patternUnits="userSpaceOnUse" width="76" height="214"><path class="t2-wave-line" style="animation-delay:0.0s" d="M4,0 C6.5,26.8 6.5,80.3 4,107.0 C1.5,133.8 1.5,187.3 4,214" fill="none" stroke="url(#tWLg1)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.42" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWL2" patternUnits="userSpaceOnUse" width="76" height="268"><path class="t2-wave-line" style="animation-delay:0.8s" d="M10,0 C7.0,33.5 7.0,100.5 10,134.0 C13.0,167.5 13.0,234.5 10,268" fill="none" stroke="url(#tWLg2)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.38" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWL3" patternUnits="userSpaceOnUse" width="76" height="326"><path class="t2-wave-line" style="animation-delay:1.6s" d="M16,0 C18.2,40.8 18.2,122.3 16,163.0 C13.8,203.8 13.8,285.3 16,326" fill="none" stroke="url(#tWLg3)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.55" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWL4" patternUnits="userSpaceOnUse" width="76" height="241"><path class="t2-wave-line" style="animation-delay:2.4s" d="M23,0 C19.2,30.1 19.2,90.4 23,120.5 C26.8,150.6 26.8,210.9 23,241" fill="none" stroke="url(#tWLg4)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.4" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWL5" patternUnits="userSpaceOnUse" width="76" height="373"><path class="t2-wave-line" style="animation-delay:3.2s" d="M29,0 C31.8,46.6 31.8,139.9 29,186.5 C26.2,233.1 26.2,326.4 29,373" fill="none" stroke="url(#tWLg5)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.36" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWL6" patternUnits="userSpaceOnUse" width="76" height="296"><path class="t2-wave-line" style="animation-delay:4.0s" d="M35,0 C38.4,37.0 38.4,111.0 35,148.0 C31.6,185.0 31.6,259.0 35,296" fill="none" stroke="url(#tWLg1)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.44" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWL7" patternUnits="userSpaceOnUse" width="76" height="352"><path class="t2-wave-line" style="animation-delay:4.8s" d="M41,0 C38.6,44.0 38.6,132.0 41,176.0 C43.4,220.0 43.4,308.0 41,352" fill="none" stroke="url(#tWLg2)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.38" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWL8" patternUnits="userSpaceOnUse" width="76" height="229"><path class="t2-wave-line" style="animation-delay:5.6s" d="M47,0 C51.0,28.6 51.0,85.9 47,114.5 C43.0,143.1 43.0,200.4 47,229" fill="none" stroke="url(#tWLg3)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.4" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWL9" patternUnits="userSpaceOnUse" width="76" height="408"><path class="t2-wave-line" style="animation-delay:6.4s" d="M54,0 C51.0,51.0 51.0,153.0 54,204.0 C57.0,255.0 57.0,357.0 54,408" fill="none" stroke="url(#tWLg4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.58" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWL10" patternUnits="userSpaceOnUse" width="76" height="283"><path class="t2-wave-line" style="animation-delay:7.2s" d="M60,0 C57.4,35.4 57.4,106.1 60,141.5 C62.6,176.9 62.6,247.6 60,283" fill="none" stroke="url(#tWLg5)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.4" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWL11" patternUnits="userSpaceOnUse" width="76" height="247"><path class="t2-wave-line" style="animation-delay:8.0s" d="M66,0 C69.6,30.9 69.6,92.6 66,123.5 C62.4,154.4 62.4,216.1 66,247" fill="none" stroke="url(#tWLg1)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.36" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWL12" patternUnits="userSpaceOnUse" width="76" height="317"><path class="t2-wave-line" style="animation-delay:8.8s" d="M72,0 C69.8,39.6 69.8,118.9 72,158.5 C74.2,198.1 74.2,277.4 72,317" fill="none" stroke="url(#tWLg2)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.42" vector-effect="non-scaling-stroke"></path></pattern>
+        <linearGradient id="twLg1" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#4C1D95"/><stop offset="50%" stop-color="#6D28D9"/><stop offset="100%" stop-color="#8B5CF6"/></linearGradient>
+        <linearGradient id="twLg2" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#7C3AED"/><stop offset="50%" stop-color="#A855F7"/><stop offset="100%" stop-color="#D946EF"/></linearGradient>
+        <linearGradient id="twLg3" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#6D28D9"/><stop offset="50%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#3B82F6"/></linearGradient>
+        <linearGradient id="twLg4" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#A855F7"/><stop offset="50%" stop-color="#C084FC"/><stop offset="100%" stop-color="#E879F9"/></linearGradient>
+        <linearGradient id="twLg5" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#5B21B6"/><stop offset="50%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#60A5FA"/></linearGradient>
       </defs>
-      <rect width="100%" height="100%" fill="url(#tWL1)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWL2)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWL3)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWL4)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWL5)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWL6)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWL7)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWL8)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWL9)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWL10)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWL11)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWL12)"></rect>
+      <path class="t2-wave-line" style="animation-duration:22s; animation-delay:0s;" d="M22,0 C22,108.8 38.4,217.6 38.4,320 C38.4,428.8 35.4,537.6 35.4,640 C35.4,748.8 16.5,857.6 16.5,960 C16.5,1068.8 4.1,1177.6 4.1,1280 C4.1,1388.8 12.9,1497.6 12.9,1600 C12.9,1708.8 32.4,1817.6 32.4,1920 C32.4,2028.8 39.7,2137.6 39.7,2240 C39.7,2348.8 26,2457.6 26,2560 C26,2668.8 7.6,2777.6 7.6,2880 C7.6,2988.8 6.2,3097.6 6.2,3200 C6.2,3308.8 23.5,3417.6 23.5,3520 C23.5,3628.8 39,3737.6 39,3840 C39,3948.8 34.4,4057.6 34.4,4160 C34.4,4268.8 15.1,4377.6 15.1,4480 C15.1,4588.8 4,4697.6 4,4800 C4,4908.8 14.2,5017.6 14.2,5120 C14.2,5228.8 33.6,5337.6 33.6,5440 C33.6,5548.8 39.3,5657.6 39.3,5760 C39.3,5841.6 24.5,5923.2 24.5,6000" fill="none" stroke="url(#twLg1)" stroke-width="0.6" stroke-linecap="round" opacity="0.28" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:24.4s; animation-delay:1.4s;" d="M46.9,0 C46.9,108.8 39.7,217.6 39.7,320 C39.7,428.8 19.1,537.6 19.1,640 C19.1,748.8 9.4,857.6 9.4,960 C9.4,1068.8 22.1,1177.6 22.1,1280 C22.1,1388.8 42.2,1497.6 42.2,1600 C42.2,1708.8 45.9,1817.6 45.9,1920 C45.9,2028.8 28.8,2137.6 28.8,2240 C28.8,2348.8 11.2,2457.6 11.2,2560 C11.2,2668.8 13.9,2777.6 13.9,2880 C13.9,2988.8 33.7,3097.6 33.7,3200 C33.7,3308.8 47.2,3417.6 47.2,3520 C47.2,3628.8 38.4,3737.6 38.4,3840 C38.4,3948.8 17.7,4057.6 17.7,4160 C17.7,4268.8 9.6,4377.6 9.6,4480 C9.6,4588.8 23.6,4697.6 23.6,4800 C23.6,4908.8 43.2,5017.6 43.2,5120 C43.2,5228.8 45.2,5337.6 45.2,5440 C45.2,5548.8 27.2,5657.6 27.2,5760 C27.2,5841.6 10.6,5923.2 10.6,6000" fill="none" stroke="url(#twLg2)" stroke-width="0.75" stroke-linecap="round" opacity="0.35" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:26.8s; animation-delay:2.7s;" d="M43.2,0 C43.2,108.8 21.7,217.6 21.7,320 C21.7,428.8 15.5,537.6 15.5,640 C15.5,748.8 32,857.6 32,960 C32,1068.8 51.7,1177.6 51.7,1280 C51.7,1388.8 51.2,1497.6 51.2,1600 C51.2,1708.8 31.2,1817.6 31.2,1920 C31.2,2028.8 15.3,2137.6 15.3,2240 C15.3,2348.8 22.3,2457.6 22.3,2560 C22.3,2668.8 44,2777.6 44,2880 C44,2988.8 54.6,3097.6 54.6,3200 C54.6,3308.8 41.7,3417.6 41.7,3520 C41.7,3628.8 20.4,3737.6 20.4,3840 C20.4,3948.8 16,4057.6 16,4160 C16,4268.8 33.7,4377.6 33.7,4480 C33.7,4588.8 52.5,4697.6 52.5,4800 C52.5,4908.8 50.2,5017.6 50.2,5120 C50.2,5228.8 29.5,5337.6 29.5,5440 C29.5,5548.8 14.9,5657.6 14.9,5760 C14.9,5841.6 23.7,5923.2 23.7,6000" fill="none" stroke="url(#twLg3)" stroke-width="1.1" stroke-linecap="round" opacity="0.5" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:29.2s; animation-delay:4.1s;" d="M24.4,0 C24.4,108.8 22.4,217.6 22.4,320 C22.4,428.8 42.4,537.6 42.4,640 C42.4,748.8 60.7,857.6 60.7,960 C60.7,1068.8 55.7,1177.6 55.7,1280 C55.7,1388.8 33.3,1497.6 33.3,1600 C33.3,1708.8 20,1817.6 20,1920 C20,2028.8 31.6,2137.6 31.6,2240 C31.6,2348.8 54.3,2457.6 54.3,2560 C54.3,2668.8 61.3,2777.6 61.3,2880 C61.3,2988.8 44.3,3097.6 44.3,3200 C44.3,3308.8 23.4,3417.6 23.4,3520 C23.4,3628.8 23.3,3737.6 23.3,3840 C23.3,3948.8 44.1,4057.6 44.1,4160 C44.1,4268.8 61.2,4377.6 61.2,4480 C61.2,4588.8 54.4,4697.6 54.4,4800 C54.4,4908.8 31.7,5017.6 31.7,5120 C31.7,5228.8 20,5337.6 20,5440 C20,5548.8 33.2,5657.6 33.2,5760 C33.2,5841.6 55.6,5923.2 55.6,6000" fill="none" stroke="url(#twLg4)" stroke-width="0.7" stroke-linecap="round" opacity="0.3" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:31.6s; animation-delay:5.4s;" d="M30.3,0 C30.3,108.8 53.1,217.6 53.1,320 C53.1,428.8 69.1,537.6 69.1,640 C69.1,748.8 59.3,857.6 59.3,960 C59.3,1068.8 35.4,1177.6 35.4,1280 C35.4,1388.8 25.6,1497.6 25.6,1600 C25.6,1708.8 41.5,1817.6 41.5,1920 C41.5,2028.8 64.3,2137.6 64.3,2240 C64.3,2348.8 67,2457.6 67,2560 C67,2668.8 46.4,2777.6 46.4,2880 C46.4,2988.8 26.9,3097.6 26.9,3200 C26.9,3308.8 31.6,3417.6 31.6,3520 C31.6,3628.8 54.9,3737.6 54.9,3840 C54.9,3948.8 69.3,4057.6 69.3,4160 C69.3,4268.8 57.7,4377.6 57.7,4480 C57.7,4588.8 33.9,4697.6 33.9,4800 C33.9,4908.8 26,5017.6 26,5120 C26,5228.8 43.3,5337.6 43.3,5440 C43.3,5548.8 65.4,5657.6 65.4,5760 C65.4,5841.6 66.1,5923.2 66.1,6000" fill="none" stroke="url(#twLg5)" stroke-width="0.85" stroke-linecap="round" opacity="0.42" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:34s; animation-delay:6.8s;" d="M64,0 C64,108.8 76.6,217.6 76.6,320 C76.6,428.8 62.1,537.6 62.1,640 C62.1,748.8 37.6,857.6 37.6,960 C37.6,1068.8 32.1,1177.6 32.1,1280 C32.1,1388.8 52.1,1497.6 52.1,1600 C52.1,1708.8 74,1817.6 74,1920 C74,2028.8 71.8,2137.6 71.8,2240 C71.8,2348.8 48.2,2457.6 48.2,2560 C48.2,2668.8 31,2777.6 31,2880 C31,2988.8 40.7,3097.6 40.7,3200 C40.7,3308.8 65.7,3417.6 65.7,3520 C65.7,3628.8 76.5,3737.6 76.5,3840 C76.5,3948.8 60.3,4057.6 60.3,4160 C60.3,4268.8 36.3,4377.6 36.3,4480 C36.3,4588.8 32.8,4697.6 32.8,4800 C32.8,4908.8 54.1,5017.6 54.1,5120 C54.1,5228.8 74.8,5337.6 74.8,5440 C74.8,5548.8 70.6,5657.6 70.6,5760 C70.6,5841.6 46.3,5923.2 46.3,6000" fill="none" stroke="url(#twLg1)" stroke-width="0.65" stroke-linecap="round" opacity="0.26" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:22s; animation-delay:8.1s;" d="M77.5,0 C77.5,108.8 63.1,217.6 63.1,320 C63.1,428.8 45.1,537.6 45.1,640 C45.1,748.8 44.7,857.6 44.7,960 C44.7,1068.8 62.4,1177.6 62.4,1280 C62.4,1388.8 77.3,1497.6 77.3,1600 C77.3,1708.8 71.7,1817.6 71.7,1920 C71.7,2028.8 52.3,2137.6 52.3,2240 C52.3,2348.8 42,2457.6 42,2560 C42,2668.8 53,2777.6 53,2880 C53,2988.8 72.3,3097.6 72.3,3200 C72.3,3308.8 77,3417.6 77,3520 C77,3628.8 61.6,3737.6 61.6,3840 C61.6,3948.8 44.3,4057.6 44.3,4160 C44.3,4268.8 45.5,4377.6 45.5,4480 C45.5,4588.8 63.9,4697.6 63.9,4800 C63.9,4908.8 77.6,5017.6 77.6,5120 C77.6,5228.8 70.5,5337.6 70.5,5440 C70.5,5548.8 51,5657.6 51,5760 C51,5841.6 42.1,5923.2 42.1,6000" fill="none" stroke="url(#twLg2)" stroke-width="1.2" stroke-linecap="round" opacity="0.55" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:24.4s; animation-delay:9.5s;" d="M65.9,0 C65.9,108.8 48.8,217.6 48.8,320 C48.8,428.8 52.5,537.6 52.5,640 C52.5,748.8 72.6,857.6 72.6,960 C72.6,1068.8 85.3,1177.6 85.3,1280 C85.3,1388.8 75.6,1497.6 75.6,1600 C75.6,1708.8 55,1817.6 55,1920 C55,2028.8 47.8,2137.6 47.8,2240 C47.8,2348.8 62.6,2457.6 62.6,2560 C62.6,2668.8 81.8,2777.6 81.8,2880 C81.8,2988.8 82.7,3097.6 82.7,3200 C82.7,3308.8 64.3,3417.6 64.3,3520 C64.3,3628.8 48.3,3737.6 48.3,3840 C48.3,3948.8 53.6,4057.6 53.6,4160 C53.6,4268.8 74,4377.6 74,4480 C74,4588.8 85.3,4697.6 85.3,4800 C85.3,4908.8 74.2,5017.6 74.2,5120 C74.2,5228.8 53.7,5337.6 53.7,5440 C53.7,5548.8 48.2,5657.6 48.2,5760 C48.2,5841.6 64.1,5923.2 64.1,6000" fill="none" stroke="url(#twLg3)" stroke-width="0.7" stroke-linecap="round" opacity="0.32" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:26.8s; animation-delay:10.8s;" d="M53,0 C53,108.8 61.1,217.6 61.1,320 C61.1,428.8 82.8,537.6 82.8,640 C82.8,748.8 92.5,857.6 92.5,960 C92.5,1068.8 78.7,1177.6 78.7,1280 C78.7,1388.8 57.7,1497.6 57.7,1600 C57.7,1708.8 54.4,1817.6 54.4,1920 C54.4,2028.8 72.7,2137.6 72.7,2240 C72.7,2348.8 90.9,2457.6 90.9,2560 C90.9,2668.8 87.6,2777.6 87.6,2880 C87.6,2988.8 66.6,3097.6 66.6,3200 C66.6,3308.8 52.8,3417.6 52.8,3520 C52.8,3628.8 62.5,3737.6 62.5,3840 C62.5,3948.8 84.2,4057.6 84.2,4160 C84.2,4268.8 92.3,4377.6 92.3,4480 C92.3,4588.8 77.1,4697.6 77.1,4800 C77.1,4908.8 56.7,5017.6 56.7,5120 C56.7,5228.8 55.2,5337.6 55.2,5440 C55.2,5548.8 74.3,5657.6 74.3,5760 C74.3,5841.6 91.5,5923.2 91.5,6000" fill="none" stroke="url(#twLg4)" stroke-width="0.8" stroke-linecap="round" opacity="0.38" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:29.2s; animation-delay:12.2s;" d="M70.5,0 C70.5,108.8 93.1,217.6 93.1,320 C93.1,428.8 99,537.6 99,640 C99,748.8 81.3,857.6 81.3,960 C81.3,1068.8 60.9,1177.6 60.9,1280 C60.9,1388.8 61.9,1497.6 61.9,1600 C61.9,1708.8 83.2,1817.6 83.2,1920 C83.2,2028.8 99.5,2137.6 99.5,2240 C99.5,2348.8 91.6,2457.6 91.6,2560 C91.6,2668.8 68.8,2777.6 68.8,2880 C68.8,2988.8 58.1,3097.6 58.1,3200 C58.1,3308.8 72.1,3417.6 72.1,3520 C72.1,3628.8 94.3,3737.6 94.3,3840 C94.3,3948.8 98.4,4057.6 98.4,4160 C98.4,4268.8 79.5,4377.6 79.5,4480 C79.5,4588.8 60,4697.6 60,4800 C60,4908.8 63,5017.6 63,5120 C63,5228.8 84.9,5337.6 84.9,5440 C84.9,5548.8 99.8,5657.6 99.8,5760 C99.8,5841.6 90.1,5923.2 90.1,6000" fill="none" stroke="url(#twLg5)" stroke-width="0.6" stroke-linecap="round" opacity="0.24" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:31.6s; animation-delay:13.5s;" d="M103,0 C103,108.8 104.5,217.6 104.5,320 C104.5,428.8 83.3,537.6 83.3,640 C83.3,748.8 64.5,857.6 64.5,960 C64.5,1068.8 70.3,1177.6 70.3,1280 C70.3,1388.8 93.9,1497.6 93.9,1600 C93.9,1708.8 107.3,1817.6 107.3,1920 C107.3,2028.8 94.7,2137.6 94.7,2240 C94.7,2348.8 71,2457.6 71,2560 C71,2668.8 64.2,2777.6 64.2,2880 C64.2,2988.8 82.4,3097.6 82.4,3200 C82.4,3308.8 104,3417.6 104,3520 C104,3628.8 103.5,3737.6 103.5,3840 C103.5,3948.8 81.5,4057.6 81.5,4160 C81.5,4268.8 64,4377.6 64,4480 C64,4588.8 71.7,4697.6 71.7,4800 C71.7,4908.8 95.6,5017.6 95.6,5120 C95.6,5228.8 107.3,5337.6 107.3,5440 C107.3,5548.8 93,5657.6 93,5760 C93,5841.6 69.7,5923.2 69.7,6000" fill="none" stroke="url(#twLg1)" stroke-width="1" stroke-linecap="round" opacity="0.47" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:34s; animation-delay:14.9s;" d="M109.1,0 C109.1,108.8 85,217.6 85,320 C85,428.8 68.9,537.6 68.9,640 C68.9,748.8 79.7,857.6 79.7,960 C79.7,1068.8 104.7,1177.6 104.7,1280 C104.7,1388.8 114.3,1497.6 114.3,1600 C114.3,1708.8 97.2,1817.6 97.2,1920 C97.2,2028.8 73.5,2137.6 73.5,2240 C73.5,2348.8 71.4,2457.6 71.4,2560 C71.4,2668.8 93.2,2777.6 93.2,2880 C93.2,2988.8 113.2,3097.6 113.2,3200 C113.2,3308.8 107.7,3417.6 107.7,3520 C107.7,3628.8 83.2,3737.6 83.2,3840 C83.2,3948.8 68.7,4057.6 68.7,4160 C68.7,4268.8 81.3,4377.6 81.3,4480 C81.3,4588.8 106.2,4697.6 106.2,4800 C106.2,4908.8 113.9,5017.6 113.9,5120 C113.9,5228.8 95.3,5337.6 95.3,5440 C95.3,5548.8 72.4,5657.6 72.4,5760 C72.4,5841.6 72.3,5923.2 72.3,6000" fill="none" stroke="url(#twLg2)" stroke-width="0.75" stroke-linecap="round" opacity="0.3" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:22s; animation-delay:16.2s;" d="M89.5,0 C89.5,108.8 80,217.6 80,320 C80,428.8 91.8,537.6 91.8,640 C91.8,748.8 110.9,857.6 110.9,960 C110.9,1068.8 114.7,1177.6 114.7,1280 C114.7,1388.8 98.7,1497.6 98.7,1600 C98.7,1708.8 81.9,1817.6 81.9,1920 C81.9,2028.8 84.1,2137.6 84.1,2240 C84.1,2348.8 102.8,2457.6 102.8,2560 C102.8,2668.8 115.8,2777.6 115.8,2880 C115.8,2988.8 107.8,3097.6 107.8,3200 C107.8,3308.8 88.2,3417.6 88.2,3520 C88.2,3628.8 80.2,3737.6 80.2,3840 C80.2,3948.8 93.3,4057.6 93.3,4160 C93.3,4268.8 111.9,4377.6 111.9,4480 C111.9,4588.8 114.1,4697.6 114.1,4800 C114.1,4908.8 97.2,5017.6 97.2,5120 C97.2,5228.8 81.3,5337.6 81.3,5440 C81.3,5548.8 85.1,5657.6 85.1,5760 C85.1,5841.6 104.2,5923.2 104.2,6000" fill="none" stroke="url(#twLg3)" stroke-width="0.65" stroke-linecap="round" opacity="0.22" vector-effect="non-scaling-stroke"></path>
     </svg>
   </div>
-  <div class="t2-neon-wave t2-neon-wave-right" aria-hidden="true" style="position:absolute; top:0; bottom:0; right:0; width:clamp(58px,5.5vw,84px); pointer-events:none; overflow:hidden; z-index:0;">
-    <svg width="100%" height="100%" style="display:block;" aria-hidden="true">
+  <div class="t2-wave t2-wave-right" aria-hidden="true">
+    <svg class="t2-wave-svg" viewBox="0 0 120 6000" preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <defs>
-        <linearGradient id="tWRg1" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#6D28D9"/><stop offset="45%" stop-color="#8B5CF6"/><stop offset="75%" stop-color="#A855F7"/><stop offset="100%" stop-color="#6D28D9"/></linearGradient>
-        <linearGradient id="tWRg2" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#7C3AED"/><stop offset="45%" stop-color="#A855F7"/><stop offset="75%" stop-color="#C084FC"/><stop offset="100%" stop-color="#7C3AED"/></linearGradient>
-        <linearGradient id="tWRg3" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#8B5CF6"/><stop offset="40%" stop-color="#60A5FA"/><stop offset="75%" stop-color="#A855F7"/><stop offset="100%" stop-color="#8B5CF6"/></linearGradient>
-        <linearGradient id="tWRg4" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#A855F7"/><stop offset="45%" stop-color="#C084FC"/><stop offset="75%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#A855F7"/></linearGradient>
-        <linearGradient id="tWRg5" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="300"><stop offset="0%" stop-color="#6D28D9"/><stop offset="30%" stop-color="#7C3AED"/><stop offset="55%" stop-color="#38BDF8"/><stop offset="80%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#6D28D9"/></linearGradient>
-        <pattern id="tWR1" patternUnits="userSpaceOnUse" width="76" height="252"><path class="t2-wave-line" style="animation-delay:0.0s" d="M4,0 C1.0,31.5 1.0,94.5 4,126.0 C7.0,157.5 7.0,220.5 4,252" fill="none" stroke="url(#tWRg3)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.4" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWR2" patternUnits="userSpaceOnUse" width="76" height="301"><path class="t2-wave-line" style="animation-delay:0.8s" d="M10,0 C12.4,37.6 12.4,112.9 10,150.5 C7.6,188.1 7.6,263.4 10,301" fill="none" stroke="url(#tWRg4)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.38" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWR3" patternUnits="userSpaceOnUse" width="76" height="224"><path class="t2-wave-line" style="animation-delay:1.6s" d="M16,0 C12.4,28.0 12.4,84.0 16,112.0 C19.6,140.0 19.6,196.0 16,224" fill="none" stroke="url(#tWRg5)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.42" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWR4" patternUnits="userSpaceOnUse" width="76" height="356"><path class="t2-wave-line" style="animation-delay:2.4s" d="M23,0 C25.8,44.5 25.8,133.5 23,178.0 C20.2,222.5 20.2,311.5 23,356" fill="none" stroke="url(#tWRg1)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.36" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWR5" patternUnits="userSpaceOnUse" width="76" height="269"><path class="t2-wave-line" style="animation-delay:3.2s" d="M29,0 C25.0,33.6 25.0,100.9 29,134.5 C33.0,168.1 33.0,235.4 29,269" fill="none" stroke="url(#tWRg2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.58" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWR6" patternUnits="userSpaceOnUse" width="76" height="398"><path class="t2-wave-line" style="animation-delay:4.0s" d="M35,0 C32.8,49.8 32.8,149.3 35,199.0 C37.2,248.8 37.2,348.3 35,398" fill="none" stroke="url(#tWRg3)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.4" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWR7" patternUnits="userSpaceOnUse" width="76" height="235"><path class="t2-wave-line" style="animation-delay:4.8s" d="M41,0 C44.4,29.4 44.4,88.1 41,117.5 C37.6,146.9 37.6,205.6 41,235" fill="none" stroke="url(#tWRg4)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.38" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWR8" patternUnits="userSpaceOnUse" width="76" height="317"><path class="t2-wave-line" style="animation-delay:5.6s" d="M47,0 C44.4,39.6 44.4,118.9 47,158.5 C49.6,198.1 49.6,277.4 47,317" fill="none" stroke="url(#tWRg5)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.44" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWR9" patternUnits="userSpaceOnUse" width="76" height="284"><path class="t2-wave-line" style="animation-delay:6.4s" d="M54,0 C57.8,35.5 57.8,106.5 54,142.0 C50.2,177.5 50.2,248.5 54,284" fill="none" stroke="url(#tWRg1)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.4" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWR10" patternUnits="userSpaceOnUse" width="76" height="246"><path class="t2-wave-line" style="animation-delay:7.2s" d="M60,0 C63.0,30.8 63.0,92.3 60,123.0 C57.0,153.8 57.0,215.3 60,246" fill="none" stroke="url(#tWRg2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.56" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWR11" patternUnits="userSpaceOnUse" width="76" height="372"><path class="t2-wave-line" style="animation-delay:8.0s" d="M66,0 C63.6,46.5 63.6,139.5 66,186.0 C68.4,232.5 68.4,325.5 66,372" fill="none" stroke="url(#tWRg3)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.36" vector-effect="non-scaling-stroke"></path></pattern>
-        <pattern id="tWR12" patternUnits="userSpaceOnUse" width="76" height="209"><path class="t2-wave-line" style="animation-delay:8.8s" d="M72,0 C75.2,26.1 75.2,78.4 72,104.5 C68.8,130.6 68.8,182.9 72,209" fill="none" stroke="url(#tWRg4)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.42" vector-effect="non-scaling-stroke"></path></pattern>
+        <linearGradient id="twRg1" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#4C1D95"/><stop offset="50%" stop-color="#6D28D9"/><stop offset="100%" stop-color="#8B5CF6"/></linearGradient>
+        <linearGradient id="twRg2" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#7C3AED"/><stop offset="50%" stop-color="#A855F7"/><stop offset="100%" stop-color="#D946EF"/></linearGradient>
+        <linearGradient id="twRg3" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#6D28D9"/><stop offset="50%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#3B82F6"/></linearGradient>
+        <linearGradient id="twRg4" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#A855F7"/><stop offset="50%" stop-color="#C084FC"/><stop offset="100%" stop-color="#E879F9"/></linearGradient>
+        <linearGradient id="twRg5" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#5B21B6"/><stop offset="50%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#60A5FA"/></linearGradient>
       </defs>
-      <rect width="100%" height="100%" fill="url(#tWR1)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWR2)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWR3)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWR4)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWR5)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWR6)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWR7)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWR8)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWR9)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWR10)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWR11)"></rect>
-      <rect width="100%" height="100%" fill="url(#tWR12)"></rect>
+      <path class="t2-wave-line" style="animation-duration:22s; animation-delay:0s;" d="M34.2,0 C34.2,163.2 14.9,326.4 14.9,480 C14.9,588.8 4,697.6 4,800 C4,908.8 14.4,1017.6 14.4,1120 C14.4,1228.8 33.8,1337.6 33.8,1440 C33.8,1548.8 39.2,1657.6 39.2,1760 C39.2,1868.8 24.2,1977.6 24.2,2080 C24.2,2188.8 6.6,2297.6 6.6,2400 C6.6,2508.8 7.2,2617.6 7.2,2720 C7.2,2828.8 25.3,2937.6 25.3,3040 C25.3,3148.8 39.5,3257.6 39.5,3360 C39.5,3468.8 33,3577.6 33,3680 C33,3788.8 13.5,3897.6 13.5,4000 C13.5,4108.8 4,4217.6 4,4320 C4,4428.8 15.8,4537.6 15.8,4640 C15.8,4748.8 34.9,4857.6 34.9,4960 C34.9,5068.8 38.7,5177.6 38.7,5280 C38.7,5388.8 22.7,5497.6 22.7,5600 C22.7,5708.8 5.9,5817.6 5.9,5920 C5.9,5947.2 8.1,5974.4 8.1,6000" fill="none" stroke="url(#twRg1)" stroke-width="0.6" stroke-linecap="round" opacity="0.28" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:24.4s; animation-delay:1.4s;" d="M17.5,0 C17.5,163.2 9.7,326.4 9.7,480 C9.7,588.8 23.9,697.6 23.9,800 C23.9,908.8 43.4,1017.6 43.4,1120 C43.4,1228.8 45,1337.6 45,1440 C45,1548.8 26.9,1657.6 26.9,1760 C26.9,1868.8 10.5,1977.6 10.5,2080 C10.5,2188.8 15.2,2297.6 15.2,2400 C15.2,2508.8 35.4,2617.6 35.4,2720 C35.4,2828.8 47.3,2937.6 47.3,3040 C47.3,3148.8 36.7,3257.6 36.7,3360 C36.7,3468.8 16.2,3577.6 16.2,3680 C16.2,3788.8 10,3897.6 10,4000 C10,4108.8 25.5,4217.6 25.5,4320 C25.5,4428.8 44.3,4537.6 44.3,4640 C44.3,4748.8 44.2,4857.6 44.2,4960 C44.2,5068.8 25.3,5177.6 25.3,5280 C25.3,5388.8 10,5497.6 10,5600 C10,5708.8 16.3,5817.6 16.3,5920 C16.3,5947.2 36.9,5974.4 36.9,6000" fill="none" stroke="url(#twRg2)" stroke-width="0.75" stroke-linecap="round" opacity="0.35" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:26.8s; animation-delay:2.7s;" d="M16.2,0 C16.2,163.2 34,326.4 34,480 C34,588.8 52.6,697.6 52.6,800 C52.6,908.8 50,1017.6 50,1120 C50,1228.8 29.2,1337.6 29.2,1440 C29.2,1548.8 14.9,1657.6 14.9,1760 C14.9,1868.8 23.9,1977.6 23.9,2080 C23.9,2188.8 45.7,2297.6 45.7,2400 C45.7,2508.8 54.4,2617.6 54.4,2720 C54.4,2828.8 39.8,2937.6 39.8,3040 C39.8,3148.8 19.1,3257.6 19.1,3360 C19.1,3468.8 16.8,3577.6 16.8,3680 C16.8,3788.8 35.7,3897.6 35.7,4000 C35.7,4108.8 53.3,4217.6 53.3,4320 C53.3,4428.8 48.9,4537.6 48.9,4640 C48.9,4748.8 27.6,4857.6 27.6,4960 C27.6,5068.8 14.7,5177.6 14.7,5280 C14.7,5388.8 25.4,5497.6 25.4,5600 C25.4,5708.8 47,5817.6 47,5920 C47,5947.2 54.1,5974.4 54.1,6000" fill="none" stroke="url(#twRg3)" stroke-width="1.1" stroke-linecap="round" opacity="0.5" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:29.2s; animation-delay:4.1s;" d="M44.5,0 C44.5,163.2 61.3,326.4 61.3,480 C61.3,588.8 54.1,697.6 54.1,800 C54.1,908.8 31.4,1017.6 31.4,1120 C31.4,1228.8 20,1337.6 20,1440 C20,1548.8 33.5,1657.6 33.5,1760 C33.5,1868.8 55.8,1977.6 55.8,2080 C55.8,2188.8 60.6,2297.6 60.6,2400 C60.6,2508.8 42.2,2617.6 42.2,2720 C42.2,2828.8 22.4,2937.6 22.4,3040 C22.4,3148.8 24.6,3257.6 24.6,3360 C24.6,3468.8 46.2,3577.6 46.2,3680 C46.2,3788.8 61.7,3897.6 61.7,4000 C61.7,4108.8 52.7,4217.6 52.7,4320 C52.7,4428.8 29.9,4537.6 29.9,4640 C29.9,4748.8 20.2,4857.6 20.2,4960 C20.2,5068.8 35.1,5177.6 35.1,5280 C35.1,5388.8 57,5497.6 57,5600 C57,5708.8 59.9,5817.6 59.9,5920 C59.9,5947.2 40.5,5974.4 40.5,6000" fill="none" stroke="url(#twRg4)" stroke-width="0.7" stroke-linecap="round" opacity="0.3" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:31.6s; animation-delay:5.4s;" d="M69.3,0 C69.3,163.2 57.4,326.4 57.4,480 C57.4,588.8 33.6,697.6 33.6,800 C33.6,908.8 26,1017.6 26,1120 C26,1228.8 43.7,1337.6 43.7,1440 C43.7,1548.8 65.6,1657.6 65.6,1760 C65.6,1868.8 65.9,1977.6 65.9,2080 C65.9,2188.8 44.2,2297.6 44.2,2400 C44.2,2508.8 26.2,2617.6 26.2,2720 C26.2,2828.8 33.2,2937.6 33.2,3040 C33.2,3148.8 56.9,3257.6 56.9,3360 C56.9,3468.8 69.3,3577.6 69.3,3680 C69.3,3788.8 55.7,3897.6 55.7,4000 C55.7,4108.8 32.2,4217.6 32.2,4320 C32.2,4428.8 26.6,4537.6 26.6,4640 C26.6,4748.8 45.5,4857.6 45.5,4960 C45.5,5068.8 66.6,5177.6 66.6,5280 C66.6,5388.8 64.9,5497.6 64.9,5600 C64.9,5708.8 42.4,5817.6 42.4,5920 C42.4,5947.2 25.8,5974.4 25.8,6000" fill="none" stroke="url(#twRg5)" stroke-width="0.85" stroke-linecap="round" opacity="0.42" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:34s; animation-delay:6.8s;" d="M59.9,0 C59.9,163.2 36,326.4 36,480 C36,588.8 33,697.6 33,800 C33,908.8 54.4,1017.6 54.4,1120 C54.4,1228.8 75,1337.6 75,1440 C75,1548.8 70.3,1657.6 70.3,1760 C70.3,1868.8 46,1977.6 46,2080 C46,2188.8 30.7,2297.6 30.7,2400 C30.7,2508.8 42.6,2617.6 42.6,2720 C42.6,2828.8 67.6,2937.6 67.6,3040 C67.6,3148.8 76.1,3257.6 76.1,3360 C76.1,3468.8 58,3577.6 58,3680 C58,3788.8 34.8,3897.6 34.8,4000 C34.8,4108.8 33.9,4217.6 33.9,4320 C33.9,4428.8 56.4,4537.6 56.4,4640 C56.4,4748.8 75.6,4857.6 75.6,4960 C75.6,5068.8 68.9,5177.6 68.9,5280 C68.9,5388.8 44.2,5497.6 44.2,5600 C44.2,5708.8 30.7,5817.6 30.7,5920 C30.7,5947.2 44.4,5974.4 44.4,6000" fill="none" stroke="url(#twRg1)" stroke-width="0.65" stroke-linecap="round" opacity="0.26" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:22s; animation-delay:8.1s;" d="M44.2,0 C44.2,163.2 45.7,326.4 45.7,480 C45.7,588.8 64.2,697.6 64.2,800 C64.2,908.8 77.7,1017.6 77.7,1120 C77.7,1228.8 70.3,1337.6 70.3,1440 C70.3,1548.8 50.7,1657.6 50.7,1760 C50.7,1868.8 42.1,1977.6 42.1,2080 C42.1,2188.8 54.7,2297.6 54.7,2400 C54.7,2508.8 73.5,2617.6 73.5,2720 C73.5,2828.8 76.4,2937.6 76.4,3040 C76.4,3148.8 59.8,3257.6 59.8,3360 C59.8,3468.8 43.5,3577.6 43.5,3680 C43.5,3788.8 46.7,3897.6 46.7,4000 C46.7,4108.8 65.6,4217.6 65.6,4320 C65.6,4428.8 77.9,4537.6 77.9,4640 C77.9,4748.8 69,4857.6 69,4960 C69,5068.8 49.5,5177.6 49.5,5280 C49.5,5388.8 42.4,5497.6 42.4,5600 C42.4,5708.8 56.1,5817.6 56.1,5920 C56.1,5947.2 74.5,5974.4 74.5,6000" fill="none" stroke="url(#twRg2)" stroke-width="1.2" stroke-linecap="round" opacity="0.55" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:24.4s; animation-delay:9.5s;" d="M53.9,0 C53.9,163.2 74.3,326.4 74.3,480 C74.3,588.8 85.3,697.6 85.3,800 C85.3,908.8 73.9,1017.6 73.9,1120 C73.9,1228.8 53.5,1337.6 53.5,1440 C53.5,1548.8 48.3,1657.6 48.3,1760 C48.3,1868.8 64.4,1977.6 64.4,2080 C64.4,2188.8 82.8,2297.6 82.8,2400 C82.8,2508.8 81.7,2617.6 81.7,2720 C81.7,2828.8 62.4,2937.6 62.4,3040 C62.4,3148.8 47.8,3257.6 47.8,3360 C47.8,3468.8 55.1,3577.6 55.1,3680 C55.1,3788.8 75.7,3897.6 75.7,4000 C75.7,4108.8 85.2,4217.6 85.2,4320 C85.2,4428.8 72.4,4537.6 72.4,4640 C72.4,4748.8 52.4,4857.6 52.4,4960 C52.4,5068.8 48.9,5177.6 48.9,5280 C48.9,5388.8 66,5497.6 66,5600 C66,5708.8 83.6,5817.6 83.6,5920 C83.6,5947.2 80.7,5974.4 80.7,6000" fill="none" stroke="url(#twRg3)" stroke-width="0.7" stroke-linecap="round" opacity="0.32" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:26.8s; animation-delay:10.8s;" d="M84.5,0 C84.5,163.2 92.2,326.4 92.2,480 C92.2,588.8 76.8,697.6 76.8,800 C76.8,908.8 56.5,1017.6 56.5,1120 C56.5,1228.8 55.3,1337.6 55.3,1440 C55.3,1548.8 74.7,1657.6 74.7,1760 C74.7,1868.8 91.6,1977.6 91.6,2080 C91.6,2188.8 86.2,2297.6 86.2,2400 C86.2,2508.8 64.7,2617.6 64.7,2720 C64.7,2828.8 52.7,2937.6 52.7,3040 C52.7,3148.8 64.3,3257.6 64.3,3360 C64.3,3468.8 85.8,3577.6 85.8,3680 C85.8,3788.8 91.8,3897.6 91.8,4000 C91.8,4108.8 75.1,4217.6 75.1,4320 C75.1,4428.8 55.6,4537.6 55.6,4640 C55.6,4748.8 56.2,4857.6 56.2,4960 C56.2,5068.8 76.3,5177.6 76.3,5280 C76.3,5388.8 92.1,5497.6 92.1,5600 C92.1,5708.8 84.9,5817.6 84.9,5920 C84.9,5947.2 63.2,5974.4 63.2,6000" fill="none" stroke="url(#twRg4)" stroke-width="0.8" stroke-linecap="round" opacity="0.38" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:29.2s; animation-delay:12.2s;" d="M98.2,0 C98.2,163.2 79.2,326.4 79.2,480 C79.2,588.8 59.9,697.6 59.9,800 C59.9,908.8 63.2,1017.6 63.2,1120 C63.2,1228.8 85.2,1337.6 85.2,1440 C85.2,1548.8 99.8,1657.6 99.8,1760 C99.8,1868.8 89.8,1977.6 89.8,2080 C89.8,2188.8 67,2297.6 67,2400 C67,2508.8 58.4,2617.6 58.4,2720 C58.4,2828.8 74.2,2937.6 74.2,3040 C74.2,3148.8 95.7,3257.6 95.7,3360 C95.7,3468.8 97.5,3577.6 97.5,3680 C97.5,3788.8 77.4,3897.6 77.4,4000 C77.4,4108.8 59.2,4217.6 59.2,4320 C59.2,4428.8 64.4,4537.6 64.4,4640 C64.4,4748.8 86.9,4857.6 86.9,4960 C86.9,5068.8 100,5177.6 100,5280 C100,5388.8 88.3,5497.6 88.3,5600 C88.3,5708.8 65.6,5817.6 65.6,5920 C65.6,5947.2 58.8,5974.4 58.8,6000" fill="none" stroke="url(#twRg5)" stroke-width="0.6" stroke-linecap="round" opacity="0.24" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:31.6s; animation-delay:13.5s;" d="M81.1,0 C81.1,163.2 63.9,326.4 63.9,480 C63.9,588.8 72,697.6 72,800 C72,908.8 95.9,1017.6 95.9,1120 C95.9,1228.8 107.3,1337.6 107.3,1440 C107.3,1548.8 92.7,1657.6 92.7,1760 C92.7,1868.8 69.4,1977.6 69.4,2080 C69.4,2188.8 65,2297.6 65,2400 C65,2508.8 84.6,2617.6 84.6,2720 C84.6,2828.8 105.1,2937.6 105.1,3040 C105.1,3148.8 102.2,3257.6 102.2,3360 C102.2,3468.8 79.3,3577.6 79.3,3680 C79.3,3788.8 63.6,3897.6 63.6,4000 C63.6,4108.8 73.5,4217.6 73.5,4320 C73.5,4428.8 97.5,4537.6 97.5,4640 C97.5,4748.8 107,4857.6 107,4960 C107,5068.8 90.9,5177.6 90.9,5280 C90.9,5388.8 68.2,5497.6 68.2,5600 C68.2,5708.8 65.7,5817.6 65.7,5920 C65.7,5947.2 86.5,5974.4 86.5,6000" fill="none" stroke="url(#twRg1)" stroke-width="1" stroke-linecap="round" opacity="0.47" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:34s; animation-delay:14.9s;" d="M68.7,0 C68.7,163.2 81.7,326.4 81.7,480 C81.7,588.8 106.5,697.6 106.5,800 C106.5,908.8 113.8,1017.6 113.8,1120 C113.8,1228.8 94.9,1337.6 94.9,1440 C94.9,1548.8 72.2,1657.6 72.2,1760 C72.2,1868.8 72.5,1977.6 72.5,2080 C72.5,2188.8 95.5,2297.6 95.5,2400 C95.5,2508.8 113.9,2617.6 113.9,2720 C113.9,2828.8 106,2937.6 106,3040 C106,3148.8 81.1,3257.6 81.1,3360 C81.1,3468.8 68.7,3577.6 68.7,3680 C68.7,3788.8 83.4,3897.6 83.4,4000 C83.4,4108.8 107.9,4217.6 107.9,4320 C107.9,4428.8 113.2,4537.6 113.2,4640 C113.2,4748.8 93,4857.6 93,4960 C93,5068.8 71.2,5177.6 71.2,5280 C71.2,5388.8 73.7,5497.6 73.7,5600 C73.7,5708.8 97.4,5817.6 97.4,5920 C97.4,5947.2 114.3,5974.4 114.3,6000" fill="none" stroke="url(#twRg2)" stroke-width="0.75" stroke-linecap="round" opacity="0.3" vector-effect="non-scaling-stroke"></path>
+      <path class="t2-wave-line" style="animation-duration:22s; animation-delay:16.2s;" d="M93.6,0 C93.6,163.2 112.1,326.4 112.1,480 C112.1,588.8 114,697.6 114,800 C114,908.8 96.9,1017.6 96.9,1120 C96.9,1228.8 81.2,1337.6 81.2,1440 C81.2,1548.8 85.3,1657.6 85.3,1760 C85.3,1868.8 104.5,1977.6 104.5,2080 C104.5,2188.8 116,2297.6 116,2400 C116,2508.8 106.2,2617.6 106.2,2720 C106.2,2828.8 86.7,2937.6 86.7,3040 C86.7,3148.8 80.6,3257.6 80.6,3360 C80.6,3468.8 95,3577.6 95,3680 C95,3788.8 113,3897.6 113,4000 C113,4108.8 113.2,4217.6 113.2,4320 C113.2,4428.8 95.4,4537.6 95.4,4640 C95.4,4748.8 80.7,4857.6 80.7,4960 C80.7,5068.8 86.4,5177.6 86.4,5280 C86.4,5388.8 105.8,5497.6 105.8,5600 C105.8,5708.8 116,5817.6 116,5920 C116,5947.2 104.9,5974.4 104.9,6000" fill="none" stroke="url(#twRg3)" stroke-width="0.65" stroke-linecap="round" opacity="0.22" vector-effect="non-scaling-stroke"></path>
     </svg>
   </div>
 
@@ -783,7 +895,7 @@
     <nav style="max-width:1520px; margin:0 auto; padding:15px clamp(18px,4vw,44px); display:flex; align-items:center; gap:16px;">
       <a href="#top2" style="display:flex; align-items:center; gap:10px;">
         <img src="assets/52579c39-213c-41ad-b8b8-9bba2b49aa8a.png" alt="TUMBAPP" style="height:clamp(34px,2.4vw,38px); width:auto; display:block; filter:drop-shadow(0 0 14px rgba(124,92,246,.5));">
-        <span style="font-family:'Outfit',sans-serif; font-weight:800; font-size:clamp(25px,1.6vw,28px); letter-spacing:-.02em; background:linear-gradient(120deg,var(--acc3),var(--acc)); -webkit-background-clip:text; background-clip:text; color:transparent;">TUMBAPP</span>
+        <span style="font-family:'Open Sauce Sans',sans-serif; font-weight:800; font-size:clamp(25px,1.6vw,28px); letter-spacing:-.02em; background:linear-gradient(120deg,var(--acc3),var(--acc)); -webkit-background-clip:text; background-clip:text; color:transparent;">TUMBAPP</span>
       </a>
       <div id="t2-navlinks" style="display:flex; align-items:center; gap:4px; margin-inline-start:auto;">
         <a href="#how2" style="color:#625A70; font-size:15px; font-weight:500; padding:9px 13px; border-radius:10px;" onmouseover="{{ navHover }}" onmouseout="{{ navOut }}">איך זה עובד</a>
@@ -826,13 +938,14 @@
         <a href="#contact2" style="display:inline-flex; align-items:center; gap:9px; padding:clamp(16px,1.15vw,20px) clamp(30px,2.3vw,40px); border-radius:100px; background:linear-gradient(135deg,var(--acc2),var(--acc)); color:#fff; font-weight:700; font-size:clamp(17px,1.15vw,20px); box-shadow:0 12px 38px rgba(124,92,246,.5); transition:transform .2s;" onmouseover="{{ ctaHover }}" onmouseout="{{ ctaOut }}">הצטרפו לפיילוט</a>
         <a href="#business2" style="display:inline-flex; align-items:center; gap:8px; padding:clamp(16px,1.15vw,20px) clamp(28px,2.2vw,38px); border-radius:100px; background:#FFFFFF; border:1px solid rgba(109,40,217,.16); color:#241B35; font-weight:600; font-size:clamp(17px,1.15vw,20px); transition:background .2s;" onmouseover="{{ ghostHover }}" onmouseout="{{ ghostOut }}">שיתוף פעולה לעסקים</a>
       </div>
-      <div style="display:flex; flex-wrap:wrap; gap:24px; margin-top:40px;">
+      <p class="t2-wild-phrase" lang="en" dir="ltr" style="margin:26px 0 0; font-size:clamp(15px,1.25vw,19px); font-weight:700; letter-spacing:.01em; color:var(--acc3);">Play Together. Earn Together. <span class="t2-wild">WILD</span> Together.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:24px; margin-top:32px;">
         <div style="display:flex; align-items:center; gap:10px;">
           <img src="assets/48605207-ed4c-4b5c-ba8c-b400b2752abf.png" alt="" style="width:clamp(38px,2.9vw,48px); height:clamp(38px,2.9vw,48px); display:block; filter:drop-shadow(0 4px 14px rgba(246,196,83,.45));">
           <div><div style="font-weight:700; font-size:clamp(15px,1.05vw,17.5px);">Coins אישיים</div><div style="font-size:clamp(12.5px,.9vw,14.5px); color:#625A70;">מטבע לכל משתמש</div></div>
         </div>
         <div style="display:flex; align-items:center; gap:10px;">
-          <span style="width:clamp(38px,2.9vw,48px); height:clamp(38px,2.9vw,48px); border-radius:12px; background:linear-gradient(135deg,var(--acc2),var(--acc3)); display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:800; color:#fff; font-size:13px; box-shadow:0 4px 16px rgba(124,92,246,.5);">XP</span>
+          <span style="width:clamp(38px,2.9vw,48px); height:clamp(38px,2.9vw,48px); border-radius:12px; background:linear-gradient(135deg,var(--acc2),var(--acc3)); display:flex; align-items:center; justify-content:center; font-family:'Open Sauce Sans',sans-serif; font-weight:800; color:#fff; font-size:13px; box-shadow:0 4px 16px rgba(124,92,246,.5);">XP</span>
           <div><div style="font-weight:700; font-size:clamp(15px,1.05vw,17.5px);">XP קבוצתי</div><div style="font-size:clamp(12.5px,.9vw,14.5px); color:#625A70;">התקדמות של כולם</div></div>
         </div>
         <div style="display:flex; align-items:center; gap:10px;">
@@ -896,7 +1009,7 @@
         <!-- floating XP chip -->
         <div style="position:absolute; bottom:calc(56px * var(--ps)); right:4%; z-index:4; animation:tFloat 7s ease-in-out infinite .9s;">
           <div style="background:rgba(255,255,255,.95); backdrop-filter:blur(10px); border:1px solid rgba(139,92,246,.30); border-radius:16px; padding:12px 16px; box-shadow:0 12px 30px rgba(109,40,217,.16); animation:tGlow 4s ease-in-out infinite; min-width:min(calc(170px * var(--ps)),100%);">
-            <div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'Outfit',sans-serif;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'Open Sauce Sans',sans-serif;">
               <span style="font-size:11.5px; color:#6D28D9; font-weight:600;">GROUP XP</span>
               <span style="font-size:13px; font-weight:800; color:#241B35;">LVL 12</span>
             </div>
@@ -910,7 +1023,7 @@
         <div style="position:absolute; top:calc(190px * var(--ps)); right:-2%; z-index:4; animation:tFloat 6s ease-in-out infinite 1.6s;">
           <div style="display:flex; align-items:center; gap:8px; background:rgba(255,255,255,.95); backdrop-filter:blur(10px); border:1px solid rgba(217,146,43,.38); border-radius:100px; padding:9px 15px; box-shadow:0 10px 26px rgba(109,40,217,.15);">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="#C2620E"><path d="M13.5 0.7s.9 2.6.9 4.7c0 2-1.3 3.7-3.4 3.7-2.1 0-3.6-1.7-3.6-3.7l0-.4C5.4 7.4 4 10.5 4 13.7 4 18.3 7.6 22 12 22s8-3.7 8-8.3c0-5.6-4.2-9.5-6.5-13z"></path></svg>
-            <span style="font-family:'Outfit',sans-serif; font-weight:800; font-size:14px; color:#B45309;">5 STREAK</span>
+            <span style="font-family:'Open Sauce Sans',sans-serif; font-weight:800; font-size:14px; color:#B45309;">5 STREAK</span>
           </div>
         </div>
       </div>
@@ -926,32 +1039,32 @@
       <div style="color:var(--acc3); font-weight:600; font-size:14px; letter-spacing:.05em;">איך זה עובד</div>
       <h2 style="font-size:clamp(30px,4vw,54px); font-weight:800; letter-spacing:-.02em; margin:12px 0 0; line-height:1.12;">ארבעה צעדים — וקבוצה שלא מפסיקה לשחק</h2>
     </div>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr)); gap:18px; margin-top:50px;">
-      <div data-reveal="" data-lift="" style="position:relative; background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:22px; padding:28px 24px; overflow:hidden;">
-        <div style="position:absolute; top:-18px; left:14px; font-family:'Outfit',sans-serif; font-weight:900; font-size:88px; color:rgba(139,92,246,.16); line-height:1;">1</div>
-        <div style="width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,#EDE9FE,#F5F3FF); border:1px solid rgba(139,92,246,.32); display:flex; align-items:center; justify-content:center;">
+    <div class="t2-steps-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr)); gap:18px; margin-top:50px;">
+      <div class="t2-step-card" data-reveal="" data-lift="" style="position:relative; background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:22px; padding:28px 24px; overflow:hidden;">
+        <div class="t2-step-num" style="position:absolute; top:-18px; left:14px; font-family:'Open Sauce Sans',sans-serif; font-weight:900; font-size:88px; color:rgba(139,92,246,.16); line-height:1;">1</div>
+        <div class="t2-step-icon" style="width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,#EDE9FE,#F5F3FF); border:1px solid rgba(139,92,246,.32); display:flex; align-items:center; justify-content:center;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M19 8v6M22 11h-6"></path></svg>
         </div>
         <h3 style="font-size:clamp(19px,1.32vw,22px); font-weight:700; margin:18px 0 6px;">יוצרים קבוצה</h3>
         <p style="color:#625A70; font-size:clamp(14.5px,.98vw,16.5px); margin:0; line-height:1.55;">חברים, כיתה, צוות, מחלקה או קהילה — קבוצה פרטית בכמה שניות.</p>
       </div>
-      <div data-reveal="" data-lift="" style="position:relative; background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:22px; padding:28px 24px; overflow:hidden;">
-        <div style="position:absolute; top:-18px; left:14px; font-family:'Outfit',sans-serif; font-weight:900; font-size:88px; color:rgba(139,92,246,.16); line-height:1;">2</div>
-        <div style="width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,#EDE9FE,#F5F3FF); border:1px solid rgba(139,92,246,.32); display:flex; align-items:center; justify-content:center;">
+      <div class="t2-step-card" data-reveal="" data-lift="" style="position:relative; background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:22px; padding:28px 24px; overflow:hidden;">
+        <div class="t2-step-num" style="position:absolute; top:-18px; left:14px; font-family:'Open Sauce Sans',sans-serif; font-weight:900; font-size:88px; color:rgba(139,92,246,.16); line-height:1;">2</div>
+        <div class="t2-step-icon" style="width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,#EDE9FE,#F5F3FF); border:1px solid rgba(139,92,246,.32); display:flex; align-items:center; justify-content:center;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
         </div>
         <h3 style="font-size:clamp(19px,1.32vw,22px); font-weight:700; margin:18px 0 6px;">משלימים משימות ואתגרים</h3>
         <p style="color:#625A70; font-size:clamp(14.5px,.98vw,16.5px); margin:0; line-height:1.55;">משחקונים יומיים, שאלות, הצבעות, הימורים חברתיים ו-Streaks.</p>
       </div>
-      <div data-reveal="" data-lift="" style="position:relative; background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:22px; padding:28px 24px; overflow:hidden;">
-        <div style="position:absolute; top:-18px; left:14px; font-family:'Outfit',sans-serif; font-weight:900; font-size:88px; color:rgba(184,117,20,.30); line-height:1;">3</div>
-        <img src="assets/48605207-ed4c-4b5c-ba8c-b400b2752abf.png" alt="מטבע TUMBAPP" style="width:54px; height:auto; display:block; filter:drop-shadow(0 8px 20px rgba(232,163,61,.4));">
+      <div class="t2-step-card" data-reveal="" data-lift="" style="position:relative; background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:22px; padding:28px 24px; overflow:hidden;">
+        <div class="t2-step-num" style="position:absolute; top:-18px; left:14px; font-family:'Open Sauce Sans',sans-serif; font-weight:900; font-size:88px; color:rgba(184,117,20,.30); line-height:1;">3</div>
+        <img class="t2-step-icon-img" src="assets/48605207-ed4c-4b5c-ba8c-b400b2752abf.png" alt="מטבע TUMBAPP" style="width:54px; height:auto; display:block; filter:drop-shadow(0 8px 20px rgba(232,163,61,.4));">
         <h3 style="font-size:clamp(19px,1.32vw,22px); font-weight:700; margin:18px 0 6px;">צוברים Coins, יהלומים ו-XP</h3>
         <p style="color:#625A70; font-size:clamp(14.5px,.98vw,16.5px); margin:0; line-height:1.55;">Coins ויהלומים אישיים לכל משתמש, ו-XP קבוצתי שמקדם את כולם יחד.</p>
       </div>
-      <div data-reveal="" data-lift="" style="position:relative; background:linear-gradient(150deg,#EDE9FE,#F5F3FF); border:1px solid rgba(139,92,246,.38); border-radius:22px; padding:28px 24px; overflow:hidden;">
-        <div style="position:absolute; top:-18px; left:14px; font-family:'Outfit',sans-serif; font-weight:900; font-size:88px; color:rgba(109,40,217,.16); line-height:1;">4</div>
-        <div style="width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,var(--acc2),var(--acc3)); box-shadow:0 8px 24px rgba(124,92,246,.5); display:flex; align-items:center; justify-content:center;">
+      <div class="t2-step-card" data-reveal="" data-lift="" style="position:relative; background:linear-gradient(150deg,#EDE9FE,#F5F3FF); border:1px solid rgba(139,92,246,.38); border-radius:22px; padding:28px 24px; overflow:hidden;">
+        <div class="t2-step-num" style="position:absolute; top:-18px; left:14px; font-family:'Open Sauce Sans',sans-serif; font-weight:900; font-size:88px; color:rgba(109,40,217,.16); line-height:1;">4</div>
+        <div class="t2-step-icon" style="width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,var(--acc2),var(--acc3)); box-shadow:0 8px 24px rgba(124,92,246,.5); display:flex; align-items:center; justify-content:center;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"></path><path d="M2 7h20v5H2z"></path><path d="M12 22V7"></path><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
         </div>
         <h3 style="font-size:clamp(19px,1.32vw,22px); font-weight:700; margin:18px 0 6px;">פותחים הטבות אמיתיות</h3>
@@ -984,7 +1097,7 @@
       </div>
 
       <!-- three connected cards -->
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr)); gap:20px; margin-top:46px;">
+      <div class="t2-eco-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr)); gap:20px; margin-top:46px;">
 
         <!-- Coins -->
         <div data-reveal="" data-lift="" style="position:relative; background:#FFFFFF; border:1px solid rgba(217,146,43,.34); border-radius:26px; padding:30px; overflow:hidden;">
@@ -1029,7 +1142,7 @@
         <div data-reveal="" data-lift="" style="position:relative; background:#FFFFFF; border:1px solid rgba(109,40,217,.34); border-radius:26px; padding:30px; overflow:hidden;">
           <div aria-hidden="true" style="position:absolute; top:-40px; left:-40px; width:180px; height:180px; border-radius:50%; background:radial-gradient(circle, rgba(109,40,217,.13), transparent 70%);"></div>
           <div style="position:relative; display:flex; align-items:center; gap:14px;">
-            <span style="width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,#6D28D9,#4C1D95); box-shadow:0 8px 22px rgba(109,40,217,.34); display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:900; font-size:18px; color:#fff;">XP</span>
+            <span style="width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,#6D28D9,#4C1D95); box-shadow:0 8px 22px rgba(109,40,217,.34); display:flex; align-items:center; justify-content:center; font-family:'Open Sauce Sans',sans-serif; font-weight:900; font-size:18px; color:#fff;">XP</span>
             <span style="display:inline-flex; align-items:center; gap:6px; background:#EDE9FE; border:1px solid rgba(109,40,217,.34); border-radius:100px; padding:5px 12px; font-size:12.5px; font-weight:700; color:#4C1D95;">קבוצתי</span>
           </div>
           <h3 style="position:relative; font-size:clamp(20px,1.4vw,24px); font-weight:800; margin:18px 0 0; line-height:1.3;">XP — ההתקדמות של כל הקבוצה</h3>
@@ -1037,7 +1150,7 @@
             כל חברי הקבוצה תורמים יחד ל־XP המשותף. ככל שהקבוצה עולה ברמות, היא פותחת גישה להטבות טובות יותר, אפשרויות חדשות ומתנות נוספות לכל הקבוצה.
           </p>
           <div style="position:relative; margin-top:18px; background:#F5F3FF; border:1px solid rgba(109,40,217,.2); border-radius:16px; padding:14px 16px;">
-            <div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'Outfit',sans-serif;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'Open Sauce Sans',sans-serif;">
               <span style="font-size:11.5px; color:#6D28D9; font-weight:700; letter-spacing:.04em;">GROUP XP</span>
               <span style="font-size:13px; font-weight:800; color:#241B35;">LVL 12</span>
             </div>
@@ -1080,7 +1193,7 @@
         </p>
 
         <!-- comparison badges -->
-        <ul style="list-style:none; padding:0; margin:20px 0 0; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr)); gap:10px;">
+        <ul class="t2-eco-badges-grid" style="list-style:none; padding:0; margin:20px 0 0; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr)); gap:10px;">
           <li style="display:flex; align-items:center; gap:10px; background:#FFF8EC; border:1px solid rgba(217,146,43,.3); border-radius:14px; padding:13px 15px; font-size:14px; color:#241B35;">
             <img src="assets/48605207-ed4c-4b5c-ba8c-b400b2752abf.png" alt="" aria-hidden="true" style="width:22px; height:auto; flex:none;">
             <span><strong>Coins</strong> — אישיים ונצברים בתדירות גבוהה</span>
@@ -1090,7 +1203,7 @@
             <span><strong>יהלומים</strong> — אישיים, נדירים ובעלי ערך גבוה</span>
           </li>
           <li style="display:flex; align-items:center; gap:10px; background:#EDE9FE; border:1px solid rgba(109,40,217,.3); border-radius:14px; padding:13px 15px; font-size:14px; color:#241B35;">
-            <span aria-hidden="true" style="flex:none; width:22px; height:22px; border-radius:7px; background:linear-gradient(135deg,#6D28D9,#4C1D95); display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:900; font-size:10px; color:#fff;">XP</span>
+            <span aria-hidden="true" style="flex:none; width:22px; height:22px; border-radius:7px; background:linear-gradient(135deg,#6D28D9,#4C1D95); display:flex; align-items:center; justify-content:center; font-family:'Open Sauce Sans',sans-serif; font-weight:900; font-size:10px; color:#fff;">XP</span>
             <span><strong>XP</strong> — משותף לכל הקבוצה</span>
           </li>
         </ul>
@@ -1143,27 +1256,27 @@
            below is the single source of progress state) -->
       <div style="display:flex; justify-content:space-between; gap:9px; margin-top:8px;">
         <div id="lvl-10" data-level="10" role="button" tabindex="0" aria-pressed="false" onclick="{{ selectLevel }}" onkeydown="{{ keyActivate }}" style="position:relative; display:flex; flex-direction:column; align-items:center; gap:7px; width:clamp(97px,30vw,175px); padding:2px; border:1px solid transparent; border-radius:14px; cursor:pointer; transition:transform .25s ease, opacity .25s ease, border-color .25s ease, box-shadow .25s ease;">
-          <span style="width:48px; height:48px; border-radius:50%; background:var(--lav); border:1px solid rgba(139,92,246,.32); display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:800; font-size:16px; color:var(--acc3);">10</span>
-          <span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:14.5px; color:#241B35;">Level 10</span>
+          <span style="width:48px; height:48px; border-radius:50%; background:var(--lav); border:1px solid rgba(139,92,246,.32); display:flex; align-items:center; justify-content:center; font-family:'Open Sauce Sans',sans-serif; font-weight:800; font-size:16px; color:var(--acc3);">10</span>
+          <span style="font-family:'Open Sauce Sans',sans-serif; font-weight:700; font-size:14.5px; color:#241B35;">Level 10</span>
           <span style="font-size:13px; color:#625A70; text-align:center; line-height:1.35;">הטבות ראשונות לקבוצה</span>
         </div>
 
         <div id="lvl-25" data-level="25" role="button" tabindex="0" aria-pressed="false" onclick="{{ selectLevel }}" onkeydown="{{ keyActivate }}" style="position:relative; display:flex; flex-direction:column; align-items:center; gap:7px; width:clamp(110px,32vw,193px); padding:2px; border:1px solid transparent; border-radius:14px; cursor:pointer; transition:transform .25s ease, opacity .25s ease, border-color .25s ease, box-shadow .25s ease;">
-          <span style="width:55px; height:55px; border-radius:50%; background:linear-gradient(135deg,var(--acc2),var(--acc3)); display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:800; font-size:17px; color:#fff;">25</span>
-          <span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:14.5px; color:#241B35;">Level 25</span>
+          <span style="width:55px; height:55px; border-radius:50%; background:linear-gradient(135deg,var(--acc2),var(--acc3)); display:flex; align-items:center; justify-content:center; font-family:'Open Sauce Sans',sans-serif; font-weight:800; font-size:17px; color:#fff;">25</span>
+          <span style="font-family:'Open Sauce Sans',sans-serif; font-weight:700; font-size:14.5px; color:#241B35;">Level 25</span>
           <span style="font-size:13px; color:#625A70; text-align:center; line-height:1.35;">הטבות טובות יותר</span>
         </div>
 
         <div id="lvl-50" data-level="50" role="button" tabindex="0" aria-pressed="false" onclick="{{ selectLevel }}" onkeydown="{{ keyActivate }}" style="position:relative; display:flex; flex-direction:column; align-items:center; gap:7px; width:clamp(129px,36vw,250px); padding:2px; border:1px solid transparent; border-radius:14px; cursor:pointer; transition:transform .25s ease, opacity .25s ease, border-color .25s ease, box-shadow .25s ease;">
-          <span style="width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,#FFEBC2,#D9922B); border:1px solid rgba(217,146,43,.45); display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:800; font-size:16px; color:#7A4C0E;">50</span>
-          <span style="font-family:'Outfit',sans-serif; font-weight:700; font-size:14.5px; color:#241B35;">Level 50</span>
+          <span style="width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,#FFEBC2,#D9922B); border:1px solid rgba(217,146,43,.45); display:flex; align-items:center; justify-content:center; font-family:'Open Sauce Sans',sans-serif; font-weight:800; font-size:16px; color:#7A4C0E;">50</span>
+          <span style="font-family:'Open Sauce Sans',sans-serif; font-weight:700; font-size:14.5px; color:#241B35;">Level 50</span>
           <span style="font-size:13px; color:#625A70; text-align:center; line-height:1.35;">ההטבות השוות ביותר</span>
         </div>
       </div>
 
       <!-- slim XP progress bar -->
       <div style="margin-top:16px;">
-        <div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'Outfit',sans-serif;">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'Open Sauce Sans',sans-serif;">
           <span style="font-size:11px; color:#6D28D9; font-weight:600; letter-spacing:.04em;">GROUP XP</span>
           <span id="journey-fill-label" style="font-size:12.5px; font-weight:800; color:#241B35;">Level 25</span>
         </div>
@@ -1184,7 +1297,7 @@
         המפה של TUMBAPP מציגה בתי עסק משתתפים והטבות זמינות באזור שלכם. תוכלו לגלות מסעדות, ברים, בתי קפה ואטרקציות קרובות, לבדוק אילו הטבות פתוחות עבורכם ולבחור יחד לאן יוצאים.
       </p>
 
-      <ul style="list-style:none; padding:0; margin:26px 0 0; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr)); gap:12px;">
+      <ul class="t2-map-features-grid" style="list-style:none; padding:0; margin:26px 0 0; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr)); gap:12px;">
         <li style="display:flex; align-items:center; gap:11px; background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:16px; padding:14px 16px; font-size:14.5px; font-weight:600; color:#241B35;">
           <span aria-hidden="true" style="flex:none; width:36px; height:36px; border-radius:11px; background:#EDE9FE; display:flex; align-items:center; justify-content:center;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
@@ -1295,7 +1408,7 @@
       <div data-reveal="" style="flex:1 1 420px; min-width:min(300px,100%);">
         <div style="color:var(--acc3); font-weight:600; font-size:14px; letter-spacing:.05em;">לעסקים</div>
         <h2 style="font-size:clamp(30px,4vw,52px); font-weight:800; letter-spacing:-.02em; margin:12px 0 0; line-height:1.13;">מביאים קבוצות של לקוחות. לא רק יחידים.</h2>
-        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr)); gap:14px; margin-top:28px;">
+        <div class="t2-pills-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr)); gap:14px; margin-top:28px;">
           <div data-lift="" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:16px; padding:16px 18px; font-size:15px; color:#241B35; font-weight:500;">פיילוטים בסיכון נמוך</div>
           <div data-lift="" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:16px; padding:16px 18px; font-size:15px; color:#241B35; font-weight:500;">מימוש הטבות ב-QR</div>
           <div data-lift="" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:16px; padding:16px 18px; font-size:15px; color:#241B35; font-weight:500;">פעילות מדידה וברורה</div>
@@ -1319,13 +1432,13 @@
           <div style="position:absolute; bottom:96px; right:-14px; animation:tFloat 6s ease-in-out infinite 1s;">
             <div style="display:flex; align-items:center; gap:9px; background:rgba(255,255,255,.95); backdrop-filter:blur(10px); border:1px solid rgba(18,161,80,.34); border-radius:14px; padding:11px 15px; box-shadow:0 10px 26px rgba(109,40,217,.15);">
               <span style="width:30px; height:30px; border-radius:9px; background:#E3F9ED; display:flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#12A150" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
-              <div style="font-family:'Outfit',sans-serif;"><div id="qr-chip-title" style="font-size:12.5px; font-weight:700; color:#241B35;">מימוש אושר</div><div id="qr-chip-sub" style="font-size:10.5px; color:#625A70;">קבוצה · 6 אנשים</div></div>
+              <div style="font-family:'Open Sauce Sans',sans-serif;"><div id="qr-chip-title" style="font-size:12.5px; font-weight:700; color:#241B35;">מימוש אושר</div><div id="qr-chip-sub" style="font-size:10.5px; color:#625A70;">קבוצה · 6 אנשים</div></div>
             </div>
           </div>
           <div style="position:relative; display:flex; gap:8px; margin-top:14px;">
-            <button id="qr-step-1" data-step="1" onclick="{{ selectQrStep }}" aria-pressed="false" style="flex:1; padding:10px 6px; border-radius:100px; border:1px solid rgba(109,40,217,.16); background:#F5F3FF; color:#625A70; font-family:'Rubik',sans-serif; font-size:13px; font-weight:600; cursor:pointer; transition:background .25s, color .25s, border-color .25s;">1 · מגיעים לעסק</button>
-            <button id="qr-step-2" data-step="2" onclick="{{ selectQrStep }}" aria-pressed="false" style="flex:1; padding:10px 6px; border-radius:100px; border:1px solid rgba(109,40,217,.16); background:#F5F3FF; color:#625A70; font-family:'Rubik',sans-serif; font-size:13px; font-weight:600; cursor:pointer; transition:background .25s, color .25s, border-color .25s;">2 · סורקים QR</button>
-            <button id="qr-step-3" data-step="3" onclick="{{ selectQrStep }}" aria-pressed="false" style="flex:1; padding:10px 6px; border-radius:100px; border:1px solid rgba(109,40,217,.16); background:#F5F3FF; color:#625A70; font-family:'Rubik',sans-serif; font-size:13px; font-weight:600; cursor:pointer; transition:background .25s, color .25s, border-color .25s;">3 · ההטבה מומשה</button>
+            <button id="qr-step-1" data-step="1" onclick="{{ selectQrStep }}" aria-pressed="false" style="flex:1; padding:10px 6px; border-radius:100px; border:1px solid rgba(109,40,217,.16); background:#F5F3FF; color:#625A70; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:13px; font-weight:600; cursor:pointer; transition:background .25s, color .25s, border-color .25s;">1 · מגיעים לעסק</button>
+            <button id="qr-step-2" data-step="2" onclick="{{ selectQrStep }}" aria-pressed="false" style="flex:1; padding:10px 6px; border-radius:100px; border:1px solid rgba(109,40,217,.16); background:#F5F3FF; color:#625A70; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:13px; font-weight:600; cursor:pointer; transition:background .25s, color .25s, border-color .25s;">2 · סורקים QR</button>
+            <button id="qr-step-3" data-step="3" onclick="{{ selectQrStep }}" aria-pressed="false" style="flex:1; padding:10px 6px; border-radius:100px; border:1px solid rgba(109,40,217,.16); background:#F5F3FF; color:#625A70; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:13px; font-weight:600; cursor:pointer; transition:background .25s, color .25s, border-color .25s;">3 · ההטבה מומשה</button>
           </div>
         </div>
       </div>
@@ -1343,7 +1456,7 @@
           <p style="color:#625A70; font-size:clamp(15.5px,1.02vw,17px); margin:14px 0 0; line-height:1.6; max-width:440px;">השאירו פרטים ונחזור אליכם — פיילוט פשוט, מדיד ובסיכון נמוך, בין אם אתם קבוצה או עסק.</p>
           <a href="mailto:tumba@tumbapp.com" style="display:inline-flex; align-items:center; gap:11px; margin-top:26px; background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:16px; padding:15px 20px; color:#241B35;">
             <span style="width:38px; height:38px; border-radius:11px; background:#EDE9FE; display:flex; align-items:center; justify-content:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 5L2 7"></path></svg></span>
-            <span style="font-family:'Outfit',sans-serif; font-weight:600; font-size:16px;">tumba@tumbapp.com</span>
+            <span style="font-family:'Open Sauce Sans',sans-serif; font-weight:600; font-size:16px;">tumba@tumbapp.com</span>
           </a>
 
           <!-- celebration mascot (below the fold: hydrated on scroll) -->
@@ -1356,9 +1469,9 @@
         </div>
         <form onsubmit="{{ submitForm }}" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:22px; padding:clamp(20px,3vw,28px); backdrop-filter:blur(12px); display:flex; flex-direction:column; gap:14px;">
           <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr)); gap:14px;">
-            <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">שם מלא</span><input id="t2-name" type="text" placeholder="ישראל ישראלי" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Rubik',sans-serif; font-size:15px; outline:none;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></label>
+            <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">שם מלא</span><input id="t2-name" type="text" placeholder="ישראל ישראלי" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:15px; outline:none;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></label>
             <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">אני...</span>
-              <select id="t2-who" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Rubik',sans-serif; font-size:15px; outline:none;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}">
+              <select id="t2-who" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:15px; outline:none;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}">
                 <option style="background:#FFFFFF;">קבוצה שרוצה להצטרף</option>
                 <option style="background:#FFFFFF;">עסק שמעוניין בשיתוף פעולה</option>
                 <option style="background:#FFFFFF;">משקיע / אחר</option>
@@ -1366,11 +1479,11 @@
             </label>
           </div>
           <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr)); gap:14px;">
-            <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">טלפון</span><input id="t2-phone" type="tel" placeholder="050-0000000" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Rubik',sans-serif; font-size:15px; outline:none;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></label>
-            <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">אימייל</span><input id="t2-email" type="email" placeholder="name@mail.com" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Rubik',sans-serif; font-size:15px; outline:none;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></label>
+            <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">טלפון</span><input id="t2-phone" type="tel" placeholder="050-0000000" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:15px; outline:none;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></label>
+            <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">אימייל</span><input id="t2-email" type="email" placeholder="name@mail.com" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:15px; outline:none;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></label>
           </div>
-          <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">הודעה</span><textarea id="t2-msg" rows="3" placeholder="ספרו לנו קצת עליכם" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Rubik',sans-serif; font-size:15px; outline:none; resize:vertical;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></textarea></label>
-          <button type="submit" style="margin-top:2px; padding:15px; border:none; border-radius:100px; background:linear-gradient(135deg,var(--acc2),var(--acc)); color:#fff; font-weight:700; font-size:clamp(16.5px,1.15vw,19px); font-family:'Rubik',sans-serif; cursor:pointer; box-shadow:0 10px 30px rgba(124,92,246,.4); transition:transform .2s;" onmouseover="{{ ctaHover }}" onmouseout="{{ ctaOut }}">דברו איתנו על פיילוט</button>
+          <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">הודעה</span><textarea id="t2-msg" rows="3" placeholder="ספרו לנו קצת עליכם" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:15px; outline:none; resize:vertical;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></textarea></label>
+          <button type="submit" style="margin-top:2px; padding:15px; border:none; border-radius:100px; background:linear-gradient(135deg,var(--acc2),var(--acc)); color:#fff; font-weight:700; font-size:clamp(16.5px,1.15vw,19px); font-family:'Open Sauce Sans','Rubik',sans-serif; cursor:pointer; box-shadow:0 10px 30px rgba(124,92,246,.4); transition:transform .2s;" onmouseover="{{ ctaHover }}" onmouseout="{{ ctaOut }}">דברו איתנו על פיילוט</button>
           <p style="font-size:12px; color:#625A70; text-align:center; margin:0;">השליחה תפתח את תוכנת המייל שלכם עם הפרטים.</p>
         </form>
       </div>
@@ -1382,7 +1495,7 @@
     <div style="max-width:1520px; margin:0 auto; padding:clamp(36px,5vw,60px) clamp(18px,4vw,44px); display:flex; flex-wrap:wrap; gap:26px; align-items:center; justify-content:space-between;">
       <div style="display:flex; align-items:center; gap:11px;">
         <img src="assets/52579c39-213c-41ad-b8b8-9bba2b49aa8a.png" alt="TUMBAPP" style="height:36px; width:auto; display:block;">
-        <span style="font-family:'Outfit',sans-serif; font-weight:800; font-size:24px; background:linear-gradient(120deg,var(--acc3),var(--acc)); -webkit-background-clip:text; background-clip:text; color:transparent;">TUMBAPP</span>
+        <span style="font-family:'Open Sauce Sans',sans-serif; font-weight:800; font-size:24px; background:linear-gradient(120deg,var(--acc3),var(--acc)); -webkit-background-clip:text; background-clip:text; color:transparent;">TUMBAPP</span>
       </div>
       <div style="display:flex; flex-wrap:wrap; gap:8px 22px;">
         <a href="#how2" style="color:#625A70; font-size:14.5px;">איך זה עובד</a>
@@ -1390,6 +1503,7 @@
         <a href="#map2" style="color:#625A70; font-size:14.5px;">מפת ההטבות</a><a href="#business2" style="color:#625A70; font-size:14.5px;">לעסקים</a>
         <a href="#contact2" style="color:#625A70; font-size:14.5px;">צור קשר</a>
       </div>
+      <span class="t2-wild-phrase" lang="en" dir="ltr" style="color:var(--acc3); font-size:15px; font-weight:700; letter-spacing:.02em;"><span class="t2-wild">WILD</span> Together</span>
       <span style="color:#625A70; font-size:13.5px;">© 2026 TUMBAPP. כל הזכויות שמורות.</span>
     </div>
   </footer>
