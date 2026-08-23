@@ -59,7 +59,7 @@ export function EconomyMain() {
           <Reveal className={styles.liftCard} style={{ position: "relative", background: "#FFFFFF", border: "1px solid rgba(34,166,201,.40)", borderRadius: 26, padding: 30, overflow: "hidden" }}>
             <div aria-hidden="true" style={{ position: "absolute", top: -40, insetInlineStart: -40, width: 180, height: 180, borderRadius: "50%", background: "radial-gradient(circle, rgba(34,166,201,.16), transparent 70%)" }} />
             <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 14 }}>
-              <Image src="/media/tumbapp-diamond.webp" alt="" aria-hidden="true" width={560} height={560} style={{ width: 52, height: "auto", display: "block", filter: "drop-shadow(0 8px 20px rgba(34,166,201,.4))" }} />
+              <Image src="/media/tumbapp-diamond.png" alt="" aria-hidden="true" width={1254} height={1254} style={{ width: 52, height: 52, objectFit: "contain", display: "block", filter: "drop-shadow(0 8px 20px rgba(34,166,201,.4))" }} />
               <span style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "#E4F6FA", border: "1px solid rgba(34,166,201,.40)", borderRadius: 100, padding: "5px 12px", fontSize: 12.5, fontWeight: 700, color: "#0F6E87" }}>אישי · נדיר</span>
             </div>
             <h3 style={{ position: "relative", fontSize: "clamp(20px,1.4vw,24px)", fontWeight: 800, margin: "18px 0 0", lineHeight: 1.3 }}>יהלומים — נדירים ובעלי ערך</h3>
