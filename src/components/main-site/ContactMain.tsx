@@ -1,29 +1,46 @@
 "use client";
 
-import { useRef } from "react";
+import { useState } from "react";
 import { Reveal } from "./Reveal";
 import { LazyVideo } from "../LazyVideo";
+import { CONTACT_EMAIL } from "@/src/lib/content";
+import { buildWaitlistPayload, validateWaitlistForm, type AudienceType, type FieldErrors } from "@/src/lib/waitlist";
+import { useWaitlistSubmit } from "@/src/lib/useWaitlistSubmit";
 import styles from "./main.module.css";
 
-const CONTACT_EMAIL = "tumba@tumbapp.com";
+const PRIVACY_POLICY_VERSION = process.env.NEXT_PUBLIC_PRIVACY_POLICY_VERSION ?? "";
+
+const WHO_OPTIONS: { label: string; audience: AudienceType }[] = [
+  { label: "קבוצה שרוצה להצטרף", audience: "USER" },
+  { label: "עסק שמעוניין בשיתוף פעולה", audience: "BUSINESS" },
+  { label: "משקיע / אחר", audience: "INVESTOR" },
+];
 
 export function ContactMain() {
-  const nameRef = useRef<HTMLInputElement>(null);
-  const whoRef = useRef<HTMLSelectElement>(null);
-  const phoneRef = useRef<HTMLInputElement>(null);
-  const emailRef = useRef<HTMLInputElement>(null);
-  const msgRef = useRef<HTMLTextAreaElement>(null);
+  const [fullName, setFullName] = useState("");
+  const [who, setWho] = useState(WHO_OPTIONS[0].label);
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [marketingConsent, setMarketingConsent] = useState(false);
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const { state, errorMessage, submit, isSubmitting } = useWaitlistSubmit();
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = "פנייה מהאתר — TUMBAPP";
-    const body =
-      `שם מלא: ${nameRef.current?.value ?? ""}\n` +
-      `אני: ${whoRef.current?.value ?? ""}\n` +
-      `טלפון: ${phoneRef.current?.value ?? ""}\n` +
-      `אימייל: ${emailRef.current?.value ?? ""}\n\n` +
-      `הודעה:\n${msgRef.current?.value ?? ""}`;
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if (isSubmitting) return;
+
+    const errors = validateWaitlistForm({ fullName, email, phone, privacyAccepted });
+    setFieldErrors(errors);
+    if (Object.keys(errors).length > 0) return;
+
+    const audienceType = WHO_OPTIONS.find((o) => o.label === who)?.audience ?? "USER";
+    const payload = buildWaitlistPayload(
+      { fullName, email, phone, audienceType, source: "main-website", marketingConsent, privacyAccepted },
+      PRIVACY_POLICY_VERSION,
+    );
+    await submit(payload);
   };
 
   return (
@@ -61,44 +78,83 @@ export function ContactMain() {
             </div>
           </div>
 
-          <form onSubmit={onSubmit} style={{ background: "#FFFFFF", border: "1px solid rgba(109,40,217,.12)", borderRadius: 22, padding: "clamp(20px,3vw,28px)", backdropFilter: "blur(12px)", display: "flex", flexDirection: "column", gap: 14 }}>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(140px,100%),1fr))", gap: 14 }}>
-              <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                <span style={{ fontSize: 13, color: "#625A70" }}>שם מלא</span>
-                <input ref={nameRef} type="text" placeholder="ישראל ישראלי" className={styles.formField} />
-              </label>
-              <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                <span style={{ fontSize: 13, color: "#625A70" }}>אני...</span>
-                <select ref={whoRef} className={styles.formField} defaultValue="קבוצה שרוצה להצטרף">
-                  <option>קבוצה שרוצה להצטרף</option>
-                  <option>עסק שמעוניין בשיתוף פעולה</option>
-                  <option>משקיע / אחר</option>
-                </select>
-              </label>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(140px,100%),1fr))", gap: 14 }}>
-              <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                <span style={{ fontSize: 13, color: "#625A70" }}>טלפון</span>
-                <input ref={phoneRef} type="tel" placeholder="050-0000000" className={styles.formField} />
-              </label>
-              <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                <span style={{ fontSize: 13, color: "#625A70" }}>אימייל</span>
-                <input ref={emailRef} type="email" placeholder="name@mail.com" className={styles.formField} />
-              </label>
-            </div>
-            <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-              <span style={{ fontSize: 13, color: "#625A70" }}>הודעה</span>
-              <textarea ref={msgRef} rows={3} placeholder="ספרו לנו קצת עליכם" className={styles.formField} style={{ resize: "vertical" }} />
-            </label>
-            <button
-              type="submit"
-              className={styles.ctaButton}
-              style={{ marginTop: 2, padding: 15, border: "none", borderRadius: 100, background: "linear-gradient(135deg,var(--acc2),var(--acc))", color: "#fff", fontWeight: 700, fontSize: "clamp(16.5px,1.15vw,19px)", fontFamily: "Rubik,sans-serif", cursor: "pointer", boxShadow: "0 10px 30px rgba(124,92,246,.4)" }}
+          {state === "success" ? (
+            <div
+              role="status"
+              style={{ background: "#FFFFFF", border: "1px solid rgba(18,161,80,.34)", borderRadius: 22, padding: "clamp(24px,4vw,32px)", textAlign: "center" }}
             >
-              דברו איתנו על פיילוט
-            </button>
-            <p style={{ fontSize: 12, color: "#625A70", textAlign: "center", margin: 0 }}>השליחה תפתח את תוכנת המייל שלכם עם הפרטים.</p>
-          </form>
+              <p style={{ fontWeight: 700, fontSize: 18, margin: 0 }}>נרשמתם בהצלחה! 🎉</p>
+              <p style={{ color: "#625A70", fontSize: 15, margin: "8px 0 0" }}>נחזור אליכם בקרוב.</p>
+            </div>
+          ) : (
+            <form onSubmit={onSubmit} noValidate style={{ background: "#FFFFFF", border: "1px solid rgba(109,40,217,.12)", borderRadius: 22, padding: "clamp(20px,3vw,28px)", backdropFilter: "blur(12px)", display: "flex", flexDirection: "column", gap: 14 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(140px,100%),1fr))", gap: 14 }}>
+                <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                  <span style={{ fontSize: 13, color: "#625A70" }}>שם מלא</span>
+                  <input
+                    type="text"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    placeholder="ישראל ישראלי"
+                    className={styles.formField}
+                  />
+                  {fieldErrors.fullName && (
+                    <span role="alert" style={{ color: "#C0392B", fontSize: 12.5 }}>{fieldErrors.fullName}</span>
+                  )}
+                </label>
+                <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                  <span style={{ fontSize: 13, color: "#625A70" }}>אני...</span>
+                  <select value={who} onChange={(e) => setWho(e.target.value)} className={styles.formField}>
+                    {WHO_OPTIONS.map((o) => (
+                      <option key={o.label}>{o.label}</option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(140px,100%),1fr))", gap: 14 }}>
+                <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                  <span style={{ fontSize: 13, color: "#625A70" }}>טלפון</span>
+                  <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="050-0000000" className={styles.formField} />
+                </label>
+                <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                  <span style={{ fontSize: 13, color: "#625A70" }}>אימייל</span>
+                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="name@mail.com" className={styles.formField} />
+                </label>
+              </div>
+              {(fieldErrors.email || fieldErrors.phone) && (
+                <p role="alert" style={{ color: "#C0392B", fontSize: 13, margin: 0 }}>{fieldErrors.email || fieldErrors.phone}</p>
+              )}
+              <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                <span style={{ fontSize: 13, color: "#625A70" }}>הודעה</span>
+                <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={3} placeholder="ספרו לנו קצת עליכם" className={styles.formField} style={{ resize: "vertical" }} />
+              </label>
+
+              <label style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: "#625A70", cursor: "pointer" }}>
+                <input type="checkbox" checked={privacyAccepted} onChange={(e) => setPrivacyAccepted(e.target.checked)} style={{ marginTop: 2 }} required />
+                <span>קראתי ואני מאשר/ת את מדיניות הפרטיות</span>
+              </label>
+              {fieldErrors.privacyAccepted && (
+                <p role="alert" style={{ color: "#C0392B", fontSize: 13, margin: 0 }}>{fieldErrors.privacyAccepted}</p>
+              )}
+              <label style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: "#625A70", cursor: "pointer" }}>
+                <input type="checkbox" checked={marketingConsent} onChange={(e) => setMarketingConsent(e.target.checked)} style={{ marginTop: 2 }} />
+                <span>אשמח לקבל עדכונים ומבצעים בדוא&quot;ל</span>
+              </label>
+
+              {state === "error" && (
+                <p role="alert" style={{ color: "#C0392B", fontSize: 13, margin: 0 }}>{errorMessage}</p>
+              )}
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={styles.ctaButton}
+                style={{ marginTop: 2, padding: 15, border: "none", borderRadius: 100, background: "linear-gradient(135deg,var(--acc2),var(--acc))", color: "#fff", fontWeight: 700, fontSize: "clamp(16.5px,1.15vw,19px)", fontFamily: "Rubik,sans-serif", cursor: isSubmitting ? "default" : "pointer", opacity: isSubmitting ? 0.7 : 1, boxShadow: "0 10px 30px rgba(124,92,246,.4)" }}
+              >
+                {isSubmitting ? "שולח..." : "דברו איתנו על פיילוט"}
+              </button>
+            </form>
+          )}
         </div>
       </Reveal>
     </section>

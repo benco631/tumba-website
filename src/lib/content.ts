@@ -22,4 +22,4 @@ export const PILOT_BENEFITS = [
   "הטבה לקבוצות של 5 אנשים ומעלה",
 ];
 
-export const CONTACT_EMAIL = "tumba@tumbapp.com";
+export const CONTACT_EMAIL = "tumba@tumbaapp.com";

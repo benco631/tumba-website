@@ -6,12 +6,12 @@ import { Reveal } from "./Reveal";
 import styles from "./main.module.css";
 
 const PILLS = [
-  { text: "פיילוטים בסיכון נמוך", highlight: false },
-  { text: "מימוש הטבות ב-QR", highlight: false },
-  { text: "פעילות מדידה וברורה", highlight: false },
-  { text: "שימור וביקורים חוזרים", highlight: false },
-  { text: "הטבות לפי Level קבוצתי", highlight: false },
-  { text: "שליטה מלאה בהטבה ובעלות", highlight: true },
+  "פיילוטים בסיכון נמוך",
+  "מימוש הטבות ב-QR",
+  "פעילות מדידה וברורה",
+  "שימור וביקורים חוזרים",
+  "הטבות לפי Level קבוצתי",
+  "שליטה מלאה בהטבה ובעלות",
 ];
 
 const QR_COPY: Record<string, [string, string]> = {
@@ -35,15 +35,11 @@ export function BusinessesMain() {
           <div className={styles.pillsGrid} style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(200px,100%),1fr))", gap: 14, marginTop: 28 }}>
             {PILLS.map((p) => (
               <div
-                key={p.text}
+                key={p}
                 className={styles.liftCard}
-                style={
-                  p.highlight
-                    ? { background: "linear-gradient(135deg,#EDE9FE,#F5F3FF)", border: "1px solid rgba(139,92,246,.38)", borderRadius: 16, padding: "16px 18px", fontSize: 15, color: "#fff", fontWeight: 600 }
-                    : { background: "#FFFFFF", border: "1px solid rgba(109,40,217,.12)", borderRadius: 16, padding: "16px 18px", fontSize: 15, color: "#241B35", fontWeight: 500 }
-                }
+                style={{ background: "#FFFFFF", border: "1px solid rgba(109,40,217,.12)", borderRadius: 16, padding: "16px 18px", fontSize: 15, color: "#241B35", fontWeight: 500 }}
               >
-                {p.text}
+                {p}
               </div>
             ))}
           </div>

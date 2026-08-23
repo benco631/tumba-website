@@ -19,7 +19,7 @@
 <meta name="twitter:description" content="TUMBAPP מחברת בין חברים באמצעות משימות, משחקים ופעילות קבוצתית. צוברים Coins ויהלומים, מעלים את ה־XP הקבוצתי ומממשים הטבות.">
 <meta name="twitter:image" content="https://tumbapp.com/icon-192.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"TUMBAPP","alternateName":"TUMBAPP – Play Together. Earn Together. WILD Together.","url":"https://tumbapp.com/","inLanguage":"he-IL","publisher":{"@type":"Organization","name":"TUMBAPP","url":"https://tumbapp.com/","logo":"https://tumbapp.com/icon-192.png","email":"tumba@tumbapp.com"}}
+{"@context":"https://schema.org","@type":"WebSite","name":"TUMBAPP","alternateName":"TUMBAPP – Play Together. Earn Together. WILD Together.","url":"https://tumbapp.com/","inLanguage":"he-IL","publisher":{"@type":"Organization","name":"TUMBAPP","url":"https://tumbapp.com/","logo":"https://tumbapp.com/icon-192.png","email":"tumba@tumbaapp.com"}}
 </script>
 <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -1414,7 +1414,7 @@
           <div data-lift="" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:16px; padding:16px 18px; font-size:15px; color:#241B35; font-weight:500;">פעילות מדידה וברורה</div>
           <div data-lift="" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:16px; padding:16px 18px; font-size:15px; color:#241B35; font-weight:500;">שימור וביקורים חוזרים</div>
           <div data-lift="" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:16px; padding:16px 18px; font-size:15px; color:#241B35; font-weight:500;">הטבות לפי Level קבוצתי</div>
-          <div data-lift="" style="background:linear-gradient(135deg,#EDE9FE,#F5F3FF); border:1px solid rgba(139,92,246,.38); border-radius:16px; padding:16px 18px; font-size:15px; color:#fff; font-weight:600;">שליטה מלאה בהטבה ובעלות</div>
+          <div data-lift="" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:16px; padding:16px 18px; font-size:15px; color:#241B35; font-weight:500;">שליטה מלאה בהטבה ובעלות</div>
         </div>
         <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-top:30px;">
           <a href="#contact2" style="display:inline-flex; align-items:center; gap:9px; padding:clamp(15px,1.1vw,19px) clamp(28px,2.2vw,38px); border-radius:100px; background:linear-gradient(135deg,var(--acc2),var(--acc)); color:#fff; font-weight:700; font-size:clamp(16px,1.1vw,18.5px); box-shadow:0 10px 32px rgba(124,92,246,.45); transition:transform .2s;" onmouseover="{{ ctaHover }}" onmouseout="{{ ctaOut }}">דברו איתנו על שיתוף פעולה</a>
@@ -1454,9 +1454,9 @@
           <h2 style="font-size:clamp(30px,3.8vw,50px); font-weight:800; letter-spacing:-.02em; margin:0; line-height:1.15;">רוצים להיות מהקבוצות הראשונות?</h2>
           <p style="color:#625A70; font-size:17.5px; margin:14px 0 0; font-weight:500;">רוצים להביא קבוצות אליכם?</p>
           <p style="color:#625A70; font-size:clamp(15.5px,1.02vw,17px); margin:14px 0 0; line-height:1.6; max-width:440px;">השאירו פרטים ונחזור אליכם — פיילוט פשוט, מדיד ובסיכון נמוך, בין אם אתם קבוצה או עסק.</p>
-          <a href="mailto:tumba@tumbapp.com" style="display:inline-flex; align-items:center; gap:11px; margin-top:26px; background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:16px; padding:15px 20px; color:#241B35;">
+          <a href="mailto:tumba@tumbaapp.com" style="display:inline-flex; align-items:center; gap:11px; margin-top:26px; background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:16px; padding:15px 20px; color:#241B35;">
             <span style="width:38px; height:38px; border-radius:11px; background:#EDE9FE; display:flex; align-items:center; justify-content:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 5L2 7"></path></svg></span>
-            <span style="font-family:'Open Sauce Sans',sans-serif; font-weight:600; font-size:16px;">tumba@tumbapp.com</span>
+            <span style="font-family:'Open Sauce Sans',sans-serif; font-weight:600; font-size:16px;">tumba@tumbaapp.com</span>
           </a>
 
           <!-- celebration mascot (below the fold: hydrated on scroll) -->
@@ -1467,14 +1467,15 @@
             </div>
           </div>
         </div>
-        <form onsubmit="{{ submitForm }}" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:22px; padding:clamp(20px,3vw,28px); backdrop-filter:blur(12px); display:flex; flex-direction:column; gap:14px;">
+        <div style="position:relative;">
+        <form id="t2-form" onsubmit="{{ submitForm }}" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:22px; padding:clamp(20px,3vw,28px); backdrop-filter:blur(12px); display:flex; flex-direction:column; gap:14px;">
           <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr)); gap:14px;">
             <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">שם מלא</span><input id="t2-name" type="text" placeholder="ישראל ישראלי" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:15px; outline:none;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></label>
             <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">אני...</span>
               <select id="t2-who" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:15px; outline:none;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}">
-                <option style="background:#FFFFFF;">קבוצה שרוצה להצטרף</option>
-                <option style="background:#FFFFFF;">עסק שמעוניין בשיתוף פעולה</option>
-                <option style="background:#FFFFFF;">משקיע / אחר</option>
+                <option value="USER" style="background:#FFFFFF;">קבוצה שרוצה להצטרף</option>
+                <option value="BUSINESS" style="background:#FFFFFF;">עסק שמעוניין בשיתוף פעולה</option>
+                <option value="INVESTOR" style="background:#FFFFFF;">משקיע / אחר</option>
               </select>
             </label>
           </div>
@@ -1483,9 +1484,17 @@
             <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">אימייל</span><input id="t2-email" type="email" placeholder="name@mail.com" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:15px; outline:none;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></label>
           </div>
           <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">הודעה</span><textarea id="t2-msg" rows="3" placeholder="ספרו לנו קצת עליכם" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:15px; outline:none; resize:vertical;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></textarea></label>
-          <button type="submit" style="margin-top:2px; padding:15px; border:none; border-radius:100px; background:linear-gradient(135deg,var(--acc2),var(--acc)); color:#fff; font-weight:700; font-size:clamp(16.5px,1.15vw,19px); font-family:'Open Sauce Sans','Rubik',sans-serif; cursor:pointer; box-shadow:0 10px 30px rgba(124,92,246,.4); transition:transform .2s;" onmouseover="{{ ctaHover }}" onmouseout="{{ ctaOut }}">דברו איתנו על פיילוט</button>
-          <p style="font-size:12px; color:#625A70; text-align:center; margin:0;">השליחה תפתח את תוכנת המייל שלכם עם הפרטים.</p>
+          <label style="display:flex; align-items:flex-start; gap:8px; font-size:13px; color:#625A70; cursor:pointer;"><input id="t2-privacy" type="checkbox" required style="margin-top:2px;"><span>קראתי ואני מאשר/ת את מדיניות הפרטיות</span></label>
+          <p id="t2-privacy-error" role="alert" style="display:none; color:#C0392B; font-size:12.5px; margin:0;"></p>
+          <label style="display:flex; align-items:flex-start; gap:8px; font-size:13px; color:#625A70; cursor:pointer;"><input id="t2-marketing" type="checkbox" style="margin-top:2px;"><span>אשמח לקבל עדכונים ומבצעים בדוא"ל</span></label>
+          <p id="t2-form-error" role="alert" style="display:none; color:#C0392B; font-size:13px; margin:0;"></p>
+          <button id="t2-submit-btn" type="submit" style="margin-top:2px; padding:15px; border:none; border-radius:100px; background:linear-gradient(135deg,var(--acc2),var(--acc)); color:#fff; font-weight:700; font-size:clamp(16.5px,1.15vw,19px); font-family:'Open Sauce Sans','Rubik',sans-serif; cursor:pointer; box-shadow:0 10px 30px rgba(124,92,246,.4); transition:transform .2s, opacity .2s;" onmouseover="{{ ctaHover }}" onmouseout="{{ ctaOut }}">דברו איתנו על פיילוט</button>
         </form>
+        <div id="t2-form-success" role="status" style="display:none; background:#FFFFFF; border:1px solid rgba(18,161,80,.34); border-radius:22px; padding:clamp(24px,4vw,32px); text-align:center;">
+          <p style="font-weight:700; font-size:18px; margin:0;">נרשמתם בהצלחה! 🎉</p>
+          <p style="color:#625A70; font-size:15px; margin:8px 0 0;">נחזור אליכם בקרוב.</p>
+        </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1511,7 +1520,7 @@
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script="" data-props="{&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#8B5CF6&quot;,&quot;options&quot;:[&quot;#7C5CF6&quot;,&quot;#8B5CF6&quot;,&quot;#6D4AFF&quot;,&quot;#9F7AEA&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;tumba@tumbapp.com&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#8B5CF6&quot;,&quot;options&quot;:[&quot;#7C5CF6&quot;,&quot;#8B5CF6&quot;,&quot;#6D4AFF&quot;,&quot;#9F7AEA&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;tumba@tumbaapp.com&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;apiBaseUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;privacyPolicyVersion&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   componentDidMount() {
     const root = document.getElementById('tumba2');
@@ -1743,16 +1752,82 @@ class Component extends DCLogic {
       },
       submitForm: (e) => {
         e.preventDefault();
+        if (this._waitlistSubmitting) return; // duplicate-submit guard
+
         const v = (id) => { const el = document.getElementById(id); return el ? el.value : ''; };
-        const to = this.props.contactEmail || 'tumba@tumbapp.com';
-        const subject = 'פנייה מהאתר — TUMBAPP';
-        const body =
-          'שם מלא: ' + v('t2-name') + '\n' +
-          'אני: ' + v('t2-who') + '\n' +
-          'טלפון: ' + v('t2-phone') + '\n' +
-          'אימייל: ' + v('t2-email') + '\n\n' +
-          'הודעה:\n' + v('t2-msg');
-        window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        const errEl = document.getElementById('t2-form-error');
+        const privacyErrEl = document.getElementById('t2-privacy-error');
+        const btn = document.getElementById('t2-submit-btn');
+        const formEl = document.getElementById('t2-form');
+        const successEl = document.getElementById('t2-form-success');
+        if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
+        if (privacyErrEl) { privacyErrEl.style.display = 'none'; privacyErrEl.textContent = ''; }
+
+        const fullName = v('t2-name').trim();
+        const email = v('t2-email').trim();
+        const phone = v('t2-phone').trim();
+        const whoEl = document.getElementById('t2-who');
+        const audienceType = whoEl ? whoEl.value : 'USER';
+        const marketingConsent = !!document.getElementById('t2-marketing')?.checked;
+        const privacyAccepted = !!document.getElementById('t2-privacy')?.checked;
+
+        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRe = /^[0-9()+\-\s]{7,20}$/;
+        if (!fullName) { if (errEl) { errEl.textContent = 'נא למלא שם מלא'; errEl.style.display = 'block'; } return; }
+        if (!email && !phone) { if (errEl) { errEl.textContent = 'נא להשאיר אימייל או טלפון'; errEl.style.display = 'block'; } return; }
+        if (email && !emailRe.test(email)) { if (errEl) { errEl.textContent = 'האימייל לא נראה תקין'; errEl.style.display = 'block'; } return; }
+        if (phone && !phoneRe.test(phone)) { if (errEl) { errEl.textContent = 'מספר הטלפון לא נראה תקין'; errEl.style.display = 'block'; } return; }
+        if (!privacyAccepted) { if (privacyErrEl) { privacyErrEl.textContent = 'יש לאשר את מדיניות הפרטיות כדי להמשיך'; privacyErrEl.style.display = 'block'; } return; }
+
+        const base = this.props.apiBaseUrl;
+        if (!base) {
+          console.error('[waitlist] apiBaseUrl is not configured');
+          if (errEl) { errEl.textContent = 'שירות ההרשמה אינו זמין כרגע. נסו שוב מאוחר יותר.'; errEl.style.display = 'block'; }
+          return;
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const payload = {
+          fullName: fullName,
+          audienceType: audienceType,
+          source: 'static-website',
+          marketingConsent: marketingConsent,
+          privacyAccepted: privacyAccepted,
+          privacyPolicyVersion: this.props.privacyPolicyVersion || '',
+        };
+        if (email) payload.email = email;
+        if (phone) payload.phone = phone;
+        if (params.get('utm_source')) payload.utmSource = params.get('utm_source');
+        if (params.get('utm_medium')) payload.utmMedium = params.get('utm_medium');
+        if (params.get('utm_campaign')) payload.utmCampaign = params.get('utm_campaign');
+
+        this._waitlistSubmitting = true;
+        if (btn) { btn.disabled = true; btn.style.opacity = '0.7'; btn.style.cursor = 'default'; btn.textContent = 'שולח...'; }
+
+        fetch(base.replace(/\/+$/, '') + '/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        }).then((res) => {
+          this._waitlistSubmitting = false;
+          if (res.ok) {
+            if (formEl) formEl.style.display = 'none';
+            if (successEl) successEl.style.display = 'block';
+            return;
+          }
+          if (btn) { btn.disabled = false; btn.style.opacity = '1'; btn.style.cursor = 'pointer'; btn.textContent = 'דברו איתנו על פיילוט'; }
+          console.error('[waitlist] submission rejected', res.status);
+          const msg = res.status === 409 ? 'הפרטים האלו כבר רשומים אצלנו — נעדכן אתכם בקרוב.'
+            : res.status === 429 ? 'יותר מדי ניסיונות. נסו שוב בעוד כמה דקות.'
+            : (res.status === 400 || res.status === 422) ? 'בדקו שהפרטים שהזנתם תקינים ונסו שוב.'
+            : 'משהו השתבש אצלנו. נסו שוב בעוד רגע.';
+          if (errEl) { errEl.textContent = msg; errEl.style.display = 'block'; }
+        }).catch(() => {
+          this._waitlistSubmitting = false;
+          if (btn) { btn.disabled = false; btn.style.opacity = '1'; btn.style.cursor = 'pointer'; btn.textContent = 'דברו איתנו על פיילוט'; }
+          console.error('[waitlist] network error');
+          if (errEl) { errEl.textContent = 'בעיית תקשורת. בדקו את החיבור לאינטרנט ונסו שוב.'; errEl.style.display = 'block'; }
+        });
       },
     };
   }

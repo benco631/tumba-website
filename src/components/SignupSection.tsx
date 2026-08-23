@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { CONTACT_EMAIL } from "@/src/lib/content";
 import { BrandSlogan } from "@/src/components/shared/WildTogether";
+import { buildWaitlistPayload, validateWaitlistForm, type FieldErrors } from "@/src/lib/waitlist";
+import { useWaitlistSubmit } from "@/src/lib/useWaitlistSubmit";
+
+const PRIVACY_POLICY_VERSION = process.env.NEXT_PUBLIC_PRIVACY_POLICY_VERSION ?? "";
 
 const inputStyle: React.CSSProperties = {
   background: "#FFFFFF",
@@ -30,37 +33,35 @@ function blurInput(e: React.FocusEvent<HTMLInputElement>) {
 }
 
 export function SignupSection() {
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [error, setError] = useState("");
+  const [marketingConsent, setMarketingConsent] = useState(false);
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const { state, errorMessage, submit, isSubmitting } = useWaitlistSubmit();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (isSubmitting) return;
 
-    const trimmedEmail = email.trim();
-    const trimmedPhone = phone.trim();
+    const errors = validateWaitlistForm({ fullName, email, phone, privacyAccepted });
+    setFieldErrors(errors);
+    if (Object.keys(errors).length > 0) return;
 
-    if (!trimmedEmail && !trimmedPhone) {
-      setError("נא להשאיר אימייל או מספר טלפון");
-      return;
-    }
-    if (trimmedEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
-      setError("האימייל לא נראה תקין");
-      return;
-    }
-    setError("");
-
-    // TODO: no waitlist backend/API exists yet in this project (confirmed by
-    // searching the codebase — the only existing "submission" pattern
-    // anywhere, on both tumbapp.com and the old ContactSection, is this same
-    // mailto: handoff). Wire this to a real endpoint (serverless function,
-    // Mailchimp/ConvertKit, Supabase, etc.) before launch so signups are
-    // actually captured — right now this only opens the visitor's mail app.
-    const subject = encodeURIComponent("הצטרפות להשקה — Tumbapp");
-    const body = encodeURIComponent(
-      `אימייל: ${trimmedEmail || "-"}\n` + `טלפון: ${trimmedPhone || "-"}`,
+    const payload = buildWaitlistPayload(
+      {
+        fullName,
+        email,
+        phone,
+        audienceType: "USER",
+        source: "users-landing-page",
+        marketingConsent,
+        privacyAccepted,
+      },
+      PRIVACY_POLICY_VERSION,
     );
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    await submit(payload);
   };
 
   return (
@@ -116,84 +117,145 @@ export function SignupSection() {
             </p>
           </div>
 
-          <form
-            onSubmit={handleSubmit}
-            noValidate
-            style={{
-              background: "#FFFFFF",
-              border: "1px solid rgba(109,40,217,.12)",
-              borderRadius: 20,
-              padding: "clamp(18px,3vw,24px)",
-              display: "flex",
-              flexDirection: "column",
-              gap: 12,
-            }}
-          >
-            <label style={labelStyle}>
-              <span style={labelTextStyle}>אימייל</span>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onFocus={focusInput}
-                onBlur={blurInput}
-                placeholder="name@mail.com"
-                style={inputStyle}
-                autoComplete="email"
-              />
-            </label>
-
-            <div style={{ display: "flex", alignItems: "center", gap: 10, color: "var(--ink2)", fontSize: 13 }}>
-              <span style={{ flex: 1, height: 1, background: "rgba(109,40,217,.14)" }} />
-              או
-              <span style={{ flex: 1, height: 1, background: "rgba(109,40,217,.14)" }} />
-            </div>
-
-            <label style={labelStyle}>
-              <span style={labelTextStyle}>טלפון</span>
-              <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                onFocus={focusInput}
-                onBlur={blurInput}
-                placeholder="050-0000000"
-                style={inputStyle}
-                autoComplete="tel"
-              />
-            </label>
-
-            {error && (
-              <p role="alert" style={{ color: "#C0392B", fontSize: 13.5, margin: 0 }}>
-                {error}
-              </p>
-            )}
-
-            <button
-              type="submit"
+          {state === "success" ? (
+            <div
+              role="status"
               style={{
-                marginTop: 4,
-                padding: 15,
-                border: "none",
-                borderRadius: 100,
-                background: "linear-gradient(135deg,var(--acc2),var(--acc))",
-                color: "#fff",
-                fontWeight: 700,
-                fontSize: 16.5,
-                fontFamily: "var(--font-rubik),sans-serif",
-                cursor: "pointer",
-                boxShadow: "0 10px 30px rgba(124,92,246,.38)",
-                transition: "transform .2s",
+                background: "#FFFFFF",
+                border: "1px solid rgba(18,161,80,.34)",
+                borderRadius: 20,
+                padding: "clamp(24px,4vw,32px)",
+                textAlign: "center",
+                color: "var(--ink)",
               }}
-              onMouseOver={(e) => { (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
-              onMouseOut={(e) => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
             >
-              אני רוצה להצטרף
-            </button>
-            <p style={{ fontSize: 12.5, color: "var(--ink2)", textAlign: "center", margin: 0 }}>
-              השליחה תפתח את תוכנת המייל שלכם עם הפרטים שמילאתם.
-            </p>
-          </form>
+              <p style={{ fontWeight: 700, fontSize: 17, margin: 0 }}>נרשמתם בהצלחה! 🎉</p>
+              <p style={{ color: "var(--ink2)", fontSize: 14.5, margin: "8px 0 0" }}>נעדכן אתכם ברגע ש־Tumbapp עולה לאוויר.</p>
+            </div>
+          ) : (
+            <form
+              onSubmit={handleSubmit}
+              noValidate
+              style={{
+                background: "#FFFFFF",
+                border: "1px solid rgba(109,40,217,.12)",
+                borderRadius: 20,
+                padding: "clamp(18px,3vw,24px)",
+                display: "flex",
+                flexDirection: "column",
+                gap: 12,
+              }}
+            >
+              <label style={labelStyle}>
+                <span style={labelTextStyle}>שם מלא</span>
+                <input
+                  type="text"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  onFocus={focusInput}
+                  onBlur={blurInput}
+                  placeholder="ישראל ישראלי"
+                  style={inputStyle}
+                  autoComplete="name"
+                />
+                {fieldErrors.fullName && (
+                  <span role="alert" style={{ color: "#C0392B", fontSize: 12.5 }}>{fieldErrors.fullName}</span>
+                )}
+              </label>
+
+              <label style={labelStyle}>
+                <span style={labelTextStyle}>אימייל</span>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  onFocus={focusInput}
+                  onBlur={blurInput}
+                  placeholder="name@mail.com"
+                  style={inputStyle}
+                  autoComplete="email"
+                />
+              </label>
+
+              <div style={{ display: "flex", alignItems: "center", gap: 10, color: "var(--ink2)", fontSize: 13 }}>
+                <span style={{ flex: 1, height: 1, background: "rgba(109,40,217,.14)" }} />
+                או
+                <span style={{ flex: 1, height: 1, background: "rgba(109,40,217,.14)" }} />
+              </div>
+
+              <label style={labelStyle}>
+                <span style={labelTextStyle}>טלפון</span>
+                <input
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  onFocus={focusInput}
+                  onBlur={blurInput}
+                  placeholder="050-0000000"
+                  style={inputStyle}
+                  autoComplete="tel"
+                />
+              </label>
+
+              {(fieldErrors.email || fieldErrors.phone) && (
+                <p role="alert" style={{ color: "#C0392B", fontSize: 13.5, margin: 0 }}>
+                  {fieldErrors.email || fieldErrors.phone}
+                </p>
+              )}
+
+              <label style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: "var(--ink2)", cursor: "pointer" }}>
+                <input
+                  type="checkbox"
+                  checked={privacyAccepted}
+                  onChange={(e) => setPrivacyAccepted(e.target.checked)}
+                  style={{ marginTop: 2 }}
+                  required
+                />
+                <span>קראתי ואני מאשר/ת את מדיניות הפרטיות</span>
+              </label>
+              {fieldErrors.privacyAccepted && (
+                <p role="alert" style={{ color: "#C0392B", fontSize: 13.5, margin: 0 }}>{fieldErrors.privacyAccepted}</p>
+              )}
+
+              <label style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: "var(--ink2)", cursor: "pointer" }}>
+                <input
+                  type="checkbox"
+                  checked={marketingConsent}
+                  onChange={(e) => setMarketingConsent(e.target.checked)}
+                  style={{ marginTop: 2 }}
+                />
+                <span>אשמח לקבל עדכונים ומבצעים בדוא&quot;ל</span>
+              </label>
+
+              {state === "error" && (
+                <p role="alert" style={{ color: "#C0392B", fontSize: 13.5, margin: 0 }}>{errorMessage}</p>
+              )}
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                style={{
+                  marginTop: 4,
+                  padding: 15,
+                  border: "none",
+                  borderRadius: 100,
+                  background: "linear-gradient(135deg,var(--acc2),var(--acc))",
+                  color: "#fff",
+                  fontWeight: 700,
+                  fontSize: 16.5,
+                  fontFamily: "var(--font-rubik),sans-serif",
+                  cursor: isSubmitting ? "default" : "pointer",
+                  opacity: isSubmitting ? 0.7 : 1,
+                  boxShadow: "0 10px 30px rgba(124,92,246,.38)",
+                  transition: "transform .2s, opacity .2s",
+                }}
+                onMouseOver={(e) => { if (!isSubmitting) (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)"; }}
+                onMouseOut={(e) => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
+              >
+                {isSubmitting ? "שולח..." : "אני רוצה להצטרף"}
+              </button>
+            </form>
+          )}
         </div>
 
         <p

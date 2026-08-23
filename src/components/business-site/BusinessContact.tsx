@@ -3,14 +3,38 @@
 import { useState } from "react";
 import { Reveal } from "../main-site/Reveal";
 import { CONTACT_EMAIL } from "@/src/lib/content";
+import { buildWaitlistPayload, validateWaitlistForm } from "@/src/lib/waitlist";
+import { useWaitlistSubmit } from "@/src/lib/useWaitlistSubmit";
 import styles from "./business.module.css";
+
+const PRIVACY_POLICY_VERSION = process.env.NEXT_PUBLIC_PRIVACY_POLICY_VERSION ?? "";
 
 const BUSINESS_TYPES = ["מסעדה", "בית קפה", "בר / פאב", "חדר בריחה", "באולינג / קריוקי", "קולנוע / מתחם בילוי", "הופעות / אירועים", "אטרקציה / פעילות קבוצתית", "אחר"];
 
-type FormState = { name: string; business: string; type: string; city: string; phone: string; email: string; note: string };
+type FormState = {
+  name: string;
+  business: string;
+  type: string;
+  city: string;
+  phone: string;
+  email: string;
+  note: string;
+  marketingConsent: boolean;
+  privacyAccepted: boolean;
+};
 type Errors = Partial<Record<keyof FormState, string>>;
 
-const initialState: FormState = { name: "", business: "", type: BUSINESS_TYPES[0], city: "", phone: "", email: "", note: "" };
+const initialState: FormState = {
+  name: "",
+  business: "",
+  type: BUSINESS_TYPES[0],
+  city: "",
+  phone: "",
+  email: "",
+  note: "",
+  marketingConsent: false,
+  privacyAccepted: false,
+};
 
 function Field({
   id,
@@ -39,51 +63,50 @@ function Field({
 export function BusinessContact() {
   const [form, setForm] = useState<FormState>(initialState);
   const [errors, setErrors] = useState<Errors>({});
-  const [sent, setSent] = useState(false);
+  const { state, errorMessage, submit, isSubmitting } = useWaitlistSubmit();
 
   const set = (key: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [key]: e.target.value }));
 
+  const setChecked = (key: "marketingConsent" | "privacyAccepted") => (e: React.ChangeEvent<HTMLInputElement>) =>
+    setForm((f) => ({ ...f, [key]: e.target.checked }));
+
   const validate = (): Errors => {
     const next: Errors = {};
-    if (!form.name.trim()) next.name = "נא למלא שם מלא";
     if (!form.business.trim()) next.business = "נא למלא שם עסק";
-    const hasPhone = form.phone.trim().length > 0;
-    const hasEmail = form.email.trim().length > 0;
-    if (!hasPhone && !hasEmail) {
-      next.phone = "נא להשאיר טלפון או אימייל";
-      next.email = "נא להשאיר טלפון או אימייל";
-    } else if (hasEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
-      next.email = "האימייל לא נראה תקין";
-    }
+    const shared = validateWaitlistForm({
+      fullName: form.name,
+      email: form.email,
+      phone: form.phone,
+      privacyAccepted: form.privacyAccepted,
+    });
+    if (shared.fullName) next.name = shared.fullName;
+    if (shared.email) next.email = shared.email;
+    if (shared.phone) next.phone = shared.phone;
+    if (shared.privacyAccepted) next.privacyAccepted = shared.privacyAccepted;
     return next;
   };
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     const nextErrors = validate();
     setErrors(nextErrors);
-    if (Object.keys(nextErrors).length > 0) {
-      setSent(false);
-      return;
-    }
+    if (Object.keys(nextErrors).length > 0) return;
 
-    // No real submission endpoint exists in this project yet (confirmed by
-    // searching the codebase — every "contact"/"signup" form here, on both
-    // tumbapp.com and /users, opens a mailto: draft rather than posting to a
-    // backend). This form follows the same established, honest fallback
-    // rather than faking a network submission. See final report.
-    const subject = "פנייה מעסק — Tumbapp לעסקים";
-    const body =
-      `שם מלא: ${form.name}\n` +
-      `שם העסק: ${form.business}\n` +
-      `סוג העסק: ${form.type}\n` +
-      `עיר: ${form.city || "-"}\n` +
-      `טלפון: ${form.phone || "-"}\n` +
-      `אימייל: ${form.email || "-"}\n\n` +
-      `הערה:\n${form.note || "-"}`;
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+    const payload = buildWaitlistPayload(
+      {
+        fullName: form.name,
+        email: form.email,
+        phone: form.phone,
+        audienceType: "BUSINESS",
+        source: "businesses-landing-page",
+        marketingConsent: form.marketingConsent,
+        privacyAccepted: form.privacyAccepted,
+      },
+      PRIVACY_POLICY_VERSION,
+    );
+    await submit(payload);
   };
 
   return (
@@ -125,6 +148,15 @@ export function BusinessContact() {
             </a>
           </div>
 
+          {state === "success" ? (
+            <div
+              role="status"
+              style={{ background: "#FFFFFF", border: "1px solid rgba(18,161,80,.34)", borderRadius: 20, padding: "clamp(24px,4vw,32px)", textAlign: "center" }}
+            >
+              <p style={{ fontWeight: 700, fontSize: 17, margin: 0, color: "var(--ink)" }}>הפרטים התקבלו בהצלחה! 🎉</p>
+              <p style={{ color: "var(--ink2)", fontSize: 14.5, margin: "8px 0 0" }}>ניצור איתכם קשר בקרוב לשיחת היכרות.</p>
+            </div>
+          ) : (
           <form onSubmit={onSubmit} noValidate style={{ background: "#FFFFFF", border: "1px solid rgba(109,40,217,.12)", borderRadius: 20, padding: "clamp(18px,3vw,26px)", display: "flex", flexDirection: "column", gap: 13 }}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(140px,100%),1fr))", gap: 13 }}>
               <Field id="biz-name" label="שם מלא" error={errors.name}>
@@ -203,22 +235,33 @@ export function BusinessContact() {
               <textarea id="biz-note" rows={3} value={form.note} onChange={set("note")} placeholder="ספרו לנו קצת על העסק" className={styles.formField} style={{ resize: "vertical" }} />
             </Field>
 
+            <label htmlFor="biz-privacy" style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: "var(--ink2)", cursor: "pointer" }}>
+              <input id="biz-privacy" type="checkbox" checked={form.privacyAccepted} onChange={setChecked("privacyAccepted")} style={{ marginTop: 2 }} required />
+              <span>קראתי ואני מאשר/ת את מדיניות הפרטיות</span>
+            </label>
+            {errors.privacyAccepted && (
+              <p role="alert" style={{ color: "#C0392B", fontSize: 12.5, margin: 0 }}>{errors.privacyAccepted}</p>
+            )}
+            <label htmlFor="biz-marketing" style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: "var(--ink2)", cursor: "pointer" }}>
+              <input id="biz-marketing" type="checkbox" checked={form.marketingConsent} onChange={setChecked("marketingConsent")} style={{ marginTop: 2 }} />
+              <span>אשמח לקבל עדכונים ומבצעים בדוא&quot;ל</span>
+            </label>
+
+            {state === "error" && (
+              <p role="alert" style={{ color: "#C0392B", fontSize: 12.5, margin: 0 }}>{errorMessage}</p>
+            )}
+
             <button
               type="submit"
+              disabled={isSubmitting}
               className={styles.ctaButton}
-              style={{ marginTop: 2, padding: 15, border: "none", borderRadius: 100, background: "linear-gradient(135deg,var(--acc2),var(--acc))", color: "#fff", fontWeight: 700, fontSize: 16, fontFamily: "Rubik,sans-serif", cursor: "pointer", boxShadow: "0 10px 28px rgba(124,92,246,.4)" }}
+              style={{ marginTop: 2, padding: 15, border: "none", borderRadius: 100, background: "linear-gradient(135deg,var(--acc2),var(--acc))", color: "#fff", fontWeight: 700, fontSize: 16, fontFamily: "Rubik,sans-serif", cursor: isSubmitting ? "default" : "pointer", opacity: isSubmitting ? 0.7 : 1, boxShadow: "0 10px 28px rgba(124,92,246,.4)" }}
             >
-              תאמו איתנו שיחת היכרות
+              {isSubmitting ? "שולח..." : "תאמו איתנו שיחת היכרות"}
             </button>
 
-            {sent ? (
-              <p role="status" style={{ fontSize: 12.5, color: "var(--ink2)", textAlign: "center", margin: 0 }}>
-                פתחנו עבורכם את תוכנת המייל עם הפרטים שמילאתם — נשאר רק לשלוח.
-              </p>
-            ) : (
-              <p style={{ fontSize: 12, color: "var(--ink2)", textAlign: "center", margin: 0 }}>השליחה תפתח את תוכנת המייל שלכם עם הפרטים.</p>
-            )}
           </form>
+          )}
         </div>
       </Reveal>
     </section>
