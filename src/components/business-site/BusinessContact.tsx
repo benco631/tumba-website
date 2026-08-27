@@ -3,11 +3,9 @@
 import { useState } from "react";
 import { Reveal } from "../main-site/Reveal";
 import { CONTACT_EMAIL } from "@/src/lib/content";
-import { buildWaitlistPayload, validateWaitlistForm } from "@/src/lib/waitlist";
+import { buildWaitlistPayload, getConfiguredPrivacyPolicyVersion, validateWaitlistForm } from "@/src/lib/waitlist";
 import { useWaitlistSubmit } from "@/src/lib/useWaitlistSubmit";
 import styles from "./business.module.css";
-
-const PRIVACY_POLICY_VERSION = process.env.NEXT_PUBLIC_PRIVACY_POLICY_VERSION ?? "";
 
 const BUSINESS_TYPES = ["מסעדה", "בית קפה", "בר / פאב", "חדר בריחה", "באולינג / קריוקי", "קולנוע / מתחם בילוי", "הופעות / אירועים", "אטרקציה / פעילות קבוצתית", "אחר"];
 
@@ -75,12 +73,10 @@ export function BusinessContact() {
     const next: Errors = {};
     if (!form.business.trim()) next.business = "נא למלא שם עסק";
     const shared = validateWaitlistForm({
-      fullName: form.name,
       email: form.email,
       phone: form.phone,
       privacyAccepted: form.privacyAccepted,
     });
-    if (shared.fullName) next.name = shared.fullName;
     if (shared.email) next.email = shared.email;
     if (shared.phone) next.phone = shared.phone;
     if (shared.privacyAccepted) next.privacyAccepted = shared.privacyAccepted;
@@ -99,12 +95,16 @@ export function BusinessContact() {
         fullName: form.name,
         email: form.email,
         phone: form.phone,
+        businessName: form.business,
+        businessType: form.type,
+        city: form.city,
+        message: form.note,
         audienceType: "BUSINESS",
         source: "businesses-landing-page",
         marketingConsent: form.marketingConsent,
         privacyAccepted: form.privacyAccepted,
       },
-      PRIVACY_POLICY_VERSION,
+      getConfiguredPrivacyPolicyVersion(),
     );
     await submit(payload);
   };
@@ -170,6 +170,7 @@ export function BusinessContact() {
                   aria-invalid={!!errors.name}
                   aria-describedby={errors.name ? "biz-name-error" : undefined}
                   autoComplete="name"
+                  maxLength={200}
                 />
               </Field>
               <Field id="biz-business" label="שם העסק" error={errors.business}>

@@ -4,11 +4,9 @@ import { useState } from "react";
 import { Reveal } from "./Reveal";
 import { LazyVideo } from "../LazyVideo";
 import { CONTACT_EMAIL } from "@/src/lib/content";
-import { buildWaitlistPayload, validateWaitlistForm, type AudienceType, type FieldErrors } from "@/src/lib/waitlist";
+import { buildWaitlistPayload, getConfiguredPrivacyPolicyVersion, validateWaitlistForm, type AudienceType, type FieldErrors } from "@/src/lib/waitlist";
 import { useWaitlistSubmit } from "@/src/lib/useWaitlistSubmit";
 import styles from "./main.module.css";
-
-const PRIVACY_POLICY_VERSION = process.env.NEXT_PUBLIC_PRIVACY_POLICY_VERSION ?? "";
 
 const WHO_OPTIONS: { label: string; audience: AudienceType }[] = [
   { label: "קבוצה שרוצה להצטרף", audience: "USER" },
@@ -31,14 +29,14 @@ export function ContactMain() {
     e.preventDefault();
     if (isSubmitting) return;
 
-    const errors = validateWaitlistForm({ fullName, email, phone, privacyAccepted });
+    const errors = validateWaitlistForm({ email, phone, privacyAccepted });
     setFieldErrors(errors);
     if (Object.keys(errors).length > 0) return;
 
     const audienceType = WHO_OPTIONS.find((o) => o.label === who)?.audience ?? "USER";
     const payload = buildWaitlistPayload(
-      { fullName, email, phone, audienceType, source: "main-website", marketingConsent, privacyAccepted },
-      PRIVACY_POLICY_VERSION,
+      { fullName, email, phone, message, audienceType, source: "main-website", marketingConsent, privacyAccepted },
+      getConfiguredPrivacyPolicyVersion(),
     );
     await submit(payload);
   };
@@ -92,15 +90,14 @@ export function ContactMain() {
                 <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                   <span style={{ fontSize: 13, color: "#625A70" }}>שם מלא</span>
                   <input
+                    id="main-name"
                     type="text"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="ישראל ישראלי"
                     className={styles.formField}
+                    maxLength={200}
                   />
-                  {fieldErrors.fullName && (
-                    <span role="alert" style={{ color: "#C0392B", fontSize: 12.5 }}>{fieldErrors.fullName}</span>
-                  )}
                 </label>
                 <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                   <span style={{ fontSize: 13, color: "#625A70" }}>אני...</span>
@@ -114,23 +111,23 @@ export function ContactMain() {
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(140px,100%),1fr))", gap: 14 }}>
                 <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                   <span style={{ fontSize: 13, color: "#625A70" }}>טלפון</span>
-                  <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="050-0000000" className={styles.formField} />
+                  <input id="main-phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="050-0000000" className={styles.formField} aria-invalid={!!fieldErrors.phone} aria-describedby={fieldErrors.phone ? "main-contact-error" : undefined} />
                 </label>
                 <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                   <span style={{ fontSize: 13, color: "#625A70" }}>אימייל</span>
-                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="name@mail.com" className={styles.formField} />
+                  <input id="main-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="name@mail.com" className={styles.formField} aria-invalid={!!fieldErrors.email} aria-describedby={fieldErrors.email ? "main-contact-error" : undefined} />
                 </label>
               </div>
               {(fieldErrors.email || fieldErrors.phone) && (
-                <p role="alert" style={{ color: "#C0392B", fontSize: 13, margin: 0 }}>{fieldErrors.email || fieldErrors.phone}</p>
+                <p id="main-contact-error" role="alert" style={{ color: "#C0392B", fontSize: 13, margin: 0 }}>{fieldErrors.email || fieldErrors.phone}</p>
               )}
               <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                 <span style={{ fontSize: 13, color: "#625A70" }}>הודעה</span>
-                <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={3} placeholder="ספרו לנו קצת עליכם" className={styles.formField} style={{ resize: "vertical" }} />
+                <textarea id="main-message" value={message} onChange={(e) => setMessage(e.target.value)} rows={3} placeholder="ספרו לנו קצת עליכם" className={styles.formField} style={{ resize: "vertical" }} />
               </label>
 
               <label style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: "#625A70", cursor: "pointer" }}>
-                <input type="checkbox" checked={privacyAccepted} onChange={(e) => setPrivacyAccepted(e.target.checked)} style={{ marginTop: 2 }} required />
+                <input id="main-privacy" type="checkbox" checked={privacyAccepted} onChange={(e) => setPrivacyAccepted(e.target.checked)} style={{ marginTop: 2 }} required />
                 <span>קראתי ואני מאשר/ת את מדיניות הפרטיות</span>
               </label>
               {fieldErrors.privacyAccepted && (
