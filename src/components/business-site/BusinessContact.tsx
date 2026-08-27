@@ -3,10 +3,11 @@
 import { useState } from "react";
 import { Reveal } from "../main-site/Reveal";
 import { CONTACT_EMAIL } from "@/src/lib/content";
-import { PrivacyPolicyLabel } from "@/src/components/shared/PrivacyPolicyLabel";
-import { buildWaitlistPayload, getConfiguredPrivacyPolicyVersion, validateWaitlistForm } from "@/src/lib/waitlist";
+import { buildWaitlistPayload, validateWaitlistForm } from "@/src/lib/waitlist";
 import { useWaitlistSubmit } from "@/src/lib/useWaitlistSubmit";
 import styles from "./business.module.css";
+
+const PRIVACY_POLICY_VERSION = process.env.NEXT_PUBLIC_PRIVACY_POLICY_VERSION ?? "";
 
 const BUSINESS_TYPES = ["מסעדה", "בית קפה", "בר / פאב", "חדר בריחה", "באולינג / קריוקי", "קולנוע / מתחם בילוי", "הופעות / אירועים", "אטרקציה / פעילות קבוצתית", "אחר"];
 
@@ -74,10 +75,12 @@ export function BusinessContact() {
     const next: Errors = {};
     if (!form.business.trim()) next.business = "נא למלא שם עסק";
     const shared = validateWaitlistForm({
+      fullName: form.name,
       email: form.email,
       phone: form.phone,
       privacyAccepted: form.privacyAccepted,
     });
+    if (shared.fullName) next.name = shared.fullName;
     if (shared.email) next.email = shared.email;
     if (shared.phone) next.phone = shared.phone;
     if (shared.privacyAccepted) next.privacyAccepted = shared.privacyAccepted;
@@ -96,16 +99,12 @@ export function BusinessContact() {
         fullName: form.name,
         email: form.email,
         phone: form.phone,
-        businessName: form.business,
-        businessType: form.type,
-        city: form.city,
-        message: form.note,
         audienceType: "BUSINESS",
         source: "businesses-landing-page",
         marketingConsent: form.marketingConsent,
         privacyAccepted: form.privacyAccepted,
       },
-      getConfiguredPrivacyPolicyVersion(),
+      PRIVACY_POLICY_VERSION,
     );
     await submit(payload);
   };
@@ -171,7 +170,6 @@ export function BusinessContact() {
                   aria-invalid={!!errors.name}
                   aria-describedby={errors.name ? "biz-name-error" : undefined}
                   autoComplete="name"
-                  maxLength={200}
                 />
               </Field>
               <Field id="biz-business" label="שם העסק" error={errors.business}>
@@ -237,13 +235,10 @@ export function BusinessContact() {
               <textarea id="biz-note" rows={3} value={form.note} onChange={set("note")} placeholder="ספרו לנו קצת על העסק" className={styles.formField} style={{ resize: "vertical" }} />
             </Field>
 
-            <div style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: "var(--ink2)" }}>
+            <label htmlFor="biz-privacy" style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: "var(--ink2)", cursor: "pointer" }}>
               <input id="biz-privacy" type="checkbox" checked={form.privacyAccepted} onChange={setChecked("privacyAccepted")} style={{ marginTop: 2 }} required />
-              <span>
-                <label htmlFor="biz-privacy" style={{ cursor: "pointer" }}>קראתי ואני מאשר/ת את </label>
-                <PrivacyPolicyLabel />
-              </span>
-            </div>
+              <span>קראתי ואני מאשר/ת את מדיניות הפרטיות</span>
+            </label>
             {errors.privacyAccepted && (
               <p role="alert" style={{ color: "#C0392B", fontSize: 12.5, margin: 0 }}>{errors.privacyAccepted}</p>
             )}
