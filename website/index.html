@@ -816,6 +816,12 @@
       padding: 4px 9px !important;
     }
   }
+  .t2-privacy-link:focus-visible,
+  .t2-footer-privacy:focus-visible {
+    border-radius: 4px;
+    outline: 3px solid #6D28D9;
+    outline-offset: 3px;
+  }
 </style>
 </helmet>
 <div id="tumba2" lang="he" dir="rtl" style="--acc:#8B5CF6; --acc2:#8B5CF6; --acc3:#6D28D9; --lav:#EDE9FE; --soft:#F5F3FF; --offw:#FAFAFF; --card:#FFFFFF; --ink:#241B35; --ink2:#625A70; --gold:#D9922B; --gold2:#B87514; --goldink:#A8620A; --gem:#22A6C9; --gem2:#0E7490; --gemink:#0F6E87; --green:#12A150; position:relative; overflow:hidden; background:radial-gradient(1200px 800px at 85% -5%, #EDE9FE 0%, #F5F3FF 55%), #FAFAFF; color:#241B35; font-family:'Open Sauce Sans','Rubik',-apple-system,system-ui,sans-serif; -webkit-font-smoothing:antialiased; line-height:1.55;">
@@ -1470,7 +1476,7 @@
         <div style="position:relative;">
         <form id="t2-form" onsubmit="{{ submitForm }}" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.12); border-radius:22px; padding:clamp(20px,3vw,28px); backdrop-filter:blur(12px); display:flex; flex-direction:column; gap:14px;">
           <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr)); gap:14px;">
-            <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">שם מלא</span><input id="t2-name" type="text" placeholder="ישראל ישראלי" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:15px; outline:none;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></label>
+            <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">שם מלא</span><input id="t2-name" type="text" maxlength="200" placeholder="ישראל ישראלי" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:15px; outline:none;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></label>
             <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">אני...</span>
               <select id="t2-who" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:15px; outline:none;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}">
                 <option value="USER" style="background:#FFFFFF;">קבוצה שרוצה להצטרף</option>
@@ -1480,11 +1486,11 @@
             </label>
           </div>
           <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr)); gap:14px;">
-            <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">טלפון</span><input id="t2-phone" type="tel" placeholder="050-0000000" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:15px; outline:none;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></label>
+            <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">טלפון</span><input id="t2-phone" type="tel" placeholder="050-0000000" aria-describedby="t2-form-error" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:15px; outline:none;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></label>
             <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">אימייל</span><input id="t2-email" type="email" placeholder="name@mail.com" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:15px; outline:none;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></label>
           </div>
           <label style="display:flex; flex-direction:column; gap:6px;"><span style="font-size:13px; color:#625A70;">הודעה</span><textarea id="t2-msg" rows="3" placeholder="ספרו לנו קצת עליכם" style="background:#FFFFFF; border:1px solid rgba(109,40,217,.14); border-radius:12px; padding:12px 14px; color:#241B35; font-family:'Open Sauce Sans','Rubik',sans-serif; font-size:15px; outline:none; resize:vertical;" onfocus="{{ fFocus }}" onblur="{{ fBlur }}"></textarea></label>
-          <label style="display:flex; align-items:flex-start; gap:8px; font-size:13px; color:#625A70; cursor:pointer;"><input id="t2-privacy" type="checkbox" required style="margin-top:2px;"><span>קראתי ואני מאשר/ת את מדיניות הפרטיות</span></label>
+          <div style="display:flex; align-items:flex-start; gap:8px; font-size:13px; color:#625A70;"><input id="t2-privacy" type="checkbox" required style="margin-top:2px;"><span><label for="t2-privacy" style="cursor:pointer;">קראתי ואני מאשר/ת את </label><span id="t2-privacy-link-text">מדיניות הפרטיות</span></span></div>
           <p id="t2-privacy-error" role="alert" style="display:none; color:#C0392B; font-size:12.5px; margin:0;"></p>
           <label style="display:flex; align-items:flex-start; gap:8px; font-size:13px; color:#625A70; cursor:pointer;"><input id="t2-marketing" type="checkbox" style="margin-top:2px;"><span>אשמח לקבל עדכונים ומבצעים בדוא"ל</span></label>
           <p id="t2-form-error" role="alert" style="display:none; color:#C0392B; font-size:13px; margin:0;"></p>
@@ -1511,6 +1517,7 @@
         <a href="#economy2" style="color:#625A70; font-size:14.5px;">הכלכלה</a>
         <a href="#map2" style="color:#625A70; font-size:14.5px;">מפת ההטבות</a><a href="#business2" style="color:#625A70; font-size:14.5px;">לעסקים</a>
         <a href="#contact2" style="color:#625A70; font-size:14.5px;">צור קשר</a>
+        <a class="t2-footer-privacy" href="/privacy/" style="color:#625A70; font-size:14.5px; text-decoration:underline;">מדיניות הפרטיות</a>
       </div>
       <span class="t2-wild-phrase" lang="en" dir="ltr" style="color:var(--acc3); font-size:15px; font-weight:700; letter-spacing:.02em;"><span class="t2-wild">WILD</span> Together</span>
       <span style="color:#625A70; font-size:13.5px;">© 2026 TUMBAPP. כל הזכויות שמורות.</span>
@@ -1520,7 +1527,7 @@
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script="" data-props="{&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#8B5CF6&quot;,&quot;options&quot;:[&quot;#7C5CF6&quot;,&quot;#8B5CF6&quot;,&quot;#6D4AFF&quot;,&quot;#9F7AEA&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;tumba@tumbaapp.com&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;apiBaseUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;privacyPolicyVersion&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#8B5CF6&quot;,&quot;options&quot;:[&quot;#7C5CF6&quot;,&quot;#8B5CF6&quot;,&quot;#6D4AFF&quot;,&quot;#9F7AEA&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;tumba@tumbaapp.com&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;apiBaseUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;privacyPolicyVersion&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2026-08-23&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;privacyPolicyUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;/privacy/waitlist/&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   componentDidMount() {
     const root = document.getElementById('tumba2');
@@ -1528,6 +1535,21 @@ class Component extends DCLogic {
 
     const acc = this.props.accentColor;
     if (acc) { root.style.setProperty('--acc', acc); root.style.setProperty('--acc2', acc); }
+
+    // This form collects a waitlist lead, so its consent link points at the
+    // website/waitlist-scoped policy (/privacy/waitlist/), not the general
+    // app policy (/privacy/) linked from the page footer above.
+    const privacyLinkText = document.getElementById('t2-privacy-link-text');
+    if (privacyLinkText && this.props.privacyPolicyUrl) {
+      const a = document.createElement('a');
+      a.href = this.props.privacyPolicyUrl;
+      a.className = 't2-privacy-link';
+      a.style.color = 'inherit';
+      a.style.textDecoration = 'underline';
+      a.textContent = 'מדיניות הפרטיות';
+      a.addEventListener('click', (e) => e.stopPropagation());
+      privacyLinkText.replaceWith(a);
+    }
 
     // responsive nav
     const links = document.getElementById('t2-navlinks');
@@ -1766,37 +1788,66 @@ class Component extends DCLogic {
         const fullName = v('t2-name').trim();
         const email = v('t2-email').trim();
         const phone = v('t2-phone').trim();
+        const message = v('t2-msg').trim();
         const whoEl = document.getElementById('t2-who');
         const audienceType = whoEl ? whoEl.value : 'USER';
         const marketingConsent = !!document.getElementById('t2-marketing')?.checked;
         const privacyAccepted = !!document.getElementById('t2-privacy')?.checked;
 
+        // This standalone page has no package build step, so it deliberately
+        // performs strict structural checks without loading a phone library
+        // from an untrusted CDN. The backend remains authoritative for
+        // semantic validity and canonical E.164 storage.
         const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const phoneRe = /^[0-9()+\-\s]{7,20}$/;
-        if (!fullName) { if (errEl) { errEl.textContent = 'נא למלא שם מלא'; errEl.style.display = 'block'; } return; }
+        const phoneStructureValid = (value) => {
+          if (!/^[+0-9() -]+$/.test(value)) return false;
+          if (value.includes('+') && (!value.startsWith('+') || value.indexOf('+', 1) !== -1)) return false;
+          let depth = 0;
+          let pairs = 0;
+          for (const character of value) {
+            if (character === '(') {
+              if (depth !== 0) return false;
+              depth = 1;
+              pairs += 1;
+            } else if (character === ')') {
+              if (depth !== 1) return false;
+              depth = 0;
+            }
+          }
+          const digitCount = value.replace(/\D/g, '').length;
+          return depth === 0 && pairs <= 1 && digitCount >= 7 && digitCount <= 15;
+        };
+        const phoneEl = document.getElementById('t2-phone');
+        if (phoneEl) phoneEl.removeAttribute('aria-invalid');
         if (!email && !phone) { if (errEl) { errEl.textContent = 'נא להשאיר אימייל או טלפון'; errEl.style.display = 'block'; } return; }
         if (email && !emailRe.test(email)) { if (errEl) { errEl.textContent = 'האימייל לא נראה תקין'; errEl.style.display = 'block'; } return; }
-        if (phone && !phoneRe.test(phone)) { if (errEl) { errEl.textContent = 'מספר הטלפון לא נראה תקין'; errEl.style.display = 'block'; } return; }
+        if (phone && !phoneStructureValid(phone)) {
+          if (phoneEl) { phoneEl.setAttribute('aria-invalid', 'true'); phoneEl.focus(); }
+          if (errEl) { errEl.textContent = 'יש להזין מספר טלפון ישראלי תקין או מספר בינלאומי הכולל קידומת מדינה.'; errEl.style.display = 'block'; }
+          return;
+        }
         if (!privacyAccepted) { if (privacyErrEl) { privacyErrEl.textContent = 'יש לאשר את מדיניות הפרטיות כדי להמשיך'; privacyErrEl.style.display = 'block'; } return; }
 
         const base = this.props.apiBaseUrl;
-        if (!base) {
-          console.error('[waitlist] apiBaseUrl is not configured');
+        if (!base || !this.props.privacyPolicyVersion || !this.props.privacyPolicyUrl) {
+          // No console output: a missing/unapproved backend URL is expected
+          // configuration state before launch, not a bug to report.
           if (errEl) { errEl.textContent = 'שירות ההרשמה אינו זמין כרגע. נסו שוב מאוחר יותר.'; errEl.style.display = 'block'; }
           return;
         }
 
         const params = new URLSearchParams(window.location.search);
         const payload = {
-          fullName: fullName,
           audienceType: audienceType,
           source: 'static-website',
           marketingConsent: marketingConsent,
           privacyAccepted: privacyAccepted,
           privacyPolicyVersion: this.props.privacyPolicyVersion || '',
         };
+        if (fullName) payload.fullName = fullName;
         if (email) payload.email = email;
         if (phone) payload.phone = phone;
+        if (message) payload.message = message;
         if (params.get('utm_source')) payload.utmSource = params.get('utm_source');
         if (params.get('utm_medium')) payload.utmMedium = params.get('utm_medium');
         if (params.get('utm_campaign')) payload.utmCampaign = params.get('utm_campaign');
@@ -1816,8 +1867,11 @@ class Component extends DCLogic {
             return;
           }
           if (btn) { btn.disabled = false; btn.style.opacity = '1'; btn.style.cursor = 'pointer'; btn.textContent = 'דברו איתנו על פיילוט'; }
-          console.error('[waitlist] submission rejected', res.status);
-          const msg = res.status === 409 ? 'הפרטים האלו כבר רשומים אצלנו — נעדכן אתכם בקרוב.'
+          // 400/409/429 are expected application outcomes, not bugs — never
+          // logged. The 409 message deliberately doesn't claim a specific
+          // field is "already registered" (that would let a submission be
+          // used to probe whether a given email/phone exists in the system).
+          const msg = res.status === 409 ? 'לא ניתן להשלים את ההרשמה כרגע. אם כבר נרשמתם בעבר, אין צורך לשלוח שוב.'
             : res.status === 429 ? 'יותר מדי ניסיונות. נסו שוב בעוד כמה דקות.'
             : (res.status === 400 || res.status === 422) ? 'בדקו שהפרטים שהזנתם תקינים ונסו שוב.'
             : 'משהו השתבש אצלנו. נסו שוב בעוד רגע.';
@@ -1825,7 +1879,9 @@ class Component extends DCLogic {
         }).catch(() => {
           this._waitlistSubmitting = false;
           if (btn) { btn.disabled = false; btn.style.opacity = '1'; btn.style.cursor = 'pointer'; btn.textContent = 'דברו איתנו על פיילוט'; }
-          console.error('[waitlist] network error');
+          // No monitoring service is wired up for this static page; a
+          // network failure surfaces to the visitor via the message below
+          // rather than as raw console output.
           if (errEl) { errEl.textContent = 'בעיית תקשורת. בדקו את החיבור לאינטרנט ונסו שוב.'; errEl.style.display = 'block'; }
         });
       },

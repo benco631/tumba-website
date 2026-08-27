@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Reveal } from "./Reveal";
 import { LazyVideo } from "../LazyVideo";
 import { CONTACT_EMAIL } from "@/src/lib/content";
+import { PrivacyPolicyLabel } from "@/src/components/shared/PrivacyPolicyLabel";
 import { buildWaitlistPayload, getConfiguredPrivacyPolicyVersion, validateWaitlistForm, type AudienceType, type FieldErrors } from "@/src/lib/waitlist";
 import { useWaitlistSubmit } from "@/src/lib/useWaitlistSubmit";
 import styles from "./main.module.css";
@@ -126,10 +127,13 @@ export function ContactMain() {
                 <textarea id="main-message" value={message} onChange={(e) => setMessage(e.target.value)} rows={3} placeholder="ספרו לנו קצת עליכם" className={styles.formField} style={{ resize: "vertical" }} />
               </label>
 
-              <label style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: "#625A70", cursor: "pointer" }}>
+              <div style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: "#625A70" }}>
                 <input id="main-privacy" type="checkbox" checked={privacyAccepted} onChange={(e) => setPrivacyAccepted(e.target.checked)} style={{ marginTop: 2 }} required />
-                <span>קראתי ואני מאשר/ת את מדיניות הפרטיות</span>
-              </label>
+                <span>
+                  <label htmlFor="main-privacy" style={{ cursor: "pointer" }}>קראתי ואני מאשר/ת את </label>
+                  <PrivacyPolicyLabel />
+                </span>
+              </div>
               {fieldErrors.privacyAccepted && (
                 <p role="alert" style={{ color: "#C0392B", fontSize: 13, margin: 0 }}>{fieldErrors.privacyAccepted}</p>
               )}

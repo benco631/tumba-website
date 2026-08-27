@@ -47,9 +47,10 @@ function renderInline(text: string): ReactNode[] {
 
 /**
  * Generic markdown-to-JSX renderer, extracted so other policy documents
- * can reuse the exact same heading/list/paragraph/inline rules without
- * duplicating them. renderPrivacyPolicy() below is unchanged in behavior -
- * it's now just this function applied to PRIVACY_POLICY_MARKDOWN.
+ * (e.g. the waitlist-specific policy at /privacy/waitlist) can reuse the
+ * exact same heading/list/paragraph/inline rules without duplicating them.
+ * renderPrivacyPolicy() below is unchanged in behavior - it's now just this
+ * function applied to PRIVACY_POLICY_MARKDOWN.
  */
 export function renderMarkdownToBlocks(markdown: string): ReactNode[] {
   const lines = markdown.split(/\r?\n/);

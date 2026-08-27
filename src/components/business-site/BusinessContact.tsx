@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Reveal } from "../main-site/Reveal";
 import { CONTACT_EMAIL } from "@/src/lib/content";
+import { PrivacyPolicyLabel } from "@/src/components/shared/PrivacyPolicyLabel";
 import { buildWaitlistPayload, getConfiguredPrivacyPolicyVersion, validateWaitlistForm } from "@/src/lib/waitlist";
 import { useWaitlistSubmit } from "@/src/lib/useWaitlistSubmit";
 import styles from "./business.module.css";
@@ -236,10 +237,13 @@ export function BusinessContact() {
               <textarea id="biz-note" rows={3} value={form.note} onChange={set("note")} placeholder="ספרו לנו קצת על העסק" className={styles.formField} style={{ resize: "vertical" }} />
             </Field>
 
-            <label htmlFor="biz-privacy" style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: "var(--ink2)", cursor: "pointer" }}>
+            <div style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: "var(--ink2)" }}>
               <input id="biz-privacy" type="checkbox" checked={form.privacyAccepted} onChange={setChecked("privacyAccepted")} style={{ marginTop: 2 }} required />
-              <span>קראתי ואני מאשר/ת את מדיניות הפרטיות</span>
-            </label>
+              <span>
+                <label htmlFor="biz-privacy" style={{ cursor: "pointer" }}>קראתי ואני מאשר/ת את </label>
+                <PrivacyPolicyLabel />
+              </span>
+            </div>
             {errors.privacyAccepted && (
               <p role="alert" style={{ color: "#C0392B", fontSize: 12.5, margin: 0 }}>{errors.privacyAccepted}</p>
             )}

@@ -93,6 +93,29 @@ describe("approved privacy policy", () => {
     ).not.toBeNull();
   });
 
+  it("connects the static form's consent link to /privacy/waitlist/ and its footer to /privacy/", () => {
+    const staticMain = readFileSync(
+      join(process.cwd(), "website", "index.html"),
+      "utf8",
+    );
+    // Consent checkbox link (the form) - waitlist-scoped policy.
+    expect(staticMain).toContain(
+      '&quot;default&quot;:&quot;/privacy/waitlist/&quot;',
+    );
+    // Site-wide footer link - general app policy, deliberately unchanged.
+    expect(staticMain).toContain('href="/privacy/"');
+    expect(staticMain).toContain("t2-privacy-link:focus-visible");
+    expect(staticMain).toContain("e.stopPropagation()");
+
+    const staticDocument = new DOMParser().parseFromString(
+      staticMain,
+      "text/html",
+    );
+    expect(
+      staticDocument.querySelector("#t2-privacy-link-text")?.closest("label"),
+    ).toBeNull();
+  });
+
   it("connects every React footer to /privacy with visible focus styling", () => {
     const { container } = render(
       <>
@@ -113,6 +136,7 @@ describe("approved privacy policy", () => {
       join(process.cwd(), "app", "globals.css"),
       "utf8",
     );
+    expect(globalCss).toContain(".privacy-policy-link:focus-visible");
     expect(globalCss).toContain(".footer-privacy-link:focus-visible");
   });
 });

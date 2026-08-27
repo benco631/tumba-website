@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { BrandSlogan } from "@/src/components/shared/WildTogether";
+import { PrivacyPolicyLabel } from "@/src/components/shared/PrivacyPolicyLabel";
 import { buildWaitlistPayload, getConfiguredPrivacyPolicyVersion, validateWaitlistForm, type FieldErrors } from "@/src/lib/waitlist";
 import { useWaitlistSubmit } from "@/src/lib/useWaitlistSubmit";
 
@@ -206,7 +207,7 @@ export function SignupSection() {
                 </p>
               )}
 
-              <label style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: "var(--ink2)", cursor: "pointer" }}>
+              <div style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: "var(--ink2)" }}>
                 <input
                   id="signup-privacy"
                   type="checkbox"
@@ -215,8 +216,11 @@ export function SignupSection() {
                   style={{ marginTop: 2 }}
                   required
                 />
-                <span>קראתי ואני מאשר/ת את מדיניות הפרטיות</span>
-              </label>
+                <span>
+                  <label htmlFor="signup-privacy" style={{ cursor: "pointer" }}>קראתי ואני מאשר/ת את </label>
+                  <PrivacyPolicyLabel />
+                </span>
+              </div>
               {fieldErrors.privacyAccepted && (
                 <p role="alert" style={{ color: "#C0392B", fontSize: 13.5, margin: 0 }}>{fieldErrors.privacyAccepted}</p>
               )}

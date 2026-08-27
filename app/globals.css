@@ -58,6 +58,7 @@ a {
   text-decoration: none;
 }
 
+.privacy-policy-link:focus-visible,
 .footer-privacy-link:focus-visible {
   border-radius: 4px;
   outline: 3px solid var(--acc3);

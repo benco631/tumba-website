@@ -8,6 +8,9 @@
 //   NEXT_PUBLIC_API_BASE_URL           real backend host — UNSET until one is
 //                                       approved, see env.example
 //   NEXT_PUBLIC_PRIVACY_POLICY_VERSION approved version sent with consent
+// The consent-link URL itself is no longer env-driven — see
+// src/components/shared/PrivacyPolicyLabel.tsx, which links directly to
+// the real internal /privacy/waitlist route.
 // Until the API base and privacy version are set, submission is intentionally kept unavailable
 // (see submitWaitlist's "config" outcome) rather than posting to a guessed
 // URL or claiming an unapproved policy version. See env.example.
