@@ -58,6 +58,12 @@ a {
   text-decoration: none;
 }
 
+.footer-privacy-link:focus-visible {
+  border-radius: 4px;
+  outline: 3px solid var(--acc3);
+  outline-offset: 3px;
+}
+
 ::selection {
   background: rgba(124, 92, 246, 0.4);
   color: #fff;

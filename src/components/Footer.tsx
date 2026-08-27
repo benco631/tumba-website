@@ -76,6 +76,9 @@ export function Footer() {
           }}
         >
           <span style={{ color: "var(--ink2)", fontSize: 13.5 }}>© 2026 Tumbapp. כל הזכויות שמורות.</span>
+          <Link className="footer-privacy-link" href="/privacy" style={{ color: "var(--ink2)", fontSize: 13.5, textDecoration: "underline" }}>
+            מדיניות הפרטיות
+          </Link>
           <WildTogether style={{ color: "var(--acc3)", fontSize: 14.5, fontWeight: 700, letterSpacing: ".02em" }} />
         </div>
       </div>
