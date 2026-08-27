@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { WildTogether } from "../shared/WildTogether";
 
 export function BusinessFooter() {
@@ -11,9 +10,6 @@ export function BusinessFooter() {
           <span style={{ fontSize: 13.5, color: "var(--ink2)" }}>Tumbapp לעסקים — קבוצות פעילות, קרוב אליכם.</span>
         </div>
         <WildTogether style={{ color: "var(--acc3)", fontSize: 14, fontWeight: 700, letterSpacing: ".02em" }} />
-        <Link className="footer-privacy-link" href="/privacy" style={{ color: "var(--ink2)", fontSize: 13, textDecoration: "underline" }}>
-          מדיניות הפרטיות
-        </Link>
         <span style={{ color: "var(--ink2)", fontSize: 13 }}>© 2026 TUMBAPP. כל הזכויות שמורות.</span>
       </div>
     </footer>

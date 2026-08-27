@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { BrandSlogan } from "@/src/components/shared/WildTogether";
-import { PrivacyPolicyLabel } from "@/src/components/shared/PrivacyPolicyLabel";
-import { buildWaitlistPayload, getConfiguredPrivacyPolicyVersion, validateWaitlistForm, type FieldErrors } from "@/src/lib/waitlist";
+import { buildWaitlistPayload, validateWaitlistForm, type FieldErrors } from "@/src/lib/waitlist";
 import { useWaitlistSubmit } from "@/src/lib/useWaitlistSubmit";
+
+const PRIVACY_POLICY_VERSION = process.env.NEXT_PUBLIC_PRIVACY_POLICY_VERSION ?? "";
 
 const inputStyle: React.CSSProperties = {
   background: "#FFFFFF",
@@ -44,7 +45,7 @@ export function SignupSection() {
     e.preventDefault();
     if (isSubmitting) return;
 
-    const errors = validateWaitlistForm({ email, phone, privacyAccepted });
+    const errors = validateWaitlistForm({ fullName, email, phone, privacyAccepted });
     setFieldErrors(errors);
     if (Object.keys(errors).length > 0) return;
 
@@ -58,7 +59,7 @@ export function SignupSection() {
         marketingConsent,
         privacyAccepted,
       },
-      getConfiguredPrivacyPolicyVersion(),
+      PRIVACY_POLICY_VERSION,
     );
     await submit(payload);
   };
@@ -148,7 +149,6 @@ export function SignupSection() {
               <label style={labelStyle}>
                 <span style={labelTextStyle}>שם מלא</span>
                 <input
-                  id="signup-name"
                   type="text"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
@@ -157,14 +157,15 @@ export function SignupSection() {
                   placeholder="ישראל ישראלי"
                   style={inputStyle}
                   autoComplete="name"
-                  maxLength={200}
                 />
+                {fieldErrors.fullName && (
+                  <span role="alert" style={{ color: "#C0392B", fontSize: 12.5 }}>{fieldErrors.fullName}</span>
+                )}
               </label>
 
               <label style={labelStyle}>
                 <span style={labelTextStyle}>אימייל</span>
                 <input
-                  id="signup-email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -173,8 +174,6 @@ export function SignupSection() {
                   placeholder="name@mail.com"
                   style={inputStyle}
                   autoComplete="email"
-                  aria-invalid={!!fieldErrors.email}
-                  aria-describedby={fieldErrors.email ? "signup-contact-error" : undefined}
                 />
               </label>
 
@@ -187,7 +186,6 @@ export function SignupSection() {
               <label style={labelStyle}>
                 <span style={labelTextStyle}>טלפון</span>
                 <input
-                  id="signup-phone"
                   type="tel"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
@@ -196,31 +194,25 @@ export function SignupSection() {
                   placeholder="050-0000000"
                   style={inputStyle}
                   autoComplete="tel"
-                  aria-invalid={!!fieldErrors.phone}
-                  aria-describedby={fieldErrors.phone ? "signup-contact-error" : undefined}
                 />
               </label>
 
               {(fieldErrors.email || fieldErrors.phone) && (
-                <p id="signup-contact-error" role="alert" style={{ color: "#C0392B", fontSize: 13.5, margin: 0 }}>
+                <p role="alert" style={{ color: "#C0392B", fontSize: 13.5, margin: 0 }}>
                   {fieldErrors.email || fieldErrors.phone}
                 </p>
               )}
 
-              <div style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: "var(--ink2)" }}>
+              <label style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 13, color: "var(--ink2)", cursor: "pointer" }}>
                 <input
-                  id="signup-privacy"
                   type="checkbox"
                   checked={privacyAccepted}
                   onChange={(e) => setPrivacyAccepted(e.target.checked)}
                   style={{ marginTop: 2 }}
                   required
                 />
-                <span>
-                  <label htmlFor="signup-privacy" style={{ cursor: "pointer" }}>קראתי ואני מאשר/ת את </label>
-                  <PrivacyPolicyLabel />
-                </span>
-              </div>
+                <span>קראתי ואני מאשר/ת את מדיניות הפרטיות</span>
+              </label>
               {fieldErrors.privacyAccepted && (
                 <p role="alert" style={{ color: "#C0392B", fontSize: 13.5, margin: 0 }}>{fieldErrors.privacyAccepted}</p>
               )}
